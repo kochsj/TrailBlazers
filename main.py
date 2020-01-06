@@ -6,6 +6,7 @@ class Game:
         self.day = 1
         self.month = None
         self.bank_roll = None
+        
 
     def play(self):
         """
@@ -27,8 +28,7 @@ class Game:
         self.party = start[0]
         self.bank_roll = start [1]
         self.month = choose_month_to_depart()
-        print(f'bank roll: {self.bank_roll}')
-        print(f'party {self.party[0].health}')
+        
 
 
 if __name__ == "__main__":
