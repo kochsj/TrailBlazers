@@ -4,12 +4,18 @@ Creating the random events that occur in the game.
 
 import random
 
-def randomize(player):
+def randomize(game):
   """ Determines if random event occurs"""
+  random.seed()
   
+  # Determine if random event occurs.
+  chance = list(range(1,31)) 
+  number = random.randint(1,100)
+  if not(number in chance):
+    return
   # List random event functions.
   misfortunes = [
-      sickness,
+      illness,
       oxen_dies,
       thief_attacks,
       wagon_breaks,
@@ -19,9 +25,9 @@ def randomize(player):
   # Randomly pick one event to occur.
   misfortune= random.randint(0,len(misfortunes)-1)
   your_misfortune = misfortunes[misfortune]
-  return your_misfortune(player)
+  return your_misfortune(game)
 
-def sickness(player):
+def illness(game):
   """
   Causes a random party-member to become ill with a random disease.
   """
@@ -37,8 +43,8 @@ def sickness(player):
   
   # Randomly select a party-member.
   choices = []
-  for i in range(len(player.party)):
-    if player.party[i]:
+  for i in range(len(game.party)):
+    if game.party[i]:
       choices.append(i)
   name = random.choice(choices)
       
@@ -46,21 +52,21 @@ def sickness(player):
   disease = random.choice(diseases)
   
   # Inform player and make party member sick.
-  name = player.party[name].name
+  name = game.party[name].name
   print(f"{name} has {disease}")
-  player.members[name].gets_sick(disease)
+  game.party[name].gets_sick(disease)
   
-def oxen_dies(player):
+def oxen_dies(game):
   """
   Removes an oxen from the players inventory.
   """
 
   print("An oxen has died")
-  oxen_available = player.get_inventory('oxen')
+  oxen_available = game.inventory('oxen')
   
   # Avoids printing negative numbers to player.
   if oxen_available > 1:
-    remaining = player.consume('oxen',1)
+    remaining = game.consume('oxen',1)
     print(f'You have {remaining} oxen remaining')
 
 def thief_attacks(player):
@@ -86,7 +92,7 @@ def wagon_breaks(player):
   print(f'A wagon {part} broke')
 
 
-def bad_weather(player):
+def bad_weather(game):
   """
   Player is stuck while a random storm passes.
   """
@@ -102,11 +108,11 @@ def bad_weather(player):
   
   # Determine storm.
   event = random.choice(bad_weather)
+  weather = event[0]
   days = event[1]
-  name = event[0]
   
   # Inform player, advance time, and consume food for waiting.
-  print(f'You have to halt your journey for {days} days due to {name}')
+  print(f'You have to halt your journey for {days} days due to {weather}')
 
   
 
