@@ -46,16 +46,16 @@ def choose_month_to_depart():
     print('5. July')
     # print('6. Ask for advice') # TODO: do we want this??
     response = ''
-    while response != '1' response != '2' and response != '3' and response != '4' and response != '5':
+    while response != '1' and response != '2' and response != '3' and response != '4' and response != '5':
         response = input('What is your choice?  ')
     if response == '1':
-        pass
+        return 'March'
     if response == '2':
-        pass
+        return 'April'
     if response == '3':
-        pass
+        return 'May'
     if response == '4':
-        pass
+        return 'June'
     if response == '5':
-        pass
+        return 'July'
     
