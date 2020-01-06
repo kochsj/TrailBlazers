@@ -6,7 +6,7 @@ class Game:
         self.day = 1
         self.month = None
         self.bank_roll = None
-        
+        self.inventory = {}
 
     def play(self):
         """
