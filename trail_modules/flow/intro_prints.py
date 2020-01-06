@@ -58,4 +58,3 @@ def choose_month_to_depart():
         return 'June'
     if response == '5':
         return 'July'
-    
