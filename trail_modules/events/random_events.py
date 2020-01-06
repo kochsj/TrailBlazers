@@ -5,16 +5,9 @@ Creating the random events that occur in the game.
 import random
 
 def randomize(game):
-  """ Determines if random event occurs"""
-  random.seed()
-  
-  # Determine if random event occurs.
-  chance = list(range(1,31)) 
-  number = random.randint(1,100)
-  if not(number in chance):
-    return
-  # List random event functions.
-  misfortunes = [
+    """ Determines if random event occurs"""
+    # List random event functions.
+    misfortunes = [
       illness,
       oxen_dies,
       thief_attacks,
@@ -23,9 +16,9 @@ def randomize(game):
       ]
   
   # Randomly pick one event to occur.
-  misfortune= random.randint(0,len(misfortunes)-1)
-  your_misfortune = misfortunes[misfortune]
-  return your_misfortune(game)
+    misfortune= random.randint(0,len(misfortunes)-1)
+    your_misfortune = misfortunes[misfortune]
+    return your_misfortune(game)
 
 def illness(game):
   """
@@ -66,21 +59,27 @@ def oxen_dies(game):
   
   # Avoids printing negative numbers to player.
   if oxen_available > 1:
-    remaining = game.consume('oxen',1)
+    remaining = game.inventory('oxen') -1
     print(f'You have {remaining} oxen remaining')
 
-def thief_attacks(player):
+def thief_attacks(game):
   """
   Theif steals and removes a random amount of food from the player's inventory.
   """
+  amount = random.randint(10,30)
+  food_available = game.inventory('food')
+  if food_available >= amount:
+    print(f'A thief has stolen {amount} pounds of food')
+    remaining_food = (game.inventory('food')- amount)
+    print(f'You have {remaining_food} pounds of food remaining')
+  else:
+    print('A thief stole all of  your food')
 
 
 def wagon_breaks(player):
   """
   Random part on wagon breaks and ends game if player cannot fix it.
   """
-  
-  
   wagon_parts = [
       'wheel',
       'axel',
