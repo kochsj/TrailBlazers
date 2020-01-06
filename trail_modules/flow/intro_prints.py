@@ -1,5 +1,6 @@
 from trail_modules.flow.player import character_creation
 
+
 def print_the_intro():
     """
     Prints the game intro
@@ -46,7 +47,7 @@ def choose_month_to_depart():
     print('5. July')
     # print('6. Ask for advice') # TODO: do we want this??
     response = ''
-    while response != '1' response != '2' and response != '3' and response != '4' and response != '5':
+    while response != '1' and response != '2' and response != '3' and response != '4' and response != '5':
         response = input('What is your choice?  ')
     if response == '1':
         pass

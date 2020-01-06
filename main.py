@@ -1,9 +1,9 @@
-from trail_modules.flow.prints import print_the_intro
-from trail_modules.flow.player import character_creation
+from trail_modules.flow.intro_prints import print_the_intro
+
 
 class Game:
     def __init__(self):
-        self.party = None #list of party members
+        self.party = None  # list of party members
         self.day = 1
         self.month = "March"
 
@@ -24,7 +24,6 @@ class Game:
             status (health, days, miles, money, food, pace)
         """
         self.party = print_the_intro()
-        
 
 
 if __name__ == "__main__":
