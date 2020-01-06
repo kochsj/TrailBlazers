@@ -66,7 +66,7 @@ def oxen_dies(player):
 def thief_attacks(player):
   """
   Theif steals and removes a random amount of food from the player's inventory.
-  """)
+  """
 
 
 def wagon_breaks(player):
