@@ -1,11 +1,12 @@
-from trail_modules.flow.intro_prints import print_the_intro
-
+from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 
 class Game:
     def __init__(self):
         self.party = None  # list of party members
         self.day = 1
-        self.month = "March"
+        self.month = None
+        self.bank_roll = None
+        self.inventory = {}
 
     def play(self):
         """
@@ -23,7 +24,12 @@ class Game:
             weather
             status (health, days, miles, money, food, pace)
         """
-        self.party = print_the_intro()
+        start = print_the_intro()
+        self.party = start[0]
+        self.bank_roll = start [1]
+        self.month = choose_month_to_depart()
+        print(f'bank roll: {self.bank_roll}')
+        print(f'party {self.party[0].health}')
 
 
 if __name__ == "__main__":
