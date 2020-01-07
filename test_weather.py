@@ -5,7 +5,7 @@ from weather import get_weather, test_data, _distances
 
 def test_barlow():
   for _ in range (300):
-    weather = get_weather (2010,12)
+    weather = get_weather (2010,"December")
     assert weather[0] >= 29
     assert weather[1] <= 63
 
@@ -16,6 +16,6 @@ def test_every_damned_thing():
     low = test_data[landmark][44]
     high = test_data[landmark][47]
     for _ in range (300):
-      weather = get_weather(miles,12)
+      weather = get_weather(miles,"December")
       assert weather [0] >= low
       assert weather [1] < high
