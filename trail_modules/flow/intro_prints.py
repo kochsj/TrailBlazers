@@ -31,7 +31,7 @@ def print_the_intro():
         os.system('clear')
         return character_creation() # in trail_modules/flow/player.py - creates the characters and starts the game
     
-    if response == '2':
+    if response == '2': #TODO:
         learn_more() # in trail_modules/flow/intro_prints.py - prints the rules of the game
         print_the_intro()
     
