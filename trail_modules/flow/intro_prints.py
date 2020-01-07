@@ -31,7 +31,7 @@ def print_the_intro():
         print_the_intro()
     # QUITS THE GAME
     if response == '3':
-        exit
+        exit()
 
 #TODO:
 def learn_more():

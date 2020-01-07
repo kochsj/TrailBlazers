@@ -28,18 +28,14 @@ class Game:
             weather
             status (health, days, miles, money, food, pace)
         """
-        start = print_the_intro()
-        self.party = start[0]
-        self.bank_roll = start [1]
-        self.month = choose_month_to_depart()
-        print(f'bank roll: {self.bank_roll}')
-        print(f'party {self.party[0].health}')
-        shopping_result = buy_items_from_store(self.bank_roll,self.inventory)
-        self.inventory = shopping_result[0]
-        self.bank_roll = shopping_result[1]
-
-        print(f'bank roll: {self.bank_roll}')
-        print(f'inventory: {self.inventory}')
+        start = print_the_intro() #prints intro and handles user response
+        self.party = start[0] #starting wagon party from print_the_intro
+        self.bank_roll = start [1] #starting money from print_the_intro
+        self.month = choose_month_to_depart() #asks player to choose month to start and assigns
+        shopping_result = buy_items_from_store(self.bank_roll,self.inventory) #opens shop interface, allows user to purchase goods. returns updates to inventory and updates bank_roll
+        self.inventory = shopping_result[0] #dict of inventory items
+        self.bank_roll = shopping_result[1] #reassigns bank_roll with remaining money after shopping
+        self.traverse_the_trail()
     
     def traverse_the_trail(self):
         """
@@ -82,26 +78,36 @@ You may:
                 if response == "2":
                     #check supplies
                     self.print_inventory()
+                    input('Return to continue....')
+                    print(menu)
                     response = ''    
                 if response == "3":
                     #TODO: check map
+                    pass
                 if response == "4":
                     #TODO: change pace (determines hours per day)
+                    pass
                 if response == "5":
                     #TODO: change food rations (determines amount of food per person)
+                    pass
                 if response == "6":
                     #TODO: stop to rest
+                    pass
                 if response == "7":
                     #TODO: handle trading
+                    pass
                 if response == "8":
                     #TODO: handle talking to people
+                    pass
                 if response == "9":
-                    if miles_from_missouri == 304 or miles_from_missouri == 640 or miles_from_missouri == 932 or miles_from_missouri == 989 or miles_from_missouri == 1295 or miles_from_missouri == 1648 or miles_from_missouri == 1863:
+                    if self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
                         buy_items_from_store(self.bank_roll, self.inventory)
                     else:
                         print('Unfortunately there are no shops nearby.')
+                        response = ''
+            print('were going down the trail! yay')
         print('GAME OVER')
-        exit
+        exit()
             
     def print_inventory(self):
         inventory = f"""Oxen: {self.inventory['Oxen']}
