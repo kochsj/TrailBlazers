@@ -110,7 +110,10 @@ You may:
 
                 if response == "8":#TODO: handle hunting
                     os.system('clear')
-                    generate_animal()
+                    if game.inventory["Ammunition"] >= 1:
+                        generate_animal(game)
+                    else:
+                        input('You have no Ammunition')
                     response = self.print_menu_and_require_new_input(menu)
 
                 if response == "9":
