@@ -1,6 +1,6 @@
 from random import randint
 
-def generate_animal():
+def generate_animal(game):
     """
     
     """
@@ -8,108 +8,101 @@ def generate_animal():
     if hunting == "y":
         animal = randint(1,8)
         if animal == 1:
-            return shooting("squirrel")
+            return shooting("squirrel", game)
         elif animal == 2:
-            return shooting("rabbit")
+            return shooting("rabbit", game)
         elif animal == 3:
-            return shooting("deer")
+            return shooting("deer", game)
         elif animal == 4:
-            return shooting("Buffalo")
+            return shooting("Buffalo", game)
         elif animal == 5:
-            return shooting("Mallard Duck")
+            return shooting("Mallard Duck", game)
         elif animal == 6:
-            return shooting("Gazzelle")
+            return shooting("Gazzelle", game)
         elif animal == 7:
-            return shooting("Caribou")
+            return shooting("Caribou", game)
         else:
-            return shooting("bear")
+            return shooting("bear", game)
     else:
         input("You've decided to continue down the road.")
 
 
-def shooting(animal):
+def shooting(animal, game):
     decision = input(f"A {animal} jumps out! Would you like to shoot the {animal}? (y/n) ")
     if decision == "y":
         result = randint(1,6)
         if result > 4:
-            food(animal)
+            food(animal, game)
         elif result == 4:
             input(f"The {animal} ran away.")
             bullets_wasted = randint(1,3)
-            # inventory.bullets -= bullets_wasted
-            #return bullets
-            if bullets_wasted == 1:
-                input("You've wasted 1 bullet.")
-            else:
-                input(f"You've wasted {bullets_wasted} bullets.")
+            game.inventory['Ammunition'] -= 1
+            input("You've wasted 1 bullet.")
+
         else:
-            attack(animal)
+            attack(animal, game)
     else:
         input(f"You've decided to spare the {animal}'s life.")
 
 
-def attack(animal):
+def attack(animal, game):
     input(f"You have been attacked by the {animal}!")
 
     if animal == "squirrel":
         input("You've lost 1 point of health!")
-        # player.health -= 1
+        game.party[0].health -= 1
     elif animal == "rabbit":
         input("You've lost 5 points of health!")
-        # player.health -= 5
+        game.party[0].health -= 5
     elif animal == "deer":
         input("You've lost 10 points of health!")
-        # player.health -= 10
+        game.party[0].health -= 10
     elif animal == "Bufallo":
-        input("You've lost 5 points of health!")
-        # player.health -= 5
+        input("You've lost 10 points of health!")
+        game.party[0].health -= 10
     elif animal == "Mallard Duck":
         input("You've lost  points of health!")
-        # player.health -= 5
+        game.party[0].health -= 5
     elif animal == "Gazelle":
-        input("You've lost 10 points of health!")
-        # player.health -= 10
+        input("You've lost 15 points of health!")
+        game.party[0].health -= 15
     elif animal == "Caibou":
         input("You've lost 15 points of health!")
-        # player.health -= 15
+        game.party[0].health -= 15
     else:
-        input("You've lost 25 points of health!")
-        # player.health -= 25
+        input("You've lost 20 points of health!")
+        game.party[0].health -= 20
 
 
-def food(animal):
+def food(animal, game):
     input(f"You have killed the {animal}.")
     if animal == "squirrel":
         input("You've received 1 pound of food!")
-        # inventory.food += 1
+        game.inventory['Food'] += 1
     elif animal == "rabbit":
         input("You've received 2 pounds of food!")
-        # inventory.food += 2
+        game.inventory['Food'] += 2
     elif animal == "deer":
         input("You've received 50 pounds of food!")
-        # inventory.food += 50
+        game.inventory['Food'] += 50
     elif animal == "Bufallo":
         input("You've received 400 pounds of food!")
-        # inventory.food += 400
+        game.inventory['Food'] += 400
     elif animal == "Mallard Duck":
         input("You've received 1 pounds of food!")
-        # inventory.food += 1
+        game.inventory['Food'] += 1
     elif animal == "Gazelle":
         input("You've received 35 pounds of food!")
-        # inventory.food += 35
+        game.inventory['Food'] += 35
     elif animal == "Caribou":
         input("You've received 300 pounds of food!")
-        # inventory.food += 300
+        game.inventory['Food'] += 300
     else:
         input("You've received 100 pounds of food!")
-        # inventory.food += 100
-    bullets_used = randint(1,3)
-    # inventory.bullets -= bullets_used
-    if bullets_used == 1:
-        input("You used 1 bullet.")
-    else:
-        input(f"You used {bullets_used} bullets.")
+        game.inventory['Food'] += 100
+    game.inventory['Ammunition'] -= 1
+    input("You used 1 bullet.")
+  
 
-# generate_animal()
 
 

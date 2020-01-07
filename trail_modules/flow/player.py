@@ -6,9 +6,8 @@ class Character:
         self.name = name
         self.health = 100
         self.clothed = True
-        self.sick = False
+        self.sick = []
         self.alive = True
-        self.food_stress_index = 100 #TODO: figure out this game logic
 
 ###########################################################################################################
 def character_creation():
