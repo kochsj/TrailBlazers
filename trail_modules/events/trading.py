@@ -26,9 +26,9 @@ def trade_resource(inventory):
     if trading_resource == 'Food':
       trading_quantity *= 40
     if offered_resource == 'Ammunition':
-      offered_quantity *= 5
+      offered_quantity *= 100
     if trading_resource == 'Ammunition':
-      trading_quantity *= 5
+      trading_quantity *= 100
     if offered_resource == 'Oxen':
       offered_quantity %= 2 + 1
     if trading_resource == 'Oxen':

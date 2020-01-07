@@ -8,7 +8,6 @@ def randomize(game):
     """ Determines if random event occurs"""
     # List random event functions.
     misfortunes = [
-      illness,
       oxen_dies,
       thief_attacks,
       wagon_breaks,
@@ -20,34 +19,7 @@ def randomize(game):
     your_misfortune = misfortunes[misfortune]
     return your_misfortune(game)
 
-def illness(game):
-  """
-  Causes a random party-member to become ill with a random disease.
-  """
-  
-  # Create names of diseases.
-  diseases = [
-      'typhoid',
-      'cholera',
-      'diphtheria',
-      'measles',
-      'dysentery'
-      ]
-  
-  # Randomly select a party-member.
-  choices = []
-  for i in range(len(game.party)):
-    if game.party[i]:
-      choices.append(i)
-  name = random.choice(choices)
-      
-  # Randomly select a disease.
-  disease = random.choice(diseases)
-  
-  # Inform player and make party member sick.
-  name = game.party[name].name
-  print(f"{name} has {disease}")
-  game.party[name].gets_sick(disease)
+
   
 def oxen_dies(game):
   """
