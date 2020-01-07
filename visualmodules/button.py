@@ -41,35 +41,35 @@ class TextButton:
         arcade.draw_rectangle_filled(self.center_x, self.center_y, self.width,
                                      self.height, self.face_color)
 
-        if not self.pressed:
-            color = self.shadow_color
-        else:
-            color = self.highlight_color
+        # if not self.pressed:
+        #     color = self.shadow_color
+        # else:
+        #     color = self.highlight_color
 
-        # Bottom horizontal
-        arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
-                         self.center_x + self.width / 2, self.center_y - self.height / 2,
-                         color, self.button_height)
+        # # Bottom horizontal
+        # arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
+        #                  self.center_x + self.width / 2, self.center_y - self.height / 2,
+        #                  color, self.button_height)
 
-        # Right vertical
-        arcade.draw_line(self.center_x + self.width / 2, self.center_y - self.height / 2,
-                         self.center_x + self.width / 2, self.center_y + self.height / 2,
-                         color, self.button_height)
+        # # Right vertical
+        # arcade.draw_line(self.center_x + self.width / 2, self.center_y - self.height / 2,
+        #                  self.center_x + self.width / 2, self.center_y + self.height / 2,
+        #                  color, self.button_height)
 
-        if not self.pressed:
-            color = self.highlight_color
-        else:
-            color = self.shadow_color
+        # if not self.pressed:
+        #     color = self.highlight_color
+        # else:
+        #     color = self.shadow_color
 
-        # Top horizontal
-        arcade.draw_line(self.center_x - self.width / 2, self.center_y + self.height / 2,
-                         self.center_x + self.width / 2, self.center_y + self.height / 2,
-                         color, self.button_height)
+        # # Top horizontal
+        # arcade.draw_line(self.center_x - self.width / 2, self.center_y + self.height / 2,
+        #                  self.center_x + self.width / 2, self.center_y + self.height / 2,
+        #                  color, self.button_height)
 
-        # Left vertical
-        arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
-                         self.center_x - self.width / 2, self.center_y + self.height / 2,
-                         color, self.button_height)
+        # # Left vertical
+        # arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
+        #                  self.center_x - self.width / 2, self.center_y + self.height / 2,
+        #                  color, self.button_height)
 
         x = self.center_x
         y = self.center_y

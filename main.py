@@ -1,11 +1,12 @@
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
+from trail_modules.events.shopping import buy_items_from_store
 
 class Game:
     def __init__(self):
         self.party = None  # list of party members
         self.day = 1
         self.month = None
-        self.bank_roll = None
+        self.bank_roll = 0
         self.inventory = {}
 
     def play(self):
@@ -30,6 +31,12 @@ class Game:
         self.month = choose_month_to_depart()
         print(f'bank roll: {self.bank_roll}')
         print(f'party {self.party[0].health}')
+        shopping_result = buy_items_from_store(self.bank_roll,self.inventory)
+        self.inventory = shopping_result[0]
+        self.bank_roll = shopping_result[1]
+
+        print(f'bank roll: {self.bank_roll}')
+        print(f'inventory: {self.inventory}')
 
 
 if __name__ == "__main__":
