@@ -55,11 +55,11 @@ def oxen_dies(game):
   """
 
   print("An oxen has died")
-  oxen_available = game.inventory('oxen')
+  oxen_available = game.inventory('Oxen')
   
   # Avoids printing negative numbers to player.
   if oxen_available > 1:
-    remaining = game.inventory('oxen') -1
+    remaining = game.inventory('Oxen') -1
     print(f'You have {remaining} oxen remaining')
 
 def thief_attacks(game):
@@ -67,16 +67,16 @@ def thief_attacks(game):
   Theif steals and removes a random amount of food from the player's inventory.
   """
   amount = random.randint(10,30)
-  food_available = game.inventory('food')
+  food_available = game.inventory('Food')
   if food_available >= amount:
     print(f'A thief has stolen {amount} pounds of food')
-    remaining_food = (game.inventory('food')- amount)
+    remaining_food = (game.inventory('Food')- amount)
     print(f'You have {remaining_food} pounds of food remaining')
   else:
     print('A thief stole all of  your food')
 
 
-def wagon_breaks(player):
+def wagon_breaks(game):
   """
   Random part on wagon breaks and ends game if player cannot fix it.
   """
