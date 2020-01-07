@@ -106,6 +106,7 @@ You may:
                     response = self.print_menu_and_require_new_input(menu)
 
                 if response == "8":#TODO: handle hunting
+                    os.system('clear')
                     generate_animal()
                     response = self.print_menu_and_require_new_input(menu)
 
