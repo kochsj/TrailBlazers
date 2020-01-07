@@ -36,7 +36,7 @@ def character_creation():
         if response.lower() not in acceptable_no:
             os.system('clear')
             return (wagon_party, starting_funds)
-            
+
         os.system('clear')
     
 
@@ -106,3 +106,4 @@ def print_member_list(member_list):
     for member in member_list:
         print(f'{counter}. {member.name}')
         counter += 1
+###########################################################################################################

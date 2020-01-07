@@ -1,6 +1,7 @@
 import os
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
+from trail_modules.events.hunting import generate_animal
 
 class Game:
     def __init__(self):
@@ -104,7 +105,8 @@ You may:
                 if response == "7": #TODO: handle trading
                     response = self.print_menu_and_require_new_input(menu)
 
-                if response == "8":#TODO: handle talking to people
+                if response == "8":#TODO: handle hunting
+                    generate_animal()
                     response = self.print_menu_and_require_new_input(menu)
 
                 if response == "9":
