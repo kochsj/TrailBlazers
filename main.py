@@ -32,7 +32,7 @@ class Game:
         self.party = start[0] #starting wagon party from print_the_intro
         self.bank_roll = start [1] #starting money from print_the_intro
         self.month = choose_month_to_depart() #asks player to choose month to start and assigns
-        shopping_result = buy_items_from_store(self.bank_roll,self.inventory) #opens shop interface, allows user to purchase goods. returns updates to inventory and updates bank_roll
+        shopping_result = buy_items_from_store(self.bank_roll, self.inventory) #opens shop interface, allows user to purchase goods. returns updates to inventory and updates bank_roll
         self.inventory = shopping_result[0] #dict of inventory items
         self.bank_roll = shopping_result[1] #reassigns bank_roll with remaining money after shopping
         self.traverse_the_trail()
@@ -100,11 +100,14 @@ You may:
                     #TODO: handle talking to people
                     pass
                 if response == "9":
-                    if self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
+                    if self.miles_from_missouri == 0 or self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
                         buy_items_from_store(self.bank_roll, self.inventory)
+                        response = ''
+                        print(menu)
                     else:
                         print('Unfortunately there are no shops nearby.')
                         response = ''
+                        print(menu)
             print('were going down the trail! yay')
         print('GAME OVER')
         exit()
