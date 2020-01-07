@@ -9,6 +9,23 @@ class Character:
         self.sick = []
         self.alive = True
 
+    def return_health_status_report(self):
+        status_string = f'  {self.name} is '
+        if 95 <= self.health <= 100:
+            status_string += "in perfect health."
+        if 80 <= self.health < 95:
+            status_string += "feeling great."
+        if 60 <= self.health < 80:
+            status_string += "feeling good."
+        if 35 <= self.health < 60:
+             status_string += "feeling poor."
+        if self.health < 35:
+            status_string += "in critical condition."
+        if self.sick == True:
+            status_string += " (SICK)"
+        
+        return status_string
+
 ###########################################################################################################
 def character_creation():
     """
