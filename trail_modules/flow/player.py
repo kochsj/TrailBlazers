@@ -1,3 +1,5 @@
+import os
+
 class Character:
     """An instance of a character in the game."""
     def __init__(self, name):
@@ -16,17 +18,31 @@ def character_creation():
     A leader and 4 members are created at the start of every game.
     Returns a list of the members for use by the game and the starting funds available for use.
     """
-    wagon_party = []
+    acceptable_no = ['no', 'n', 'nah', 'naw', 'no way', 'nope', 'x']
 
-    chosen_leader, starting_funds = prompt_player_to_pick_a_leader()
+    while True:
+        wagon_party = []
 
-    wagon_party.append(chosen_leader)
-    wagon_party.append(prompt_player_to_enter_name('2'))
-    wagon_party.append(prompt_player_to_enter_name('3'))
-    wagon_party.append(prompt_player_to_enter_name('4'))
-    wagon_party.append(prompt_player_to_enter_name('5'))
+        chosen_leader, starting_funds = prompt_player_to_pick_a_leader()
 
-    return (wagon_party, starting_funds)
+        wagon_party.append(chosen_leader)
+        wagon_party.append(prompt_player_to_enter_name('2', wagon_party))
+        wagon_party.append(prompt_player_to_enter_name('3', wagon_party))
+        wagon_party.append(prompt_player_to_enter_name('4', wagon_party))
+        wagon_party.append(prompt_player_to_enter_name('5', wagon_party))
+
+        print_member_list(wagon_party)
+        response = input('Is this your team? ')
+        if response.lower() not in acceptable_no:
+            os.system('clear')
+            return (wagon_party, starting_funds)
+            
+        os.system('clear')
+    
+
+
+
+
 ###########################################################################################################
 
 
@@ -53,27 +69,40 @@ def prompt_player_to_pick_a_leader():
     if response == '3':
         starting_funds = 400 # Hard
 
+    os.system('clear')
     response = input('What is your leader\'s first name? ')
     while response == '':
         response = input('What is your leader\'s first name? ')
 
     leader = Character(response)
     print(f'1. {response}')
+    os.system('clear')
     return (leader, starting_funds)
 ###########################################################################################################
 
 
 
 ###########################################################################################################
-def prompt_player_to_enter_name(member_seq_number):
+def prompt_player_to_enter_name(member_seq_number, member_list):
     """
     Function that handles choosing names for the four other wagon party members.
     Returns a new instance of the Character class to be added to the wagon_party in the game.
     """
+    print_member_list(member_list)
+
     response = input('What is the first name of your next member? ')
     while response == '':
         response = input('What is the first name of your next member? ')
     new_member = Character(response)
-    print(f'{member_seq_number}. {response}')
+    os.system('clear')
     return new_member
 ###########################################################################################################
+
+
+
+###########################################################################################################
+def print_member_list(member_list):
+    counter = 1
+    for member in member_list:
+        print(f'{counter}. {member.name}')
+        counter += 1

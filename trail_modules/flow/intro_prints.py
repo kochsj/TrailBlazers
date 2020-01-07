@@ -1,5 +1,7 @@
+import os
 from trail_modules.flow.player import character_creation
 
+###########################################################################################################
 def print_the_intro():
     """
     Prints the game intro
@@ -24,6 +26,7 @@ def print_the_intro():
         response = input()
     
     if response == '1':
+        os.system('clear')
         return character_creation() # in trail_modules/flow/player.py - creates the characters and starts the game
     
     if response == '2':
@@ -32,11 +35,20 @@ def print_the_intro():
     
     if response == '3':
         exit() # QUITS THE GAME
+###########################################################################################################
 
-#TODO:
-def learn_more():
+
+
+
+###########################################################################################################
+def learn_more(): #TODO:
     pass
+###########################################################################################################
 
+
+
+
+###########################################################################################################
 def choose_month_to_depart():
     """
     Prints the options of months to depart on the trail
@@ -63,3 +75,4 @@ def choose_month_to_depart():
         return 'June'
     if response == '5':
         return 'July'
+###########################################################################################################
