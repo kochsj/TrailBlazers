@@ -1,6 +1,9 @@
 from random import randint
 
 def generate_animal():
+    """
+    
+    """
     hunting = input("Something is rustling in the bushes. Would you like to go check it out? (y/n) ")
     if hunting == "y":
         animal = randint(1,8)
@@ -34,6 +37,7 @@ def shooting(animal):
             print(f"The {animal} ran away.")
             bullets_wasted = randint(1,3)
             # inventory.bullets -= bullets_wasted
+            #return bullets
             if bullets_wasted == 1:
                 print("You've wasted 1 bullet.")
             else:

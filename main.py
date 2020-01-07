@@ -62,7 +62,7 @@ You may:
     5. Change food rations.
     6. Stop to rest.
     7. Attempt to trade.
-    8. Talk to people.
+    8. Go hunting.
     9. Buy supplies.
 """         
             print(menu)
