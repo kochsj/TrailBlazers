@@ -31,7 +31,7 @@ def oxen_dies(game):
   
   # Avoids printing negative numbers to player.
   if oxen_available > 1:
-    remaining = game.inventory('Oxen') -1
+    remaining = game.inventory('Oxen') -= 1
     print(f'You have {remaining} oxen remaining')
 
 def thief_attacks(game):

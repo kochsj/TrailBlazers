@@ -105,11 +105,25 @@
             "markers": "implementation_name == 'cpython' and python_version < '3.8'",
             "version": "==1.4.0"
         },
+        "wcwidth": {
+            "hashes": [
+                "sha256:8fd29383f539be45b20bd4df0dc29c20ba48654a41e661925e612311e9f3c603",
+                "sha256:f28b3e8a6483e5d49e7f8949ac1a78314e740333ae305b4ba5defd3e74fb37a8"
+            ],
+            "version": "==0.1.8"
+        },
         "wrapt": {
             "hashes": [
                 "sha256:565a021fd19419476b9362b05eeaa094178de64f8361e44468f9e9d7843901e1"
             ],
             "version": "==1.11.2"
+        },
+        "zipp": {
+            "hashes": [
+                "sha256:3718b1cbcd963c7d4c5511a8240812904164b7f381b647143a89d3b98f9bcd8e",
+                "sha256:f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335"
+            ],
+            "version": "==0.6.0"
         }
     }
 }
