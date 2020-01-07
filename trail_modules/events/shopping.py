@@ -92,7 +92,10 @@ def process_trade_transaction(bank_roll, cost):
     determines if the player can afford to purchase
     returns a tuple of the number purchased and the remaining funds
     """
-    response = input("How many would you like? ")
+    response = ''
+    while not response.isnumeric():
+        response = input("How many would you like? ")
+        
     total_cost = int(response) * cost
     money = bank_roll
     if bank_roll < total_cost:

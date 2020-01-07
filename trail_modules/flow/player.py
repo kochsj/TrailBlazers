@@ -11,7 +11,7 @@ class Character:
         self.food_stress_index = 100 #TODO: figure out this game logic
 
     def return_health_status_report(self):
-        status_string = f'{self.name} is '
+        status_string = f'  {self.name} is '
         if 95 <= self.health <= 100:
             status_string += "in perfect health."
         if 80 <= self.health < 95:
