@@ -54,7 +54,9 @@ class Game:
         #TODO: for menu, keep track of everyone's health in the party
         # weather = Weather(self.month)
         # health = for member in self.party: grab the health
-        menu = f"""Weather: cold
+        menu = f"""{self.month} {self.day}, 1848
+
+Weather: cold
 Health: good
 Pace: {self.pace}
 Rations: {self.rations}
@@ -114,7 +116,7 @@ You may:
                         response = self.print_menu_and_require_new_input(menu)
             print('were going down the trail! yay')
 
-        print('GAME OVER')
+        input('GAME OVER')
         exit()
 ###########################################################################################################
 
