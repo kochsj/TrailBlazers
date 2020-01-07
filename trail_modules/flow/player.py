@@ -1,4 +1,5 @@
 class Character:
+    """An instance of a character in the game."""
     def __init__(self, name):
         self.name = name
         self.health = 100
@@ -7,53 +8,72 @@ class Character:
         self.alive = True
         self.food_stress_index = 100 #TODO: figure out this game logic
 
+###########################################################################################################
 def character_creation():
     """
     Function to create the characters in the party
     creates instances of the Character class
-    A leader and 4 members.
-    Returns a list of the members for use by the game.
+    A leader and 4 members are created at the start of every game.
+    Returns a list of the members for use by the game and the starting funds available for use.
+    """
+    wagon_party = []
+
+    chosen_leader, starting_funds = prompt_player_to_pick_a_leader()
+
+    wagon_party.append(chosen_leader)
+    wagon_party.append(prompt_player_to_enter_name('2'))
+    wagon_party.append(prompt_player_to_enter_name('3'))
+    wagon_party.append(prompt_player_to_enter_name('4'))
+    wagon_party.append(prompt_player_to_enter_name('5'))
+
+    return (wagon_party, starting_funds)
+###########################################################################################################
+
+
+
+###########################################################################################################
+def prompt_player_to_pick_a_leader():
+    """
+    Function to handle player choosing a starting leader
+    Returns a tuple of (the name of the leader, and the starting_funds (based on leader's profession))
     """
     print('Every wagon train needs a leader...')
     print('1. Banker')
     print('2. Carpenter')
     print('3. Farmer')
+
     response = ''
     while response != '1' and response != '2' and response != '3':
         response = input('What occupation does your leader have?')
+
     if response == '1':
-        money = 1600
+        starting_funds = 1600 # Easy game
     if response == '2':
-        money = 800
+        starting_funds = 800 # Medium
     if response == '3':
-        money = 400
+        starting_funds = 400 # Hard
 
-    wagon_party = []
     response = input('What is your leader\'s first name? ')
+    while response == '':
+        response = input('What is your leader\'s first name? ')
+
     leader = Character(response)
-    wagon_party.append(leader)
     print(f'1. {response}')
+    return (leader, starting_funds)
+###########################################################################################################
 
 
 
+###########################################################################################################
+def prompt_player_to_enter_name(member_seq_number):
+    """
+    Function that handles choosing names for the four other wagon party members.
+    Returns a new instance of the Character class to be added to the wagon_party in the game.
+    """
     response = input('What is the first name of your next member? ')
-    member_a = Character(response)
-    wagon_party.append(member_a)
-    print(f'2. {response}')
-
-    response = input('What is the first name of your next member? ')
-    member_b = Character(response)
-    wagon_party.append(member_b)
-    print(f'3. {response}')
-
-    response = input('What is the first name of your next member? ')
-    member_c = Character(response)
-    wagon_party.append(member_c)
-    print(f'4. {response}')
-
-    response = input('What is the first name of your next member? ')
-    member_d = Character(response)
-    wagon_party.append(member_d)
-    print(f'5. {response}')
-
-    return (wagon_party, money)
+    while response == '':
+        response = input('What is the first name of your next member? ')
+    new_member = Character(response)
+    print(f'{member_seq_number}. {response}')
+    return new_member
+###########################################################################################################
