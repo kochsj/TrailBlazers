@@ -107,10 +107,7 @@ General Store
           print(menu)
           print(f'Current funds: {bank_roll}')
       if response == "8":
-          print(shopping_inventory)
-          print(bank_roll)
           shopping_result = [shopping_inventory, bank_roll]
-          print(shopping_result)
           can_shop = False
           
     return shopping_result
