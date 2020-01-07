@@ -29,7 +29,7 @@ class IntroWindow(arcade.View):
         learn_button = LearnTextButton(button_center_spacing, button_center_vertical_spacing - 55, self.pause_program)
         self.button_list.append(learn_button)
 
-        quit_button = QuitTextButton(button_center_spacing, button_center_vertical_spacing - 110, self.pause_program)
+        quit_button = QuitTextButton(button_center_spacing, button_center_vertical_spacing - 110, self.quit_game)
         self.button_list.append(quit_button)
 
     def start_travel(self):
@@ -47,20 +47,13 @@ class IntroWindow(arcade.View):
             button.draw()
 
     def on_mouse_press(self, x, y, button, key_modifiers):
-        """
-        Called when the user presses a mouse button.
-        """
         check_mouse_press_for_buttons(x, y, self.button_list)
 
     def on_mouse_release(self, x, y, button, key_modifiers):
-        """
-        Called when a user releases a mouse button.
-        """
         check_mouse_release_for_buttons(x, y, self.button_list)
 
-    # def on_mouse_release(self):
-    #     travel_trail = TravelTrail(SCREEN_WIDTH, SCREEN_HEIGHT, 'TravelTrail')
-    #     self.window.show_view(travel_trail)
+    def quit_game(self):
+        arcade.close_window()
 
     def pause_program(self):
         self.pause = True
@@ -82,7 +75,7 @@ class TravelTrail(arcade.View):
     def on_draw(self):
         arcade.start_render()
         arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
-        arcade.draw_rectangle_filled(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, arcade.color.BLACK)
+        arcade.draw_rectangle_filled(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2.25, SCREEN_WIDTH // 1.25, SCREEN_HEIGHT // 1.75, arcade.color.BLACK)
         arcade.draw_text('it worked', 200, 100,
                         arcade.color.BLACK, font_size=50, anchor_x="center")
     
