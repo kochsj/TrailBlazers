@@ -1,19 +1,29 @@
 import os
+import random
+from weather import get_weather
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
 from trail_modules.events.trading import trade_resource
+from trail_modules.events.sickness import get_sick, get_well
+from trail_modules.events.random_events import random_events
+
 
 class Game:
     def __init__(self):
-        self.party = None  # list of party members
+        self.party = None #list of party members
         self.day = 1
         self.month = None
         self.bank_roll = 0
-        self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 0, 'Wagon Axle': 0, 'Wagon Tongue': 0}
-        self.pace = None #['Steady', 'Strenuous', 'Grueling']
-        self.rations = None #['filling', 'meager', 'bare-bones]
+        self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
+        self.pace = "Steady"
+        self.possible_paces = ["Steady", "Strenuous", "Grueling"]
+        self.rations = "filling" 
+        self.possible_rations = ["filling", 'meager','bare-bones']
         self.miles_from_missouri = 0
+        self.year = 1848
+        self.weather = (0,0)
+        self.location_mileposts_left=[2040,1863,1808,1648,1543,1359,1259,1151,989,932,830,640,554,304,185,102]
 
 ###########################################################################################################
     def play(self):
@@ -52,10 +62,13 @@ class Game:
         when there are no more party members - GAME OVER
         when you reach Oregon City - YOU WIN
         """
-        #TODO: for menu, incorporate weather / create class(?)
-        #TODO: for menu, keep track of everyone's health in the party
-        # weather = Weather(self.month)
-        # health = for member in self.party: grab the health
+
+        #####  Integrating Weather #####
+        self.weather = get_weather (self.miles_from_missouri, self.month)
+
+        
+
+
         def return_health_data_for_menu(party):
             party_health_string = '\n'
             for party_member in party:
@@ -64,9 +77,10 @@ class Game:
             return party_health_string[:-1]
 
         health_string = return_health_data_for_menu(self.party)
-        menu = f"""{self.month} {self.day}, 1848
+        menu = f"""{self.month} {self.day}, {self.year}
 
-Weather: cold
+Today's low temperature: {self.weather[0]}
+Today's high temperature: {self.weather[1]}
 Health: {health_string}
 Pace: {self.pace}
 Rations: {self.rations}
@@ -93,45 +107,50 @@ You may:
 
                 if response == "1": #continue on the trail  
                     interfacing_with_menu = False
+                    break
 
                 if response == "2": #check supplies
                     self.print_inventory()
-                    response = self.print_menu_and_require_new_input(menu)
 
                 if response == "3": #TODO: check map
-                    # check the map function - shows a map
-                    response = self.print_menu_and_require_new_input(menu) 
+                    pass
+                    # check the map function - shows a map 
 
-                if response == "4": #TODO: change pace (determines hours per day)
-                    response = self.print_menu_and_require_new_input(menu)
+                if response == "4": #set pace
+                    res = 0
+                    while res != 1 and res != 2 and res !=3:
+                        res = int(input ("What pace would you like to set?\n1:  Steady\n2:  Strenuous\n3:  Grueling\n   "))
+                    self.pace = self.possible_paces[res-1]
 
-                if response == "5": #TODO: change food rations (determines amount of food per person)
-                    response = self.print_menu_and_require_new_input(menu)
+                if response == "5": #set rations
+                    res = 0
+                    while res != 1 and res != 2 and res !=3:
+                        res = int(input ("What rations would you like to set?\n1:  filling\n2:  meager\n3:  bare-bones\n   "))
+                    self.rations = self.possible_rations[res-1]
+ 
+                if response == "6": #stop to rest
+                    self.rest()
 
-                if response == "6": #TODO: stop to rest
-                    response = self.print_menu_and_require_new_input(menu)
-
-                if response == "7": #TODO: handle trading
+                if response == "7": #handle trading
                     inventory_after_trading = trade_resource(self.inventory)
                     self.inventory = inventory_after_trading
-                    response = self.print_menu_and_require_new_input(menu)
+                    
 
-                if response == "8":#TODO: handle hunting
+                if response == "8": #handle hunting
                     os.system('clear')
                     if game.inventory["Ammunition"] >= 1:
                         generate_animal(game)
                     else:
                         input('You have no Ammunition')
-                    response = self.print_menu_and_require_new_input(menu)
 
                 if response == "9":
                     if self.miles_from_missouri == 0 or self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
                         buy_items_from_store(self.bank_roll, self.inventory)
-                        response = self.print_menu_and_require_new_input(menu)
+
                     else:
                         print('Unfortunately there are no shops nearby.')
-                        response = self.print_menu_and_require_new_input(menu)
-            print('were going down the trail! yay')
+                response = self.print_menu_and_require_new_input(menu)
+            self.travel_for_one_day()
 
         input('GAME OVER')
         exit()
@@ -157,6 +176,85 @@ Money left: {self.bank_roll}
         os.system('clear')
         print(inventory)
         input('Return to continue....')
+
+###########################################################################################################
+
+
+
+###########################################################################################################
+    def rest(self):
+        """heals up to 20 health per party member, and gives them a 20% chance of recovering from a disease"""
+        def consume_rations(self):
+            for party_member in self.party:
+                party_member.health += 20
+                if party_member.health > 100 : party_member.health = 100
+                if party_member.disease:
+                    healed = 0.2 > random.uniform(0, 1)
+                    if healed : get_well(party_member)
+
+###########################################################################################################
+
+
+
+###########################################################################################################
+
+    def travel_for_one_day(self):
+        ####
+        #  Travel Miles, and update illnesses based on pace#
+        ###
+        if self.inventory["Wagon Wheel"] <1 or self.inventory["Wagon Axle"] <1 or self.inventory["Wagon Tongue"] <1:
+            input ("You can't move until you repair your wagon.  Try trading for the part you need or buying one in a store (press enter to continue)")
+            return
+        miles = 0
+        chance_of_illness = 0
+        chance_of_recovery = 0.1
+        ## adjust chance of illness due to wagon pace
+        if self.pace == 'Steady' : 
+            miles = 8
+            chance_of_illness = 0.01
+        if self.pace == 'Strenuous' : 
+            miles = 12
+            chance_of_illness = 0.02
+        if self.pace == 'Grueling' :
+            miles = 16
+            chance_of_illness = 0.05
+        self.miles_from_missouri += miles  # travel miles
+        for party_member in self.party: # see if anyone gets sick or recovers from illness
+            if party_member.sick:
+                num = random.uniform(0, 1)
+                if num < chance_of_recovery: get_well(party_member)
+            num = random.uniform(0, 1)
+            if num < chance_of_illness: get_sick(party_member)           
+        self.consume_rations()
+
+        next_milepost = self.location_mileposts_left.pop()
+        if next_milepost =< self.miles_from_missouri: ###  If you've passed a landmark, be sure to stop at it!
+            self.miles_from_missouri = next_milepost
+        else self.location_mileposts_left.append(next_milepost)
+        random_events()
+
+###########################################################################################################
+
+
+
+###########################################################################################################
+    def consume_rations(self):
+        if self.inventory["Food"] == 0:
+            party_member = random.choice(self.party)
+            get_sick(party_member)
+        for party_member in self.party:
+            if self.rations == 'filling':
+                self.inventory["Food"] -= 5
+            elif self.rations == "meager":
+                self.inventory["Food"] -= 3
+                if party_member.health > 60: party_member.health -= 3
+            elif self.rations == "bare-bones":
+                self.inventory["Food"] -= 2
+                if party_member.health > 40: party_member.health -= 3
+            if self.inventory["Food"] < 0:
+                self.inventory["Food"] = 0
+
+    
 ###########################################################################################################
 
 
@@ -175,3 +273,6 @@ Money left: {self.bank_roll}
 if __name__ == "__main__":
     game = Game()
     game.play()
+
+
+
