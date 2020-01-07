@@ -57,12 +57,10 @@ class Game:
         # weather = Weather(self.month)
         # health = for member in self.party: grab the health
         menu = f"""{self.month} {self.day}, 1848
-
 Weather: cold
 Health: good
 Pace: {self.pace}
 Rations: {self.rations}
-
 You may:
     1. Continue down the trail.
     2. Check your supplies.
