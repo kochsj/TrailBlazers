@@ -2,6 +2,7 @@ import os
 from trail_modules.flow.player import character_creation
 
 ###########################################################################################################
+
 def print_the_intro():
     """
     Prints the game intro

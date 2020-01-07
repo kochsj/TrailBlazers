@@ -5,7 +5,7 @@ from trail_modules.events.hunting import generate_animal
 
 class Game:
     def __init__(self):
-        self.party = None #list of party members
+        self.party = None  # list of party members
         self.day = 1
         self.month = None
         self.bank_roll = 0
