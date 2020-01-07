@@ -42,37 +42,37 @@ def buy_items_from_store(partys_bank_roll, starting_inventory):
         os.system('clear')
 
         if response == "1":
-            print("talk about oxen")
+            print("You will need a team of oxen to pull your wagon. I charge $40 an ox.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=40)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Oxen', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "2":
-            print("talk about food")
+            print("You will need plenty of food for your party during the trip. I charge $0.25 per pound.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=0.25)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Food', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "3":
-            print("talk about clothing")
+            print("You will need clothing for both summer and winter. I charge $15 per set.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=15)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Clothing', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "4":
-            print("talk about Ammunition")
+            print("You will need ammunition for your rifles to hunt. I charge $2 per box of bullets.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=2)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Ammunition', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "5":
-            print("talk about Wagon Wheel")
+            print("You will need spare parts for your wagon. Wagon wheel is one of three types of spare parts. I charge $10 per piece.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=10)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Wagon Wheel', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "6":
-            print("talk about Wagon Axle")
+            print("You will need spare parts for your wagon. Wagon axle is one of three types of spare parts. I charge $10 per piece.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=10)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Wagon Axle', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "7":
-            print("talk about Wagon Tongue")
+            print("You will need spare parts for your wagon. Wagon tongue is one of three types of spare parts. I charge $10 per piece.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=10)
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Wagon Tongue', num_chosen, remaining_funds, shopping_inventory, menu)
             
@@ -95,11 +95,10 @@ def process_trade_transaction(bank_roll, cost):
     response = ''
     while not response.isnumeric():
         response = input("How many would you like? ")
-        
     total_cost = int(response) * cost
     money = bank_roll
     if bank_roll < total_cost:
-        input("not enough money...")
+        input("You have no enough money to finish this transaction.")
         return (0, money)
     else:
         money -= total_cost

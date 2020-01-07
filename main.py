@@ -1,4 +1,4 @@
-iimport os
+import os
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
