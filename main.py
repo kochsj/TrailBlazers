@@ -1,11 +1,11 @@
-import os
+iimport os
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
 
 class Game:
     def __init__(self):
-        self.party = None #list of party members
+        self.party = None  # list of party members
         self.day = 1
         self.month = None
         self.bank_roll = 0
@@ -76,14 +76,14 @@ You may:
 
         while self.party: # while someone is alive still...
             response = self.print_menu_and_require_new_input(menu)
-            can_not_proceed = True
+            interfacing_with_menu = True
 
-            while can_not_proceed:
+            while interfacing_with_menu:
                 while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9':
                     response = input('What is your selection?  ')
 
                 if response == "1": #continue on the trail  
-                    can_not_proceed = False
+                    interfacing_with_menu = False
 
                 if response == "2": #check supplies
                     self.print_inventory()
@@ -106,6 +106,7 @@ You may:
                     response = self.print_menu_and_require_new_input(menu)
 
                 if response == "8":#TODO: handle hunting
+                    os.system('clear')
                     generate_animal()
                     response = self.print_menu_and_require_new_input(menu)
 

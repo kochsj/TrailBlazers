@@ -2,12 +2,14 @@ import os
 from trail_modules.flow.player import character_creation
 
 ###########################################################################################################
+
 def print_the_intro():
     """
     Prints the game intro
     Waits for player reponse
     Starts game, learn more about trail, or quits
     """
+    os.system('clear')
     print(' '*4, '*'*62)
     print(' '*4, '*'*62)
     print(' '*4, '*'*5, ' '*50, '*'*5)
