@@ -30,9 +30,11 @@ def trade_resource(inventory):
     if trading_resource == 'Ammunition':
       trading_quantity *= 5
     if offered_resource == 'Oxen':
-      offered_quantity %= 2 + 1
+      offered_quantity %= 3
+      offered_quantity += 1
     if trading_resource == 'Oxen':
-      trading_quantity %= 2 + 1
+      trading_quantity %= 3
+      trading_quantity += 1
     
     response = ""
     acceptable_yes = ['yes', 'y', 'yeah', 'sure', 'ok', 'okay', 'ja']
@@ -52,3 +54,6 @@ def trade_resource(inventory):
         inventory[offered_resource] += offered_quantity
 
     return inventory
+
+if __name__ == "__main__":
+    trade_resource({'Oxen': 20, 'Food': 20, 'Clothing': 20, 'Ammunition': 20, 'Wagon Wheel': 20, 'Wagon Axle': 20, 'Wagon Tongue': 20})
