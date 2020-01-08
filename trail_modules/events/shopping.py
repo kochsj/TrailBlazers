@@ -58,8 +58,9 @@ General Store
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Clothing', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "4":
-            print("You will need ammunition for your rifles to hunt. I charge $2 per box of bullets.")
+            print("You will need ammunition for your rifles to hunt. I charge $2 per box of 20 bullets.")
             num_chosen, remaining_funds = process_trade_transaction(bank_roll, cost=2)
+            num_chosen = num_chosen*20
             shopping_inventory, bank_roll, response = update_inventory_and_bank_roll('Ammunition', num_chosen, remaining_funds, shopping_inventory, menu)
 
         if response == "5":
