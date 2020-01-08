@@ -84,7 +84,6 @@ Today's high temperature: {self.weather[1]}
 Health: {health_string}
 Pace: {self.pace}
 Rations: {self.rations}
-
 You may:
     1. Continue down the trail.
     2. Check your supplies.

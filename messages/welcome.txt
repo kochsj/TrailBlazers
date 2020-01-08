@@ -1,0 +1,2 @@
+learn_more()
+'Taking a journey by covered wagon across 2000 miles of plains, rivers, and mountains. On the plains, will you slosh your oxen trhough mud and water-filled ruts or will you plod through dust six inches deep? How will you corss the rivers? If you have money, you might take a ferry. Or, you can ord the river and hope you and your wagon are\'t swallowed alive! What about supplies? Well, if you are low on food, you can hunt. If for some reason you don\'t survive -- don\'t give up! Try again!'
