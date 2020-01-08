@@ -111,13 +111,25 @@ def print_member_list(member_list):
 
 wagon_party = []
 
-class WagonParty():
-    def __init__(self):
-        self.wagon_party = []
-
 class Banker(Character):
     def __init__(self):
-        self.money = 1600
-        self.name = 'bill'
+        self.name = 'John Smith the banker'
+        self.funds = 1600
+        self.wagon_party[Character('Jill'), Character('Bill'), Character('Fred'), Character('Amy')]
+
+class Carpenter(Character):
+    def __init__(self):
+        self.name = 'Carl the carpenter'
+        self.funds = 800
+        self.wagon_party[Character('Jill'), Character('Bill'), Character('Fred'), Character('Amy')]
+
+
+class Farmer(Character):
+    def __init__(self):
+        self.name = 'Mac the farmer'
+        self.funds = 400
+        self.wagon_party[Character('Jill'), Character('Bill'), Character('Fred'), Character('Amy')]
+
+
 
 
