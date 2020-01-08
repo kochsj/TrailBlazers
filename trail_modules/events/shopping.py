@@ -14,7 +14,8 @@ def buy_items_from_store(partys_bank_roll, starting_inventory):
     response = ""
     bank_roll = partys_bank_roll
     can_shop = True
-    menu = """General Store
+    menu = """Welcome to the store!
+General Store
 1. Oxen
 2. Food
 3. Clothing
