@@ -9,6 +9,7 @@ from trail_modules.events.trading import trade_resource
 from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
+from trail_modules.events.river_raft import cross
 
 
 class Game:
@@ -105,6 +106,7 @@ class Game:
         while self.party: # while someone is alive still...
             interfacing_with_menu = True
             while interfacing_with_menu:
+                crossing_a_river=False
                 menu = self.define_the_menu()
                 response = self.print_menu_and_require_new_input(menu)
                 while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9':
@@ -112,6 +114,7 @@ class Game:
 
                 if response == "1": #continue on the trail  
                     interfacing_with_menu = False
+                    if "crossing" in menu : crossing_a_river = True
                     break
 
                 if response == "2": #check supplies
@@ -144,8 +147,8 @@ class Game:
                     
                 if response == "8": #handle hunting
                     os.system('clear')
-                    if game.inventory["Ammunition"] >= 1:
-                        generate_animal(game)
+                    if self.inventory["Ammunition"] >= 1:
+                        generate_animal(self)
                     else:
                         print('You have no Ammunition')
                     time.sleep(1)
@@ -156,9 +159,12 @@ class Game:
                         buy_items_from_store(self.bank_roll, self.inventory)
                     else:
                         input('Unfortunately there are no shops nearby.')
+                
                 response = self.print_menu_and_require_new_input(menu)
 
+            if crossing_a_river: cross(self)
             self.travel_for_one_day() ## only way to break interfacing with menu loop and reach this point is if user chose to travel.
+            
 
         input('GAME OVER')
         exit()
@@ -306,8 +312,11 @@ Money left: {self.bank_roll}
 
         health_string = return_health_data_for_menu(self.party)
         menu = f"{self.month} {self.day}, {self.year}"
+        option1 = "Continue down the trail."
         if self.miles_from_missouri == self.location_mileposts_left[-1][0]:
             menu += f"\nYou have reached {self.location_mileposts_left[-1][1]}\n"
+            if "crossing" in self.location_mileposts_left[-1][1]:
+                option1 = "cross the river."
         menu += f"""
 Today's low temperature: {self.weather[0]}
 Today's high temperature: {self.weather[1]}
@@ -319,7 +328,9 @@ Rations: {self.rations}
 
 
 You may:
-    1. Continue down the trail.
+    1. """
+        menu += option1
+        menu +="""
     2. Check your supplies.
     3. Look at the map.
     4. Change pace.
