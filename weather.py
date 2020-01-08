@@ -43,7 +43,9 @@ for location in data:
 
 
 def get_weather (milage, month):
-  """ Location and month are both ints.  The former being total miles travelled.  Returns a tuple (todays low temp, todays high temp)"""
+  """ Milage is an int, and month is a string.  The former being total miles travelled.  Returns a tuple (todays low temp, todays high temp)"""
+  month_dict = {"January":1,"February":2,"March":3,"April":4,"May":5,"June":6,"July":7,"August":8,"September":9,"October":10,"November":11,"December":12}
+  month = month_dict[month]
   location = ""
   for distance in _distances:
     if distance[1] < milage : location = distance[0]  #finds the string corresponding to last landmark passed (function was originally written to require strings).
