@@ -74,6 +74,19 @@ class Game:
                 self.year += 1
         self.consume_rations()
         self.weather = get_weather (self.miles_from_missouri, self.month)
+        output = ""
+        i = 0
+        for player in self.party:
+            if player.health < 1:
+                self.party.pop(i)
+                disease = ''
+                if player.sick: 
+                    disease = player.sick[0]
+                else:
+                    disease = "exhaustion"
+                output += f"{player.name} has died of {disease}.\n"
+            i+=1
+        if output : input (output)
 
 ###########################################################################################################
 
@@ -226,12 +239,11 @@ Money left: {self.bank_roll}
             num = random.uniform(0, 1)
             if num < chance_of_illness: get_sick(party_member)           
 
-        next_milepost = self.location_mileposts_left.pop()
+        next_milepost = self.location_mileposts_left[-1]
         if next_milepost[0] <= self.miles_from_missouri: ###  If you've passed a landmark, be sure to stop at it!
             self.miles_from_missouri = next_milepost[0]
         else: 
             random_events(self)
-        self.location_mileposts_left.append(next_milepost)
 
 ###########################################################################################################
 
@@ -307,8 +319,4 @@ You may:
     
         
 if __name__ == "__main__":
-    game = Game()
-    game.play()
-
-
-
+    Game().play()
