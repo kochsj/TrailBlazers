@@ -258,6 +258,8 @@ Money left: {self.bank_roll}
     
 ###########################################################################################################
     def talk_to_strangers(self):
+        """ Prompts an option to talk to the locals and learn more facts about the landmark, river crossing, or outpost you have reached"""
+
         print('You come across a friendly stranger at this stop. Do you want to talk to them?')
         response = input('y/n?  ')
         mile_post = (self.miles_from_missouri)

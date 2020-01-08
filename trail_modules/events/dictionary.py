@@ -1,3 +1,4 @@
+"""Dictionary to pull random facts about the trail when the traveler reaches marked mile-posts along the way"""
 
 def talk_to_people(player):
 
