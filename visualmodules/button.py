@@ -1,9 +1,12 @@
+
+
 """
 Buttons with text on them
 """
 import arcade
 import random
 import os
+# from game_play import TravelTrail
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -41,36 +44,6 @@ class TextButton:
         arcade.draw_rectangle_filled(self.center_x, self.center_y, self.width,
                                      self.height, self.face_color)
 
-        if not self.pressed:
-            color = self.shadow_color
-        else:
-            color = self.highlight_color
-
-        # Bottom horizontal
-        arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
-                         self.center_x + self.width / 2, self.center_y - self.height / 2,
-                         color, self.button_height)
-
-        # Right vertical
-        arcade.draw_line(self.center_x + self.width / 2, self.center_y - self.height / 2,
-                         self.center_x + self.width / 2, self.center_y + self.height / 2,
-                         color, self.button_height)
-
-        if not self.pressed:
-            color = self.highlight_color
-        else:
-            color = self.shadow_color
-
-        # Top horizontal
-        arcade.draw_line(self.center_x - self.width / 2, self.center_y + self.height / 2,
-                         self.center_x + self.width / 2, self.center_y + self.height / 2,
-                         color, self.button_height)
-
-        # Left vertical
-        arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
-                         self.center_x - self.width / 2, self.center_y + self.height / 2,
-                         color, self.button_height)
-
         x = self.center_x
         y = self.center_y
         if not self.pressed:
@@ -87,7 +60,6 @@ class TextButton:
 
     def on_release(self):
         self.pressed = False
-
 
 def check_mouse_press_for_buttons(x, y, button_list):
     """ Given an x, y, see if we need to register any button clicks. """
@@ -110,15 +82,18 @@ def check_mouse_release_for_buttons(_x, _y, button_list):
         if button.pressed:
             button.on_release()
 
+'''
+Intro page buttons
+'''
 
-class TravelTextButton(TextButton):
+class ProfessionButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
         super().__init__(center_x, center_y, 300, 40, "Travel the Trail", 18, "Arial")
         self.action_function = action_function
 
     def on_release(self):
-        super().on_release()
         self.action_function()
+        super().on_release()
 
 class LearnTextButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
@@ -126,9 +101,8 @@ class LearnTextButton(TextButton):
         self.action_function = action_function
 
     def on_release(self):
-        super().on_release()
         self.action_function()
-
+        super().on_release()
 
 class QuitTextButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
@@ -136,92 +110,38 @@ class QuitTextButton(TextButton):
         self.action_function = action_function
 
     def on_release(self):
-        super().on_release()
         self.action_function()
+        super().on_release()
 
+"""
+Charater buttons
+"""
 
-class MyGame(arcade.Window):
-    """
-    Main application class.
+class BankerButton(TextButton):
+    def __init__(self, center_x, center_y, action_function):
+        print(center_x, center_y, 'this is the')
+        super().__init__(center_x, center_y, 300, 40, 'Billie bob the Banker', 18, 'Arial')
+        self.action_function = action_function
 
-    NOTE: Go ahead and delete the methods you don't need.
-    If you do need a method, delete the 'pass' and replace it
-    with your own code. Don't leave 'pass' in this program.
-    """
+    def on_release(self):
+        self.action_function()
+        super().on_release()
 
-    def __init__(self, width, height, title):
-        super().__init__(width, height, title)
+class CarpenterButton(TextButton):
+    def __init__(self, center_x, center_y, action_function):
+        super().__init__(center_x, center_y, 300, 40, 'Carpenter', 18, 'Arial')
+        self.action_function = action_function
 
-        # Set the working directory (where we expect to find files) to the same
-        # directory this .py file is in. You can leave this out of your own
-        # code, but it is needed to easily run the examples using "python -m"
-        # as mentioned at the top of this program.
-        file_path = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(file_path)
+    def on_release(self):
+        self.action_function()
+        super().on_release()
 
+class FarmerButton(TextButton):
+    def __init__(self, center_x, center_y, action_function):
+        super().__init__(center_x, center_y, 300, 40, 'Farmer', 18, 'Arial')
+        self.action_function = action_function
 
+    def on_release(self):
+        self.action_function()
+        super().on_release()
 
-        # arcade.set_background_color(arcade.color.AMAZON)
-
-
-    
-        # Create our on-screen GUI buttons
-        self.button_list = []
-
-        travel_button = TravelTextButton(400, 300, self.resume_program)
-        self.button_list.append(travel_button)
-
-        learn_button = LearnTextButton(400, 245, self.pause_program)
-        self.button_list.append(learn_button)
-
-        quit_button = QuitTextButton(400, 190, self.pause_program)
-        self.button_list.append(quit_button)
-
-
-
-
-
-
-
-    def on_draw(self):
-        """
-        Render the screen.
-        """
-
-        arcade.start_render()
-
-        # Draw the coins
-       
-
-        # Draw the buttons
-        for button in self.button_list:
-            button.draw()
-
-
-    def on_mouse_press(self, x, y, button, key_modifiers):
-        """
-        Called when the user presses a mouse button.
-        """
-        check_mouse_press_for_buttons(x, y, self.button_list)
-
-    def on_mouse_release(self, x, y, button, key_modifiers):
-        """
-        Called when a user releases a mouse button.
-        """
-        check_mouse_release_for_buttons(x, y, self.button_list)
-
-    def pause_program(self):
-        self.pause = True
-
-    def resume_program(self):
-        self.pause = False
-
-
-def main():
-    """ Main method """
-    game = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    arcade.run()
-
-
-if __name__ == "__main__":
-    main()
