@@ -1,9 +1,6 @@
 import os
-<<<<<<< HEAD
-=======
 import random
 from weather import get_weather
->>>>>>> 3b229376df36c4ca3e910ad31dd432965e974d7c
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
