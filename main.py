@@ -33,7 +33,7 @@ class Game:
         """
         start = print_the_intro() #prints intro and handles user response
         self.party = start[0] #starting wagon party from print_the_intro
-        self.bank_roll = start [1] #starting money from print_the_intro
+        self.bank_roll = start[1] #starting money from print_the_intro
         self.month = choose_month_to_depart() #asks player to choose month to start and assigns
         shopping_result = buy_items_from_store(self.bank_roll, self.inventory) #opens shop interface, allows user to purchase goods. returns updates to inventory and updates bank_roll
         self.inventory = shopping_result[0] #dict of inventory items

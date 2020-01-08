@@ -21,24 +21,24 @@ def character_creation():
     """
     acceptable_no = ['no', 'n', 'nah', 'naw', 'no way', 'nope', 'x']
 
-    while True:
-        wagon_party = []
+    # while True:
+    #     wagon_party = []
 
-        chosen_leader, starting_funds = prompt_player_to_pick_a_leader()
+        # chosen_leader, starting_funds = prompt_player_to_pick_a_leader()
 
-        wagon_party.append(chosen_leader)
-        wagon_party.append(prompt_player_to_enter_name('2', wagon_party))
-        wagon_party.append(prompt_player_to_enter_name('3', wagon_party))
-        wagon_party.append(prompt_player_to_enter_name('4', wagon_party))
-        wagon_party.append(prompt_player_to_enter_name('5', wagon_party))
+        # wagon_party.append(chosen_leader)
+        # wagon_party.append(prompt_player_to_enter_name('2', wagon_party))
+        # wagon_party.append(prompt_player_to_enter_name('3', wagon_party))
+        # wagon_party.append(prompt_player_to_enter_name('4', wagon_party))
+        # wagon_party.append(prompt_player_to_enter_name('5', wagon_party))
 
-        print_member_list(wagon_party)
-        response = input('Is this your team? ')
-        if response.lower() not in acceptable_no:
-            os.system('clear')
-            return (wagon_party, starting_funds)
+        # print_member_list(wagon_party)
+        # response = input('Is this your team? ')
+        # if response.lower() not in acceptable_no:
+        #     os.system('clear')
+        #     return (wagon_party, starting_funds)
 
-        os.system('clear')
+        # os.system('clear')
     
 
 
@@ -111,6 +111,13 @@ def print_member_list(member_list):
 
 wagon_party = []
 
+class WagonParty():
+    def __init__(self):
+        self.wagon_party = []
+
 class Banker(Character):
     def __init__(self):
         self.money = 1600
+        self.name = 'bill'
+
+

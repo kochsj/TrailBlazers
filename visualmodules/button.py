@@ -44,36 +44,6 @@ class TextButton:
         arcade.draw_rectangle_filled(self.center_x, self.center_y, self.width,
                                      self.height, self.face_color)
 
-        # if not self.pressed:
-        #     color = self.shadow_color
-        # else:
-        #     color = self.highlight_color
-
-        # # Bottom horizontal
-        # arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
-        #                  self.center_x + self.width / 2, self.center_y - self.height / 2,
-        #                  color, self.button_height)
-
-        # # Right vertical
-        # arcade.draw_line(self.center_x + self.width / 2, self.center_y - self.height / 2,
-        #                  self.center_x + self.width / 2, self.center_y + self.height / 2,
-        #                  color, self.button_height)
-
-        # if not self.pressed:
-        #     color = self.highlight_color
-        # else:
-        #     color = self.shadow_color
-
-        # # Top horizontal
-        # arcade.draw_line(self.center_x - self.width / 2, self.center_y + self.height / 2,
-        #                  self.center_x + self.width / 2, self.center_y + self.height / 2,
-        #                  color, self.button_height)
-
-        # # Left vertical
-        # arcade.draw_line(self.center_x - self.width / 2, self.center_y - self.height / 2,
-        #                  self.center_x - self.width / 2, self.center_y + self.height / 2,
-        #                  color, self.button_height)
-
         x = self.center_x
         y = self.center_y
         if not self.pressed:
@@ -90,7 +60,6 @@ class TextButton:
 
     def on_release(self):
         self.pressed = False
-
 
 def check_mouse_press_for_buttons(x, y, button_list):
     """ Given an x, y, see if we need to register any button clicks. """
@@ -113,15 +82,18 @@ def check_mouse_release_for_buttons(_x, _y, button_list):
         if button.pressed:
             button.on_release()
 
+'''
+Intro page buttons
+'''
 
-class TravelTextButton(TextButton):
+class ProfessionButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
         super().__init__(center_x, center_y, 300, 40, "Travel the Trail", 18, "Arial")
         self.action_function = action_function
 
     def on_release(self):
-        super().on_release()
         self.action_function()
+        super().on_release()
 
 class LearnTextButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
@@ -129,9 +101,8 @@ class LearnTextButton(TextButton):
         self.action_function = action_function
 
     def on_release(self):
-        super().on_release()
         self.action_function()
-
+        super().on_release()
 
 class QuitTextButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
@@ -139,6 +110,38 @@ class QuitTextButton(TextButton):
         self.action_function = action_function
 
     def on_release(self):
-        super().on_release()
         self.action_function()
+        super().on_release()
+
+"""
+Charater buttons
+"""
+
+class BankerButton(TextButton):
+    def __init__(self, center_x, center_y, action_function):
+        print(center_x, center_y, 'this is the')
+        super().__init__(center_x, center_y, 300, 40, 'Billie bob the Banker', 18, 'Arial')
+        self.action_function = action_function
+
+    def on_release(self):
+        self.action_function()
+        super().on_release()
+
+class CarpenterButton(TextButton):
+    def __init__(self, center_x, center_y, action_function):
+        super().__init__(center_x, center_y, 300, 40, 'Carpenter', 18, 'Arial')
+        self.action_function = action_function
+
+    def on_release(self):
+        self.action_function()
+        super().on_release()
+
+class FarmerButton(TextButton):
+    def __init__(self, center_x, center_y, action_function):
+        super().__init__(center_x, center_y, 300, 40, 'Farmer', 18, 'Arial')
+        self.action_function = action_function
+
+    def on_release(self):
+        self.action_function()
+        super().on_release()
 
