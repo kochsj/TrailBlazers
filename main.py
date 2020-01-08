@@ -1,6 +1,5 @@
 import os
-import random
-from weather import get_weather
+import time
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
@@ -140,7 +139,11 @@ You may:
                     if game.inventory["Ammunition"] >= 1:
                         generate_animal(game)
                     else:
-                        input('You have no Ammunition')
+
+                        print('You have no Ammunition')
+                    time.sleep(1)
+                    response = self.print_menu_and_require_new_input(menu)
+
 
                 if response == "9":
                     if self.miles_from_missouri == 0 or self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
