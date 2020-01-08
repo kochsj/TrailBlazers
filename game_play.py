@@ -3,8 +3,8 @@ from main import Game
 from visualmodules.button import *
 from gui_game.player_gui import Banker
 
-SCREEN_WIDTH = 1440
-SCREEN_HEIGHT = 780
+SCREEN_WIDTH = 1400
+SCREEN_HEIGHT = 800
 SCREEN_TITLE = 'Trail_Blazers Oregon Trail'
 
 
