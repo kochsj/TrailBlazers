@@ -78,3 +78,7 @@ def choose_month_to_depart():
     if response == '5':
         return 'July'
 ###########################################################################################################
+
+def explain_starting_inventory_and_shopping():
+    os.system('clear')
+    input('You start your journey with a wagon, a wagon wheel, wagon axle, and a wagon tongue for attaching the oxen to the wagon.\nIt is advisable to pick up spare parts, food, ammunition, and other necessiary supplies for your journey.\nLets head to the store to begin.')

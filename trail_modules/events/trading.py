@@ -46,7 +46,7 @@ def trade_resource(inventory):
 
     if response.lower() in acceptable_yes:
       if inventory[trading_resource] < trading_quantity:
-        input(f'You attempted to trade {trading_quantity} {trading_resource} for {offered_quantity} {offered_resource}. Unfortunately, you have no enough {offered_resource}!')
+        input(f'You attempted to trade {trading_quantity} {trading_resource} for {offered_quantity} {offered_resource}. Unfortunately, you have no enough {trading_resource}!')
 
       else:
         input(f'You have successfully traded {trading_quantity} {trading_resource} for {offered_quantity} {offered_resource}.')
