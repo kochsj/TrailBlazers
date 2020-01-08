@@ -107,7 +107,7 @@ class Game:
             while interfacing_with_menu:
                 menu = self.define_the_menu()
                 response = self.print_menu_and_require_new_input(menu)
-                while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9':
+                while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9'and response != '10':
                     response = input('What is your selection?  ')
 
                 if response == "1": #continue on the trail  
@@ -148,6 +148,9 @@ class Game:
                         generate_animal(game)
                     else:
                         print('You have no Ammunition')
+
+                if response == "10": #exit the game
+                    exit() # QUITS THE GAME
                     time.sleep(1)
 
 
@@ -319,15 +322,16 @@ Rations: {self.rations}
 
 
 You may:
-    1. Continue down the trail.
-    2. Check your supplies.
-    3. Look at the map.
-    4. Change pace.
-    5. Change food rations.
-    6. Stop to rest.
-    7. Attempt to trade.
-    8. Go hunting.
-    9. Buy supplies.
+    1.  Continue down the trail.
+    2.  Check your supplies.
+    3.  Look at the map.
+    4.  Change pace.
+    5.  Change food rations.
+    6.  Stop to rest.
+    7.  Attempt to trade.
+    8.  Go hunting.
+    9.  Buy supplies.
+    10. Quit Game
 """ 
         return menu
         
