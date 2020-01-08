@@ -13,6 +13,7 @@ class Game:
         self.party = None #list of party members
         self.day = 1
         self.month = None
+        self.year = 1884
         self.bank_roll = 0
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
         self.pace = "Steady"
@@ -49,6 +50,21 @@ class Game:
         self.inventory = shopping_result[0] #dict of inventory items
         self.bank_roll = shopping_result[1] #reassigns bank_roll with remaining money after shopping
         self.traverse_the_trail()
+
+    def increment_day(self):
+        cal = [('Jan',31) ('Feb',28) ('Mar',31) ('Arp',30) ('May',31) ('Jun',30) ('Jul',31) ('Aug',31) ('Sep',30) ('Oct',31) ('Nov',30) ('Dec',31)]
+        self.day +=1
+        # month = 0
+        for i in range(len(cal)):
+            if cal[i][0] == self.month:
+                # month = 1
+                if self.day > cal[i][1]:
+                    self.day = 1
+                    self.month = cal[(i+1)%12][0]
+                    if self.month == 'Jan':
+                        # month = 0
+                        self.year += 1
+
 ###########################################################################################################
 
 
