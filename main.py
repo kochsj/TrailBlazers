@@ -8,6 +8,7 @@ from trail_modules.events.hunting import generate_animal
 from trail_modules.events.trading import trade_resource
 from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
+from trail_modules.events.dictionary import talk_to_people
 
 
 class Game:
@@ -228,6 +229,7 @@ Money left: {self.bank_roll}
         next_milepost = self.location_mileposts_left.pop()
         if next_milepost <= self.miles_from_missouri: ###  If you've passed a landmark, be sure to stop at it!
             self.miles_from_missouri = next_milepost
+            self.talk_to_strangers()
         else: 
             self.location_mileposts_left.append(next_milepost)
             random_events(self)
@@ -255,7 +257,16 @@ Money left: {self.bank_roll}
 
     
 ###########################################################################################################
-
+    def talk_to_strangers(self):
+        print('You come across a friendly stranger at this stop. Do you want to talk to them?')
+        response = input('y/n?  ')
+        mile_post = (self.miles_from_missouri)
+        if mile_post in  talk_to_people('talking_dictionary') and response == 'y' :
+            print(talk_to_people('talking_dictionary')[mile_post])
+            input('Return to continue....')
+        else:
+            print('Alrighty then, safe travels!')
+            
 
 
 ###########################################################################################################
@@ -298,7 +309,6 @@ You may:
         return menu
 
     
-
 if __name__ == "__main__":
     game = Game()
     game.play()
