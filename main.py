@@ -8,6 +8,7 @@ from trail_modules.events.hunting import generate_animal
 from trail_modules.events.trading import trade_resource
 from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
+from trail_modules.events.dictionary import talk_to_people
 
 
 class Game:
@@ -240,6 +241,7 @@ Money left: {self.bank_roll}
         next_milepost = self.location_mileposts_left[-1]
         if next_milepost[0] <= self.miles_from_missouri: ###  If you've passed a landmark, be sure to stop at it!
             self.miles_from_missouri = next_milepost[0]
+            self.talk_to_strangers()
         else: 
             random_events(self)
 
@@ -266,7 +268,18 @@ Money left: {self.bank_roll}
 
     
 ###########################################################################################################
+    def talk_to_strangers(self):
+        """ Prompts an option to talk to the locals and learn more facts about the landmark, river crossing, or outpost you have reached"""
 
+        print('You come across a friendly stranger at this stop. Do you want to talk to them?')
+        response = input('y/n?  ')
+        mile_post = (self.miles_from_missouri)
+        if mile_post in  talk_to_people('talking_dictionary') and response == 'y' :
+            print(talk_to_people('talking_dictionary')[mile_post])
+            input('Return to continue....')
+        else:
+            print('Alrighty then, safe travels!')
+            
 
 
 ###########################################################################################################
@@ -317,8 +330,7 @@ You may:
     9. Buy supplies.
 """ 
         return menu
-
-    
+        
         
 if __name__ == "__main__":
     Game().play()

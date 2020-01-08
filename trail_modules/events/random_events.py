@@ -43,7 +43,6 @@ def oxen_dies(game):
   """
   Removes an oxen from the players inventory.
   """
-
   oxen_available = game.inventory['Oxen']
   if oxen_available > 1: # In theory, this should always be true, because random events should never trigger if the player doesn't have oxen to move them down the trail.  But just in case...
     print("An oxen has died")
@@ -77,7 +76,7 @@ def wagon_breaks(game):
   part = random.choice(wagon_parts)
   if game.inventory[part]>0:
     game.inventory[part]-=1
-    print(f'A wagon {part} broke\nyou have {game.inventory[part]} remaining')
+    input(f'A wagon {part} broke\nyou have {game.inventory[part]} remaining')
 
 
 def bad_weather(game):

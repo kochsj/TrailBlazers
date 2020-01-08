@@ -34,8 +34,9 @@ def cross(game):
 				food_lost = int(game.inventory['Food'] / 5)
 				input(f'You lost {food_lost} pounds of food')
 				game.inventory['Food'] -= food_lost
+
 			if clothing_loss == 1:
-				clothing_lost == int(game.inventory['Clothing'] / 5)
+				clothing_lost = int(game.inventory['Clothing'] / 5)
 				input(f'You lost {clothing_lost} clothing')
 				game.inventory['Clothing'] -= clothing_lost
 
@@ -52,7 +53,7 @@ def cross(game):
 					input(f'You lost {food_lost} pounds of food')
 					game.inventory['Food'] -= food_lost
 				if clothing_loss == 1:
-					clothing_lost == int(game.inventory['Clothing'] / 5)
+					clothing_lost = int(game.inventory['Clothing'] / 5)
 					input(f'You lost {clothing_lost} clothing')
 					game.inventory['Clothing'] -= clothing_lost
 			else:
@@ -77,7 +78,7 @@ def cross(game):
 					input(f'You lost {food_lost} pounds of food')
 					game.inventory['Food'] -= food_lost
 				if clothing_loss == 1:
-					clothing_lost == int(game.inventory['Clothing'] / 5)
+					clothing_lost = int(game.inventory['Clothing'] / 5)
 					input(f'You lost {clothing_lost} clothing')
 					game.inventory['Clothing'] -= clothing_lost
 				
@@ -100,13 +101,14 @@ def cross(game):
 						input(f'You lost {food_lost} pounds of food')
 						game.inventory['Food'] -= food_lost
 					if clothing_loss == 1:
-						clothing_lost == int(game.inventory['Clothing'] / 5)
+						clothing_lost = int(game.inventory['Clothing'] / 5)
 						input(f'You lost {clothing_lost} clothing')
 						game.inventory['Clothing'] -= clothing_lost
 
 		elif choice == '3':
 			input('You have hired somebody to take you across the river')
 			input('You have made it across the river')
+
 			game.inventory['Clothing'] -= 2
 		else:
 			input('You wait a day to see if conditions improve.')
