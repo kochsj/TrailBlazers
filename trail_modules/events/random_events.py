@@ -13,7 +13,7 @@ def random_events(game):
     "oxen_dies",
     "thief_attacks",
     "wagon_breaks",
-    "find_abandon_wagon"
+    "find_abandon_wagon",
     "bad_weather"
     ]
 
@@ -44,7 +44,7 @@ def oxen_dies(game):
   Removes an oxen from the players inventory.
   """
 
-  print("An oxen has died")
+  input("An oxen has died")
   oxen_available = game.inventory['Oxen']
   
   # Avoids printing negative numbers to player.
@@ -79,7 +79,7 @@ def wagon_breaks(game):
   part = random.choice(wagon_parts)
   if game.inventory[part]>0:
     game.inventory[part]-=1
-    print(f'A wagon {part} broke\nyou have {game.inventory[part]} remaining')
+    input(f'A wagon {part} broke\nyou have {game.inventory[part]} remaining')
 
 
 def bad_weather(game):
