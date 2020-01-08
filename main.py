@@ -1,4 +1,5 @@
 import os
+import time
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
@@ -110,7 +111,8 @@ You may:
                     if game.inventory["Ammunition"] >= 1:
                         generate_animal(game)
                     else:
-                        input('You have no Ammunition')
+                        print('You have no Ammunition')
+                    time.sleep(1)
                     response = self.print_menu_and_require_new_input(menu)
 
                 if response == "9":
