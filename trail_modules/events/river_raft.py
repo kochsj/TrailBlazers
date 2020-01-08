@@ -28,10 +28,13 @@ def cross(game):
 			input('You attempt to ford the river...')
 			input('Your river crossing was not a success.')
 			if oxen_loss == 1:
-				print("you lost 1 ox")
+				input('You lost 1 ox')
+				game.invenory['Oxen'] -= 1
 			if food_loss == 1:
 				food_lost = int(game.inventory['Food'] / 5)
-				print(f'you lost {food_lost} pounds of food')
+				input(f'You lost {food_lost} pounds of food')
+				game.inventory['Food'] -= food_lost
+
 			if clothing_loss == 1:
 				clothing_lost = int(game.inventory['Clothing'] / 5)
 				input(f'You lost {clothing_lost} clothing')
@@ -103,8 +106,9 @@ def cross(game):
 						game.inventory['Clothing'] -= clothing_lost
 
 		elif choice == '3':
-			print('You have hired somebody to take you across the river')
-			print('You have made it across the river')
+			input('You have hired somebody to take you across the river')
+			input('You have made it across the river')
+
 			game.inventory['Clothing'] -= 2
 		else:
 			input('You wait a day to see if conditions improve.')

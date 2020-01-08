@@ -43,12 +43,9 @@ def oxen_dies(game):
   """
   Removes an oxen from the players inventory.
   """
-
-  input("An oxen has died")
   oxen_available = game.inventory['Oxen']
-  
-  # Avoids printing negative numbers to player.
-  if oxen_available > 1:
+  if oxen_available > 1: # In theory, this should always be true, because random events should never trigger if the player doesn't have oxen to move them down the trail.  But just in case...
+    print("An oxen has died")
     game.inventory['Oxen'] -= 1
     print(f'You have {game.inventory["Oxen"]} oxen remaining')
 
