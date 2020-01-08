@@ -141,7 +141,6 @@ class Game:
                     self.inventory = inventory_after_trading
                     self.increment_day()
                     
-
                 if response == "8": #handle hunting
                     os.system('clear')
                     if game.inventory["Ammunition"] >= 1:
@@ -149,7 +148,6 @@ class Game:
                     else:
                         print('You have no Ammunition')
                     time.sleep(1)
-                    response = self.print_menu_and_require_new_input(menu)
 
 
                 if response == "9":
@@ -280,6 +278,10 @@ Money left: {self.bank_roll}
         os.system('clear')
         print(menu)
         return ''
+###########################################################################################################
+
+
+
 ###########################################################################################################
     def define_the_menu(self):
         def return_health_data_for_menu(party):
