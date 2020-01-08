@@ -55,18 +55,19 @@ class Game:
         self.traverse_the_trail()
 
     def increment_day(self):
-        cal = [('Jan',31) ('Feb',28) ('Mar',31) ('Arp',30) ('May',31) ('Jun',30) ('Jul',31) ('Aug',31) ('Sep',30) ('Oct',31) ('Nov',30) ('Dec',31)]
+        """moves us 1 day ahead on the calender, and updates the daily weather.  no return."""
+        cal = [('January',31), ('February',28), ('March',31), ('April',30), ('May',31), ('June',30), ('July',31), ('August',31), ('September',30), ('October',31), ('November',30), ('December',31)]
         self.day +=1
-        # month = 0
+        month = 0
         for i in range(len(cal)):
             if cal[i][0] == self.month:
-                # month = 1
-                if self.day > cal[i][1]:
-                    self.day = 1
-                    self.month = cal[(i+1)%12][0]
-                    if self.month == 'Jan':
-                        # month = 0
-                        self.year += 1
+                month = i
+        if self.day > cal[month][1]:
+            self.day = 1
+            self.month = cal[(month+1)%12][0]
+            if self.month == 'January':
+                self.year += 1
+        self.weather = get_weather (self.miles_from_missouri, self.month)
 
 ###########################################################################################################
 
@@ -83,8 +84,6 @@ class Game:
 
         while self.party: # while someone is alive still...
             interfacing_with_menu = True
-
-            self.weather = get_weather (self.miles_from_missouri, self.month)
             while interfacing_with_menu:
                 menu = self.define_the_menu()
                 response = self.print_menu_and_require_new_input(menu)
@@ -186,7 +185,7 @@ Money left: {self.bank_roll}
                 if healed : get_well(party_member)
         self.consume_rations()
         #TODO: incriment days
-        # self.increment_day()
+        self.increment_day()
 
 ###########################################################################################################
 
@@ -201,8 +200,10 @@ Money left: {self.bank_roll}
         if self.inventory["Wagon Wheel"] <1 or self.inventory["Wagon Axle"] <1 or self.inventory["Wagon Tongue"] <1:
             input ("You can't move until you repair your wagon.  Try trading for the part you need or buying one in a store (press enter to continue)")
             return
-        #TODO: handle days
-        # self.increment_day()
+        if self.inventory["Oxen"]<1:
+            input ("You don't have any oxen left to pull your wagon.  You should probably either trade for one or buy one soon!")
+            return
+        self.increment_day()
         miles = 0
         chance_of_illness = 0
         chance_of_recovery = 0.1
@@ -298,7 +299,7 @@ You may:
         return menu
 
     
-
+        
 if __name__ == "__main__":
     game = Game()
     game.play()
