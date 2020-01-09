@@ -10,6 +10,7 @@ from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
 from trail_modules.events.river_raft import cross
+from trail_modules.events.map import check_map
 
 
 class Game:
@@ -121,7 +122,7 @@ class Game:
                     self.print_inventory()
 
                 if response == "3": #TODO: check map
-                    pass
+                    map_result = check_map(self.miles_from_missouri)
                     # check the map function - shows a map 
 
                 if response == "4": #set pace
