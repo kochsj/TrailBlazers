@@ -10,7 +10,7 @@ from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
 from trail_modules.events.river_raft import cross
-from trail_modules.events.map import check_map
+# from trail_modules.events.map import check_map
 
 
 class Game:
