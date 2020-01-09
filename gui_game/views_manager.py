@@ -1,5 +1,6 @@
 import arcade
 import game_play
+from gui_game.choose_party import ChoosePartyView
 
 class Views:
     def __init__(self):
@@ -15,10 +16,21 @@ class Views:
         self.window.show(view)
 
     def intro_done(self):
-        pass
+        props = {'done_handler' : self.choose_party_done}
+
+        self.show_next_view(ChoosePartyView, props)
 
     def choose_party_done(self):
-        pass
+        self.state['wagon_party'] = wagon_party
+        self.state['funds'] = funds
+        props = {
+            # 'done handler' = TBD
+
+        }
+
+    def learn_more_done(self):
+        props = {'done_handler' : self.choose_party_done}
+        self.show_next_view(ChoosePartyView, props)
 
     def view_party_done(self):
         pass

@@ -9,12 +9,11 @@ SCREEN_TITLE = 'Trail_Blazers Oregon Trail'
 
 
 class Pages(arcade.View):
-    def __init__(self, width, height, title):
-        super().__init__()
+    def __init__(self, width, height, props):
+        super().__init__(width, height, props)
         self.center_x = SCREEN_WIDTH / 2
         self.center_y = SCREEN_HEIGHT / 2
         self.state = {'wagon_party' : None ,'funds' : None}
-
         self.text = ''
 
     background = arcade.load_texture('./img/intro_background.png')

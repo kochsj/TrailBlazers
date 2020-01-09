@@ -1,6 +1,6 @@
 import arcade
 from game_play import *
-from visualmodules import ActionButton
+from visualmodules.button import ActionButton
 
 class ChoosePartyView(Pages):
     def __init__(self, width, height, props):
@@ -11,18 +11,18 @@ class ChoosePartyView(Pages):
     def on_show(self):
         arcade.set_background_color(arcade.color.ECRU)
     
-    button_list = []
+        button_list = []
 
-    banker_button = ActionButton(self.center_x - 100, self.center_y + 100, 'banker', self.button_handler)
-    carpenter_button = ActionButton(self.center_x, self.center_y + 100, 'carpenter', self.button_handle)
-    farmer_button = ActionButton(self.center_x + 100, self.center_y + 100, 'farmer', self.button_handle)
+        banker_button = ActionButton(self.center_x - 100, self.center_y + 100, 300, 40, 'Billie Bob the banker', self.button_handler)
+        carpenter_button = ActionButton(self.center_x, self.center_y + 100, 300, 40, 'Carl the carpenter', self.button_handle)
+        farmer_button = ActionButton(self.center_x + 100, self.center_y + 100, 300, 40, 'Mac the farmer', self.button_handle)
 
-    self.button_list.append(banker_button)
-    self.button_list.append(carpenter_button)
-    self.button_list.append(farmer_button)
+        self.button_list.append(banker_button)
+        self.button_list.append(carpenter_button)
+        self.button_list.append(farmer_button)
 
-    next_button = ActionButton(self.center_x, self.center_y - 165, 'next', self.button_handler)
-    self.button_list.append(next_button)
+        next_button = ActionButton(self.center_x, self.center_y - 165, 100 , 40,  'next', self.button_handler)
+        self.button_list.append(next_button)
 
     def on_draw(self):
         arcade.start_render()
