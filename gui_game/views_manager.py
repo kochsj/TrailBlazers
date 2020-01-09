@@ -17,14 +17,13 @@ class Views:
 
     def intro_done(self):
         props = {'done_handler' : self.choose_party_done}
-
         self.show_next_view(ChoosePartyView, props)
 
     def choose_party_done(self):
         self.state['wagon_party'] = wagon_party
         self.state['funds'] = funds
         props = {
-            # 'done handler' = TBD
+            'done handler' = 
 
         }
 

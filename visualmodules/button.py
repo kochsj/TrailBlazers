@@ -13,42 +13,16 @@ import os
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = "The Oregon Trail"
-
-# class TextButton:
-#     """ Text-based button """
-
-#     def __init__(self,
-                 
-#                  center_x, center_y,
-#                  width, height,
-#                  text,
-#                  font_size=18,
-#                  font_face="Arial",
-#                  face_color=arcade.color.LIGHT_BLUE,
-#                  highlight_color=arcade.color.WHITE,
-#                  shadow_color=arcade.color.GRAY,
-#                  button_height=2):
-#         self.center_x = center_x
-#         self.center_y = center_y
-#         self.width = width
-#         self.height = height
-#         self.text = text
-#         self.font_size = font_size
-#         self.font_face = font_face
-#         self.pressed = False
-#         self.face_color = face_color
-#         self.highlight_color = highlight_color
-#         self.shadow_color = shadow_color
-#         self.button_height = button_height
     
 class ActionButton(TextButton):
-    def __init__(self, center_x, center_y, width, height, text, action_function, font_size=18, font_face='Arial', font_color=arcade.color.BLACK, face_color=arcade.color.BLACK, highlight_color=arcade.color.WHITE, shadow_color=arcade.color.GRAY, button_height=2):
+    def __init__(self, center_x, center_y, width, height, text, action_function, name=None, font_size=18, font_face='Arial', font_color=arcade.color.BLACK, face_color=arcade.color.WHITE, highlight_color=arcade.color.WHITE, shadow_color=arcade.color.GRAY, button_height=2):
         super().__init__(center_x, center_y, width, height, text, font_size=font_size, font_face=font_face, font_color=font_color, face_color=face_color, highlight_color=highlight_color, shadow_color=shadow_color, button_height=button_height)
         self.action_function = action_function
+        self.name = name
 
     
     def on_press(self):
-        self.action_function()
+        self.action_function(self)
 
 '''
 Intro page buttons
