@@ -1,5 +1,6 @@
 import os
 import random
+from termcolor import colored
 from weather import get_weather
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
 from trail_modules.events.shopping import buy_items_from_store
@@ -27,7 +28,7 @@ class Game:
         self.miles_from_missouri = 0
         self.year = 1848
         self.weather = (0,0)
-        self.location_mileposts_left=[(2040,"the Barlow road"),(1863,"the Dalles"),(1808,"Fort Walla Walla"),(1648,"the Grande Ronde valley"),(1543,"Fort Boise"),(1359,"the Snake river crossing"),(1259,"Fort Hall"),(1151,"Soda Springs"),(989,"the Green river crossing"),(932,"Fort Bridger"),(830,"South Pass (Butte mountains)"),(640,"Fort Laramie"),(554,"Chimney Rock"),(304,"Fort Kearny"),(185,"the Blue river crossing"),(102, "the Kansas river crossing"),(0,"Independece Missouri")]
+        self.location_mileposts_left=[(2040,"the Barlow road"),(1863,"Fort Walla Walla"),(1808,"the Grande Ronde valley"),(1648,"Fort Boise"),(1543,"the Snake river crossing"),(1359,"Fort Hall"),(1259,"Soda Springs"),(1151,"the Green river crossing"),(989,"Fort Bridger"),(932,"South Pass (Butte mountains)"),(830, "Independence Rock"),(640,"Fort Laramie"),(554,"Chimney Rock"),(304,"Fort Kearny"),(185,"the Blue river crossing"),(102, "the Kansas river crossing"),(0,"Independece Missouri")]
 
 ###########################################################################################################
     def play(self):
@@ -86,9 +87,10 @@ class Game:
                     disease = player.sick[0]
                 else:
                     disease = "exhaustion"
-                output += f"Obituary alert!!! {player.name} has died of {disease}.\n"
+                output += f"\nObituary alert!!! {player.name} has died of {disease}.\n"
             i+=1
-        if output : input (output)
+        if output : input (colored(output, 'red'))
+
 
 ###########################################################################################################
 
@@ -114,7 +116,7 @@ class Game:
 
                 if response == "1": #continue on the trail  
                     interfacing_with_menu = False
-                    response = input(f"Today is: \n{self.month} {self.day}, {self.year}\nAnd you have traveled {self.miles_from_missouri} miles so far on your journey")
+                    response = input(f"\nToday is: \n{self.month} {self.day}, {self.year}\nAnd you have traveled {self.miles_from_missouri} miles so far on your journey")
 
                     if "crossing" in menu : crossing_a_river = True
                     break
@@ -122,8 +124,9 @@ class Game:
                 if response == "2": #check supplies
                     self.print_inventory()
 
-                if response == "3": #TODO: check map
-                    self.map_result = check_map(self.miles_from_missouri)
+                if response == "3": 
+                    map_result = check_map(self.miles_from_missouri)
+                    
                     # check the map function - shows a map 
 
                 if response == "4": #set pace
@@ -139,7 +142,7 @@ class Game:
                     self.rations = self.possible_rations[res-1]
  
                 if response == "6": #stop to rest
-                    response = input("You have chosen to take one days rest")
+                    response = input("You have chosen to take one day of rest")
                     self.rest()
 
                 if response == "7": #handle trading
@@ -159,7 +162,7 @@ class Game:
                     if self.miles_from_missouri == 0 or self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
                         buy_items_from_store(self.bank_roll, self.inventory)
                     else:
-                        input('Unfortunately there are no shops nearby.')
+                        input('\nUnfortunately there are no shops nearby.')
 
                 if response == "10": #exit the game
                     exit() # QUITS THE GAME
@@ -219,10 +222,10 @@ Money left: {self.bank_roll}
     def travel_for_one_day(self):
         """ Called if the player chooses to travel.  Checks to make sure travel is possible.  If so, the player moves. """
         if self.inventory["Wagon Wheel"] <1 or self.inventory["Wagon Axle"] <1 or self.inventory["Wagon Tongue"] <1:
-            input ("You can't move until you repair your wagon.  Try trading for the part you need or buying one in a store (press enter to continue)")
+            input ("\nYou can't move until you repair your wagon.  Try trading for the part you need or buying one in a store (press enter to continue)")
             return
         if self.inventory["Oxen"]<1:
-            input ("You don't have any oxen left to pull your wagon.  You should probably either trade for one or buy one soon!")
+            input ("\nYou don't have any oxen left to pull your wagon.  You should probably either trade for one or buy one soon!")
             return
         if self.miles_from_missouri == self.location_mileposts_left[-1][0]:  #If we're leaving a landmark, pop it off the list
             self.location_mileposts_left.pop()
@@ -281,13 +284,13 @@ Money left: {self.bank_roll}
 ###########################################################################################################
     def talk_to_strangers(self):
         """ Prompts an option to talk to the locals and learn more facts about the landmark, river crossing, or outpost you have reached"""
-
-        print('You come across a friendly stranger at this stop. Do you want to talk to them?')
+        os.system('clear')
+        print('\nYou come across a friendly local. Do you want to stop and talk to them?')
         response = input('y/n?  ')
         mile_post = (self.miles_from_missouri)
         if mile_post in  talk_to_people('talking_dictionary') and response == 'y' :
             print(talk_to_people('talking_dictionary')[mile_post])
-            input('Return to continue....')
+            input('\nReturn to continue....')
         else:
             input('Alrighty then, safe travels!')
             
@@ -316,35 +319,33 @@ Money left: {self.bank_roll}
             return party_health_string[:-1]
 
         health_string = return_health_data_for_menu(self.party)
-        menu = f"{self.month} {self.day}, {self.year}"
-        option1 = "Continue down the trail."
+        menu = f"\n \n{self.month} {self.day}, {self.year}"
+        option1 = "Travel down the trail."
         if self.miles_from_missouri == self.location_mileposts_left[-1][0]:
-            menu += f"\nYou have reached {self.location_mileposts_left[-1][1]}\n"
+            menu += f"\nYou have reached {self.location_mileposts_left[-1][1]}\n\n"
             if "crossing" in self.location_mileposts_left[-1][1]:
-                option1 = "cross the river."
+                option1 = "Cross the river."
         menu += f"""
-Today's low temperature: {self.weather[0]}
-Today's high temperature: {self.weather[1]}
-Distance traveled: {self.miles_from_missouri} miles
+***Today's Temp ***           Distance traveled: {self.miles_from_missouri} miles
+* low : {self.weather[0]}
+* hi  : {self.weather[1]}
+*******************
 
-Health: {health_string}
-Pace: {self.pace}
-Rations: {self.rations}
+Pace: {self.pace}                   Rations: {self.rations}
+
+Health: {health_string}         
+
 
 
 You may:
-    1. """
+    1. """                                   
         menu += option1
-        menu +="""
-    2. Check your supplies.
-    3. Look at the map.
-    4. Change pace.
-    5. Change food rations.
-    6. Stop to rest.
-    7. Attempt to trade.
-    8. Go hunting.
-    9. Buy supplies.
-    10. Quit Game
+        menu +="""           6. Stop to rest.
+    2. Check your supplies.             7. Attempt to trade.
+    3. Look at the map.                 8. Go hunting.
+    4. Change pace.                     9. Buy supplies.
+    5. Change food rations.             10. Quit Game
+  
 """ 
         return menu
         

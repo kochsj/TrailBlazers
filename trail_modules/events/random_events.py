@@ -1,7 +1,7 @@
 """
 Creating the random events that occur in the game.
 """
-
+from termcolor import colored, cprint
 import random
 def random_events(game):
   """Determines if a random event happens and handles it.  Has no return"""
@@ -13,7 +13,7 @@ def random_events(game):
     "oxen_dies",
     "thief_attacks",
     "wagon_breaks",
-    "find_abandon_wagon",
+    # "find_abandon_wagon",
     "bad_weather"
     ]
 
@@ -42,10 +42,11 @@ def random_events(game):
 def oxen_dies(game):
   """
   Removes an oxen from the players inventory.
+  (colored("feeling great.", 'orange'))
   """
   oxen_available = game.inventory['Oxen']
   if oxen_available > 1: # In theory, this should always be true, because random events should never trigger if the player doesn't have oxen to move them down the trail.  But just in case...
-    input("Alert!!!  An oxen has died")
+    print(colored('Alert!!!', 'red'), colored('An oxen has died', 'white'))
     game.inventory['Oxen'] -= 1
     input(f'You have {game.inventory["Oxen"]} oxen remaining')
 
@@ -56,13 +57,13 @@ def thief_attacks(game):
   amount = random.randint(10,30)
   food_available = game.inventory['Food']
   if food_available >= amount:
-    input(f'Alert!!!  A thief has stolen {amount} pounds of food')
+    print (colored('Alert!!!', 'red'), colored(f'A thief has stolen {amount} pounds of food', 'white'))
     game.inventory['Food']-= amount
     input(f'You have {game.inventory["Food"]} pounds of food remaining')
   else:
     game.inventory["Food"] = 0
-    input('Alert!!! A thief stole all of  your food')
-
+    print (colored('Alert!!!', 'red'), colored('A thief stole all of your food', 'white'))
+    input("")
 
 def wagon_breaks(game):
   """
@@ -76,8 +77,8 @@ def wagon_breaks(game):
   part = random.choice(wagon_parts)
   if game.inventory[part]>0:
     game.inventory[part]-=1
-    input(f'Broken Wagon Arert!!! A wagon {part} broke. You have {game.inventory[part]} remaining')
-
+    print (colored('Alert!!!', 'red'), colored(f'A wagon {part} broke. You have {game.inventory[part]} remaining', 'white'))
+    input ("")
 
 def bad_weather(game):
   """
@@ -102,8 +103,8 @@ def bad_weather(game):
   event = random.choice(events)
   
   # Inform player, advance time, and consume food for waiting.
-  input(f'Bad Weather Alert!!! You have to halt your journey for {days} days due to {event}')
-
+  print (colored('Alert!!!', 'red'), colored(f'You have to halt your journey for {days} days due to {event}', 'white'))
+  input("")
   for _ in range (days):
     game.consume_rations()
     game.increment_day()

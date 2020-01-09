@@ -1,5 +1,5 @@
 from trail_modules.events.random_events import illness
-
+from termcolor import colored
 
 class person():
  
@@ -8,6 +8,7 @@ class person():
     self.alive = True
     self.sick = False
     self.status = "Healthy"
+    self.disease = disease
 
     
   def gets_sick(self,illness):
@@ -25,6 +26,6 @@ class person():
     Party memeber has died.
     """
 
-    print(f'{name} died from {disease}')
+    print(f'Obituary Alert!!! {self.name} died from {self.disease}')
     self.status = "Deceased"
     self.alive = False
