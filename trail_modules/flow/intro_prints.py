@@ -63,13 +63,13 @@ def choose_month_to_depart():
     Prompts user to pick a month.
     Returns the chosen month.
     """
-    print('It is 1848.... TODO....fill this in....months to leave...')
+    print('The year is 1848. Select a month to begin your journey.')
     print('1. March')
     print('2. April')
     print('3. May')
     print('4. June')
     print('5. July')
-    # print('6. Ask for advice') # TODO: do we want this??
+    
     response = ''
     while response != '1' and response != '2' and response != '3' and response != '4' and response != '5':
         response = input('What is your choice?  ')
@@ -87,4 +87,4 @@ def choose_month_to_depart():
 
 def explain_starting_inventory_and_shopping():
     os.system('clear')
-    input('You start your journey with a wagon, a wagon wheel, wagon axle, and a wagon tongue for attaching the oxen to the wagon.\nIt is advisable to pick up spare parts, food, ammunition, and other necessiary supplies for your journey.\nLets head to the store to begin.')
+    input('You start your journey with a wagon, a wagon wheel, wagon axle, and a wagon tongue for attaching the oxen to the wagon.\n\nIt is advisable to pick up spare parts, food, ammunition, and other necessiary supplies for your journey.\n\nLet\'s head to the store to begin.')
