@@ -14,6 +14,16 @@ class Views:
         view = ViewClass(self.window.width, self.window.height)
         self.window.show(view)
 
+    def intro_done(self):
+        pass
+
+    def choose_party_done(self):
+        pass
+
+    def view_party_done(self):
+        pass
+    
+
 if __name__ == '__main__':
     game = Views()
     game.start()

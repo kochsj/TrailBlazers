@@ -2,7 +2,6 @@ import os
 import random
 from weather import get_weather
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
-import time
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
 from trail_modules.events.trading import trade_resource
@@ -10,6 +9,7 @@ from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
 from trail_modules.events.river_raft import cross
+from trail_modules.events.map import check_map
 
 
 class Game:
@@ -86,7 +86,7 @@ class Game:
                     disease = player.sick[0]
                 else:
                     disease = "exhaustion"
-                output += f"{player.name} has died of {disease}.\n"
+                output += f"Obituary alert!!! {player.name} has died of {disease}.\n"
             i+=1
         if output : input (output)
 
@@ -109,11 +109,13 @@ class Game:
                 crossing_a_river=False
                 menu = self.define_the_menu()
                 response = self.print_menu_and_require_new_input(menu)
-                while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9':
+                while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9'and response != '10':
                     response = input('What is your selection?  ')
 
                 if response == "1": #continue on the trail  
                     interfacing_with_menu = False
+                    response = input(f"Today is: \n{self.month} {self.day}, {self.year}\nAnd you have traveled {self.miles_from_missouri} miles so far on your journey")
+
                     if "crossing" in menu : crossing_a_river = True
                     break
 
@@ -121,7 +123,7 @@ class Game:
                     self.print_inventory()
 
                 if response == "3": #TODO: check map
-                    pass
+                    self.map_result = check_map(self.miles_from_missouri)
                     # check the map function - shows a map 
 
                 if response == "4": #set pace
@@ -137,6 +139,7 @@ class Game:
                     self.rations = self.possible_rations[res-1]
  
                 if response == "6": #stop to rest
+                    response = input("You have chosen to take one days rest")
                     self.rest()
 
                 if response == "7": #handle trading
@@ -150,15 +153,16 @@ class Game:
                     if self.inventory["Ammunition"] >= 1:
                         generate_animal(self)
                     else:
-                        print('You have no Ammunition')
-                    time.sleep(1)
-
+                        input('You have no Ammunition')
 
                 if response == "9":
                     if self.miles_from_missouri == 0 or self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
                         buy_items_from_store(self.bank_roll, self.inventory)
                     else:
                         input('Unfortunately there are no shops nearby.')
+
+                if response == "10": #exit the game
+                    exit() # QUITS THE GAME
                 
                 response = self.print_menu_and_require_new_input(menu)
 
@@ -189,7 +193,7 @@ Money left: {self.bank_roll}
 """
         os.system('clear')
         print(inventory)
-        input('Return to continue....')
+        input('Return to continue....\n')
 
 ###########################################################################################################
 
@@ -237,6 +241,7 @@ Money left: {self.bank_roll}
             miles = 16
             chance_of_illness = 0.05
         self.miles_from_missouri += miles  # travel miles
+        
         for party_member in self.party: # see if anyone gets sick or recovers from illness
             if party_member.sick:
                 num = random.uniform(0, 1)
@@ -284,7 +289,7 @@ Money left: {self.bank_roll}
             print(talk_to_people('talking_dictionary')[mile_post])
             input('Return to continue....')
         else:
-            print('Alrighty then, safe travels!')
+            input('Alrighty then, safe travels!')
             
 
 
@@ -339,6 +344,7 @@ You may:
     7. Attempt to trade.
     8. Go hunting.
     9. Buy supplies.
+    10. Quit Game
 """ 
         return menu
         

@@ -5,17 +5,14 @@ Kansas River Crossing, Big Blue River Crossing, Fort Kearney, Chimney Rock, Fort
 """
 
         
-      def talk_to_strangers(self):
-            print('You come across a friendly local at this stop. Do you want to talk to them?')
-            response = input('y/n?  ')
-            mile_post = (self.miles_from_missouri)
-            if mile_post in  talk_to_people('talking_dictionary')and response == 'y' :
-                  print(talk_to_people('talking_dictionary')[mile_post])
-                  input('Return to continue....')
-            else:
-                  print('Alrighty then, safe travels!')
+def talk_to_strangers(self):
+   print('You come across a friendly local at this stop. Do you want to talk to them?')
+   response = input('y/n?  ')
+   mile_post = (self.miles_from_missouri)
+   if mile_post in  talk_to_people('talking_dictionary')and response == 'y' :
+      print(talk_to_people('talking_dictionary')[mile_post])
+      input('Return to continue....')
+   else:
+      print('Alrighty then, safe travels!')
 
-
-game = Game()
-game.talk_to_strangers()
 
