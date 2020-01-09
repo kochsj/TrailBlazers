@@ -2,7 +2,6 @@ import os
 import random
 from weather import get_weather
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
-import time
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
 from trail_modules.events.trading import trade_resource
@@ -151,8 +150,8 @@ class Game:
                     if self.inventory["Ammunition"] >= 1:
                         generate_animal(self)
                     else:
-                        print('You have no Ammunition')
-                    time.sleep(1)
+                        input('You have no Ammunition')
+
 
 
                 if response == "9":
