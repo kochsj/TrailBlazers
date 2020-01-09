@@ -1,5 +1,10 @@
 import os
+from termcolor import colored, cprint
 from trail_modules.flow.player import character_creation
+from pyfiglet import Figlet
+f = Figlet(font='small')
+red_star = lambda x: cprint(x, 'red')
+blue_star = lambda x: cprint(x, 'blue')
 
 ###########################################################################################################
 
@@ -10,19 +15,19 @@ def print_the_intro():
     Starts game, learn more about trail, or quits
     """
     os.system('clear')
-    print(' '*4, '*'*62)
-    print(' '*4, '*'*62)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*14, '~ THE OREGON TRAIL ~', ' '*14, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*14, '1. Travel the trail. ', ' '*13, '*'*5)
-    print(' '*4, '*'*5, ' '*9, '2. Learn more about the trail.', ' '*9, '*'*5)
-    print(' '*4, '*'*5, ' '*21, '3. Quit', ' '*20, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*62)
-    print(' '*4, '*'*62)
+    cprint('*'*75, 'red')
+    cprint('*'*75, 'blue')
+    red_star('*********                                                         *********')
+    cprint(f.renderText('THE OREGON TRAIL'), 'green', attrs=['blink', 'bold'])
+    red_star('*********                                                         *********')
+    red_star('*********                                                         *********')
+    red_star('*********                1. Travel the trail.                     *********')
+    blue_star('*********           2. Learn more about the trail.                *********')
+    red_star('*********                       3. Quit                           *********')
+    blue_star('*********                                                         *********')
+    red_star('*********                                                         *********')
+    cprint('*'*75, 'blue')
+    cprint('*'*75, 'red')
     response = ''
     while response != '1' and response != '2' and response != '3':
         response = input()

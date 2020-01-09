@@ -12,6 +12,8 @@ arcade = "*"
 pylint = "*"
 pytest = "*"
 matplotlib = "*"
+pyfiglet = "*"
+termcolor = "*"
 
 [requires]
 python_version = "3.7"
