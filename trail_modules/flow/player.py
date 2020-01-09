@@ -125,8 +125,6 @@ def print_member_list(member_list):
         counter += 1
 ###########################################################################################################
 
-wagon_party = []
 
-class Banker(Character):
-    def __init__(self):
-        self.money = 1600
+
+
