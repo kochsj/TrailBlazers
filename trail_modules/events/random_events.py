@@ -13,7 +13,7 @@ def random_events(game):
     "oxen_dies",
     "thief_attacks",
     "wagon_breaks",
-    "find_abandon_wagon",
+    # "find_abandon_wagon",
     "bad_weather"
     ]
 

@@ -41,7 +41,7 @@ SCREEN_TITLE = "The Oregon Trail"
 #         self.shadow_color = shadow_color
 #         self.button_height = button_height
     
-class ActionButton (TextButton):
+class ActionButton(TextButton):
     def __init__(self, action_function, center_x, center_y, width, height, text, font_size=18, font_face='Arial', font_color=arcade.color.BLACK, face_color=arcade.color.BLACK, highlight_color=arcade.color.WHITE, shadow_color=arcade.color.GRAY, button_height=2):
         super().__init__(center_x, center_y, width, height, text, font_size=font_size, font_face=font_face, font_color=font_color, face_color=face_color, highlight_color=highlight_color, shadow_color=shadow_color, button_height=button_height)
         self.action_function = action_function
