@@ -100,7 +100,7 @@ def process_trade_transaction(bank_roll, cost):
     total_cost = int(response) * cost
     money = bank_roll
     if bank_roll < total_cost:
-        input("You have no enough money to finish this transaction.")
+        input("You do not have enough money to finish this transaction.")
         return (0, money)
     else:
         money -= total_cost

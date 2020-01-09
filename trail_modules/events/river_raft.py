@@ -1,4 +1,5 @@
 import random
+import os
 
 def cross(game):
 	depth=(random.randint(1,6))
@@ -15,21 +16,35 @@ def cross(game):
 	food_loss = random.randint(1, 3)
 	clothing_loss = random.randint(1,3)
 
+	valid_choice = False
+	while not valid_choice:
+		os.system('clear')
+		input(f'The river is {depth} feet deep at its deepest point, and {width} feet across.')
+		choice = input('''You must choose how to cross:
+		\n1. Attempt to ford the river.
+		\n2. Caulk the wagon and float it across. 
+		\n3. Get a ride across the river (costs 2 clothing)
+		\nWhat is your choice?''')
 
-	input(f'The river is {depth} feet deep at its deepest point, and {width} feet across.')
-	choice = input('''You must choose how to cross:
-	\n1. Attempt to ford the river.
-	\n2. Caulk the wagon and float it across. 
-	\n3. Get a ride across the river (costs 2 clothing)
-	\n4. Wait to see if conditions improve.
-	\nWhat is your choice?''')
+		if choice == '3':
+			if game.inventory['Clothing'] > 1:
+				valid_choice = True
+			else:
+				input('You do not have enough clothing!')
+
+		elif choice != '1' and choice != '2':
+			input('That is not a valid input!')
+
+		else:
+			valid_choice = True
+
 	if width == 158400:
 		if choice =='1':
 			input('You attempt to ford the river...')
 			input('Your river crossing was not a success.')
 			if oxen_loss == 1:
 				input('You lost 1 ox')
-				game.invenory['Oxen'] -= 1
+				game.inventory['Oxen'] -= 1
 			if food_loss == 1:
 				food_lost = int(game.inventory['Food'] / 5)
 				input(f'You lost {food_lost} pounds of food')
@@ -39,6 +54,13 @@ def cross(game):
 				clothing_lost = int(game.inventory['Clothing'] / 5)
 				input(f'You lost {clothing_lost} clothing')
 				game.inventory['Clothing'] -= clothing_lost
+			i = 0
+			for player in game.party:
+				death_chance = random.randint(1,4)
+				if death_chance == 1:
+					print(f'{game.party[i].name} has drowned!')
+					game.party.pop(i)
+				i += 1
 
 		elif choice == '2':
 			input('You spend a day caulking the wagon and attempt to float across.')
@@ -47,7 +69,7 @@ def cross(game):
 				input('Your river crossing was not a success')
 				if oxen_loss == 1:
 					input('You lost 1 ox')
-					game.invenory['Oxen'] -= 1
+					game.inventory['Oxen'] -= 1
 				if food_loss == 1:
 					food_lost = int(game.inventory['Food'] / 5)
 					input(f'You lost {food_lost} pounds of food')
@@ -56,6 +78,13 @@ def cross(game):
 					clothing_lost = int(game.inventory['Clothing'] / 5)
 					input(f'You lost {clothing_lost} clothing')
 					game.inventory['Clothing'] -= clothing_lost
+				i = 0
+				for player in game.party:
+					death_chance = random.randint(1,4)
+					if death_chance == 1:
+						print(f'{game.party[i].name} has drowned!')
+						game.party.pop(i)
+					i += 1		
 			else:
 				input('You are able to float across the river safely.')
 		else:
@@ -72,7 +101,7 @@ def cross(game):
 				input('Your river crossing was not a success.')
 				if oxen_loss == 1:
 					input('You lost 1 ox')
-					game.invenory['Oxen'] -= 1
+					game.inventory['Oxen'] -= 1
 				if food_loss == 1:
 					food_lost = int(game.inventory['Food'] / 5)
 					input(f'You lost {food_lost} pounds of food')
@@ -81,7 +110,13 @@ def cross(game):
 					clothing_lost = int(game.inventory['Clothing'] / 5)
 					input(f'You lost {clothing_lost} clothing')
 					game.inventory['Clothing'] -= clothing_lost
-				
+				i = 0
+				for player in game.party:
+					death_chance = random.randint(1,4)
+					if death_chance == 1:
+						print(f'{game.party[i].name} has drowned!')
+						game.party.pop(i)
+					i += 1
 		elif choice == '2':
 			input('You spend a day caulking the wagon and attempt to float across.')
 			if depth <= 3:
@@ -95,7 +130,7 @@ def cross(game):
 					input('Your river crossing was not a success')
 					if oxen_loss == 1:
 						input('You lost 1 ox')
-						game.invenory['Oxen'] -= 1
+						game.inventory['Oxen'] -= 1
 					if food_loss == 1:
 						food_lost = int(game.inventory['Food'] / 5)
 						input(f'You lost {food_lost} pounds of food')
@@ -104,13 +139,17 @@ def cross(game):
 						clothing_lost = int(game.inventory['Clothing'] / 5)
 						input(f'You lost {clothing_lost} clothing')
 						game.inventory['Clothing'] -= clothing_lost
-
+					i = 0
+					for player in game.party:
+						death_chance = random.randint(1,4)
+						if death_chance == 1:
+							print(f'{game.party[i].name} has drowned!')
+							game.party.pop(i)
+						i += 1
 		elif choice == '3':
-			input('You have hired somebody to take you across the river')
-			input('You have made it across the river')
+			if game.inventory['Clothing'] >= 2:
+				input('You have hired somebody to take you across the river')
+				input('You have made it across the river')
+				game.inventory['Clothing'] -= 2
 
-			game.inventory['Clothing'] -= 2
-		else:
-			input('You wait a day to see if conditions improve.')
-			game.day += 1
 
