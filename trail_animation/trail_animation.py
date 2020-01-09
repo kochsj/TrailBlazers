@@ -2,18 +2,20 @@ import arcade
 from arcade.gui import *
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
-class TraverseTheTrail(arcade.Window):
+class TraverseTheTrail(arcade.Window): ######
+# class TraverseTheTrail(arcade.View):
     """ Main application class. """
 
-    def __init__(self, x_coord, pace, landmarks, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
+    def __init__(self, x_coord, pace, landmarks, game, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
         """ Initializer """
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, update_rate=1/40)
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, update_rate=1/40) #####
         self.background = None
 
         # Variables that will hold sprite lists
         self.player_list = None
         self.animal_sprite_list = None
+        self.current_state = "GAME_RUNNING"
 
         # Set up the player info
         self.player_sprite = None
@@ -31,6 +33,9 @@ class TraverseTheTrail(arcade.Window):
         self.next_landmark_name = None
         #default background   
         arcade.set_background_color(arcade.color.AMAZON)
+        self.SCREEN_WIDTH = SCREEN_WIDTH
+        self.SCREEN_HEIGHT = SCREEN_HEIGHT
+        self.SCREEN_TITLE = SCREEN_TITLE
 
     def setup(self):
 
@@ -43,7 +48,7 @@ class TraverseTheTrail(arcade.Window):
         # check if you are past landmarks at setup
         correct_landmarks = []
         for lmrk in self.landmarks:
-            lmrk[0] = ((lmrk[0])*(6.4))+(-(15584/2)+SCREEN_WIDTH)
+            lmrk[0] = ((lmrk[0])*(6.4))+(-(15584/2)+self.SCREEN_WIDTH)
         for lmrk in self.landmarks:
             if lmrk[0] > self.image_position:
                 correct_landmarks.append(lmrk)
@@ -78,7 +83,7 @@ class TraverseTheTrail(arcade.Window):
         arcade.start_render()
 
         if self.current_state == "GAME_RUNNING" or self.current_state == "Paused":
-            arcade.draw_texture_rectangle(self.image_position, SCREEN_HEIGHT // 2, 15584, SCREEN_HEIGHT, self.background)
+            arcade.draw_texture_rectangle(self.image_position, self.SCREEN_HEIGHT // 2, 15584, self.SCREEN_HEIGHT, self.background)
 
             # Draw wagon
             self.player_list.draw()
@@ -86,9 +91,9 @@ class TraverseTheTrail(arcade.Window):
             # Print test to the window
             miles_traveled = f"Miles traveled: {self.miles_traveled}"
             days_traveled = f"Days on the trail: {self.days_traveled}"
-            arcade.draw_text(days_traveled, 0, SCREEN_HEIGHT-100,arcade.color.BLACK, 24)
-            arcade.draw_text(miles_traveled, 0, SCREEN_HEIGHT-140,arcade.color.BLACK, 24)
-            arcade.draw_text(f"(dev)current px: {self.image_position}", 0, SCREEN_HEIGHT-180,arcade.color.BLACK, 24)
+            arcade.draw_text(days_traveled, 0, self.SCREEN_HEIGHT-100,arcade.color.BLACK, 24)
+            arcade.draw_text(miles_traveled, 0, self.SCREEN_HEIGHT-140,arcade.color.BLACK, 24)
+            arcade.draw_text(f"(dev)current px: {self.image_position}", 0, self.SCREEN_HEIGHT-180,arcade.color.BLACK, 24)
         
             if self.image_position > 6800: # image starts at -6392; after 13000 pixels you reach Oregon City; game over
                 self.current_state = "GAME_OVER"
@@ -133,7 +138,7 @@ class TraverseTheTrail(arcade.Window):
                 current_state = "GAME_OVER"
 
         elif self.current_state == "GAME_OVER": # handles end of game
-            self.image_position = -(15584/2)+SCREEN_WIDTH
+            self.image_position = -(15584/2)+self.SCREEN_WIDTH
             # self.props["done_handler"](self.image_position) # PROPS ############################################
             # self.current_state = "GAME_RUNNING"
 

@@ -1,5 +1,5 @@
 import arcade
-from button import ActionButton
+from visualmodules.button import ActionButton
 
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 800
@@ -9,11 +9,6 @@ class MainMenuView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        # menu_items = ["Travel the Trail","Check Supplies", "Look at map", "Change Pace","Change Rations","Stop to Rest", "Attempt to trade", "Hunt", "Buy Supplies"]
-
-        # l = len(menu_items)
-        # for i in range(l):
-        #     arcade.draw_text(menu_items[l-(i+1)],600,100+50*i,arcade.color.WHITE,25,)
         arcade.draw_text("Main Menu",200, 600, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
         
         super().on_draw()
