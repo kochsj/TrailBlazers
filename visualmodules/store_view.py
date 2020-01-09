@@ -29,8 +29,7 @@ class StoreView(arcade.View):
         arcade.draw_text("Welcome to the General Store",200, 750, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
         
         super().on_draw()
-      
-    
+
     def on_show(self):
         def leaving():
             exit()

@@ -16,7 +16,7 @@ class StoreView(arcade.View):
                             ("Hunting is an invaluable way to re-provision your wagon beteween towns.\nIn a pinch, you can even trade hunted game to travelers for other supplies.\n  I reccomend a healthy pile of ammunition, which I sell for $2 per box of 20 bullets.",0.25),
                             ("The Oregon Trail is very rocky in places.  If your wheel hits a rock hard enough it can break clean off!\nObviously if your wagon doesn't have a wheel, it can't even carry you into town to buy a spare!\nWise travellers keeps spares with them for precisely such emergencies.",10),
                             ("The Axle is what connects a wheel to the cart.\nIf it breaks, you can't move!  You might want to bring a spare.\n I sell them for $10 per axle",10),
-                            ("A wagon tongue is how you yoke your oxen to your axle.  It's impossible to travel without one.  I charge $10 per spare"),10]
+                            ("A wagon tongue is how you yoke your oxen to your axle.\nThey're subject to a lot of strain and prone to breaking, which is unfortunate, because your wagon can't move without one.\n  Buying a spare now for only $10 could save you a lot of trouble down the line"),10]
         self.item_to_buy = "axle"
         self.index = 5
         self.cost = self.store_items[self.index][1]
@@ -27,8 +27,7 @@ class StoreView(arcade.View):
         """
         Render the screen.
         """
-        if not "buy?   " in self.ss: self.ss = self.store_items[self.index][0]+"\n\nHow many would you like to buy?   "
-
+        if not "buy?   " in self.ss: self.ss = self.store_items[self.index][0]+"\n\nHow many would you like to buy?   "  # repairs the string it the user deletes too many characters
         arcade.start_render()
         arcade.draw_text("Welcome to the General Store",200, 750, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
         arcade.draw_text(self.ss,200, 350, arcade.color.WHITE, 20)       
@@ -52,8 +51,7 @@ class StoreView(arcade.View):
         if key == arcade.key.BACKSPACE:
             self.ss = self.ss[:-1]
         else:
-            self.ss += chr(key)
-        return None    
+            self.ss += chr(key) 
 
     
 
@@ -68,11 +66,5 @@ if __name__ == "__main__":
     SCREEN_TITLE = "Store"
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     view = StoreView()
-
-    # def quantity_purchased(val):
-    #     print(val)
-
-    # props = {"done_handler": quantity_purchased}
-    # view.props = props
     window.show_view(view)
     arcade.run()
