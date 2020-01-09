@@ -6,13 +6,15 @@ from visualmodules.menu_view import MainMenuView
 
 
 
-class OregonTrail(arcade.Window):
+class OregonTrail:
     """ Main application class. """
 
     def __init__(self, landmarks, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
         """ Initializer """
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        # super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+
+        self.window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
         self._state = "INTRO_WINDOW"
 
@@ -38,46 +40,53 @@ class OregonTrail(arcade.Window):
         # Setup
         self.trail = None
 
-        
+        def play(self):
+        if self.changed_view == True: 
+            self.changed_view = False
+            if self._state == "INTRO_WINDOW":
+                # view = MainMenuView()
+                self.show_view(self.menu)
+                print(self.menu)
 
-    def setup(self):
-        """ Set up the game and initialize the variables. """
-        # self.trail = TraverseTheTrail(0,2, self.landmarks, self, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        # self.trail.setup()
-        self.menu = MainMenuView()
-        print("setup")
-        
-    def on_draw(self):
-        """
-        Render the screen.
-        """
-        # This command has to happen before we start drawing
-        arcade.start_render()
-        # print(self.changed_view)
 
-        # if self.changed_view == True: 
-        #     self.changed_view = False
-        #     if self._state == "INTRO_WINDOW":
-        #         # view = MainMenuView()
-        #         self.show_view(self.menu)
-        #         print(self.menu)
+    # def setup(self):
+    #     """ Set up the game and initialize the variables. """
+    #     # self.trail = TraverseTheTrail(0,2, self.landmarks, self, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    #     # self.trail.setup()
+    #     self.menu = MainMenuView()
+    #     print("setup")
+        
+    # def on_draw(self):
+    #     """
+    #     Render the screen.
+    #     """
+    #     # This command has to happen before we start drawing
+    #     arcade.start_render()
+    #     # print(self.changed_view)
+
+    #     # if self.changed_view == True: 
+    #     #     self.changed_view = False
+    #     #     if self._state == "INTRO_WINDOW":
+    #     #         # view = MainMenuView()
+    #     #         self.show_view(self.menu)
+    #     #         print(self.menu)
                 
 
  
 
-    def on_mouse_press(self, x, y, button, modifiers):
-        """
-        """
-        pass
+    # def on_mouse_press(self, x, y, button, modifiers):
+    #     """
+    #     """
+    #     pass
 
-    def on_key_press(self, key, modifiers):
-        """
-        """
-        pass
+    # def on_key_press(self, key, modifiers):
+    #     """
+    #     """
+    #     pass
 
-    def on_update(self, delta_time):
-        """ Movement and game logic """
-        pass
+    # def on_update(self, delta_time):
+    #     """ Movement and game logic """
+    #     pass
 
 
 if __name__ == "__main__":
