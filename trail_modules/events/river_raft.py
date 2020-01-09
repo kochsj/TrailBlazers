@@ -4,7 +4,7 @@ import os
 def cross(game):
 	"""handles if a player gets to a river, and has to make a choice of how they want to cross it"""
 	depth=(random.randint(1,6))
-	width=0
+	width= ""
 	if game.miles_from_missouri == 102:
 		width = 620 
 	if game.miles_from_missouri == 185:
