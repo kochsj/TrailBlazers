@@ -13,33 +13,6 @@ import os
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = "The Oregon Trail"
-
-# class TextButton:
-#     """ Text-based button """
-
-#     def __init__(self,
-                 
-#                  center_x, center_y,
-#                  width, height,
-#                  text,
-#                  font_size=18,
-#                  font_face="Arial",
-#                  face_color=arcade.color.LIGHT_BLUE,
-#                  highlight_color=arcade.color.WHITE,
-#                  shadow_color=arcade.color.GRAY,
-#                  button_height=2):
-#         self.center_x = center_x
-#         self.center_y = center_y
-#         self.width = width
-#         self.height = height
-#         self.text = text
-#         self.font_size = font_size
-#         self.font_face = font_face
-#         self.pressed = False
-#         self.face_color = face_color
-#         self.highlight_color = highlight_color
-#         self.shadow_color = shadow_color
-#         self.button_height = button_height
     
 class ActionButton(TextButton):
     def __init__(self, action_function, center_x, center_y, width, height, text, font_size=18, font_face='Arial', font_color=arcade.color.BLACK, face_color=arcade.color.BLACK, highlight_color=arcade.color.WHITE, shadow_color=arcade.color.GRAY, button_height=2):
