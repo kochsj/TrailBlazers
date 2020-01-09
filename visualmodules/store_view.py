@@ -7,15 +7,14 @@ SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Oregon Trail"
 
 
-class MyGame(arcade.Window):
+class StoreView(arcade.View):
     """
     Main application class.
     """
 
-    def __init__(self, width, height, title, game):
-        super().__init__(width, height, title)
+    def __init__(self):
+        super().__init__()
         self.store_items = ["Oxen","Food","Clothing","Ammunition","Wagon Wheel","Wagon Axle","Wagon Tongue"]
-
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
@@ -57,11 +56,17 @@ class MyGame(arcade.Window):
         
 
 
-
-
 def main():
-    MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    StoreView(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     arcade.run()
 
 
-main()
+if __name__ == "__main__":
+    SCREEN_WIDTH = 1400
+    SCREEN_HEIGHT = 800
+    SCREEN_TITLE = "Pace"
+    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    view = StoreView()
+
+    window.show_view(view)
+    arcade.run()
