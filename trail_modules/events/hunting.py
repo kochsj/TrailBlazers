@@ -31,13 +31,17 @@ def shooting(animal, game):
     decision = input(f"A {animal} jumps out! Would you like to shoot the {animal}? (y/n) ")
     if decision == "y":
         result = randint(1,6)
-        if result > 4:
+        if result >= 3:
             food(animal, game)
-        elif result == 4:
+        elif result == 2:
             input(f"The {animal} ran away.")
-            bullets_wasted = randint(1,3)
-            game.inventory['Ammunition'] -= 1
-            input("You've wasted 1 bullet.")
+            random = randint(5,15)
+            if random <= game.inventory['Ammunition']:
+                bullets_used = random
+            else:
+                bullets_used = game.inventory['Ammunition']
+                game.inventory['Ammunition'] -= bullets_used
+                input(f"You've wasted {bullets_used} bullets.")
 
         else:
             attack(animal, game)
@@ -99,9 +103,14 @@ def food(animal, game):
         game.inventory['Food'] += 300
     else:
         input("You've received 100 pounds of food!")
-        game.inventory['Food'] += 100
-    game.inventory['Ammunition'] -= 1
-    input("You used 1 bullet.")
+        game.inventory['Food'] += 100    
+    random = randint(5,15)
+    if random <= game.inventory['Ammunition']:
+        bullets_used = random
+    else:
+        bullets_used = game.inventory['Ammunition']
+    game.inventory['Ammunition'] -= bullets_used
+    input(f"You used {bullets_used} bullets.")
   
 
 
