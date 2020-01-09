@@ -85,7 +85,7 @@ class Game:
                     disease = player.sick[0]
                 else:
                     disease = "exhaustion"
-                output += f"{player.name} has died of {disease}.\n"
+                output += f"Obituary alert!!! {player.name} has died of {disease}.\n"
             i+=1
         if output : input (output)
 
@@ -112,7 +112,8 @@ class Game:
 
                 if response == "1": #continue on the trail  
                     interfacing_with_menu = False
-                    break
+                    response = input(f"Today is: \n{self.month} {self.day}, {self.year}\nAnd you have traveled {self.miles_from_missouri} miles so far on your journey")
+
 
                 if response == "2": #check supplies
                     self.print_inventory()
@@ -134,6 +135,7 @@ class Game:
                     self.rations = self.possible_rations[res-1]
  
                 if response == "6": #stop to rest
+                    response = input("You have chosen to take one days rest")
                     self.rest()
 
                 if response == "7": #handle trading
@@ -144,14 +146,13 @@ class Game:
                     
                 if response == "8": #handle hunting
                     os.system('clear')
-                    if game.inventory["Ammunition"] >= 1:
-                        generate_animal(game)
+                    if self.inventory["Ammunition"] >= 1:
+                        generate_animal(self)
                     else:
-                        print('You have no Ammunition')
+                        input('You have no Ammunition')
 
                 if response == "10": #exit the game
                     exit() # QUITS THE GAME
-                    time.sleep(1)
 
 
                 if response == "9":
@@ -186,7 +187,7 @@ Money left: {self.bank_roll}
 """
         os.system('clear')
         print(inventory)
-        input('Return to continue....')
+        input('Return to continue....\n')
 
 ###########################################################################################################
 
@@ -234,6 +235,7 @@ Money left: {self.bank_roll}
             miles = 16
             chance_of_illness = 0.05
         self.miles_from_missouri += miles  # travel miles
+        
         for party_member in self.party: # see if anyone gets sick or recovers from illness
             if party_member.sick:
                 num = random.uniform(0, 1)
@@ -281,7 +283,7 @@ Money left: {self.bank_roll}
             print(talk_to_people('talking_dictionary')[mile_post])
             input('Return to continue....')
         else:
-            print('Alrighty then, safe travels!')
+            input('Alrighty then, safe travels!')
             
 
 
@@ -322,7 +324,7 @@ Rations: {self.rations}
 
 
 You may:
-    1.  Continue down the trail.
+    1.  Travel the trail.
     2.  Check your supplies.
     3.  Look at the map.
     4.  Change pace.
