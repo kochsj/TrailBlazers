@@ -82,6 +82,18 @@ def check_mouse_release_for_buttons(_x, _y, button_list):
         if button.pressed:
             button.on_release()
 
+# class ActionButton(TextButton):
+#     def __init__(self, center_x, center_y, text, action_function=None, name=None, font_color=None):
+#         super().__init__(center_x, center_y, 100, 40, text, 18, "Arial", font_color=arcade.color.ALIZARIN_CRIMSON)
+#         self.action_function = action_function
+#         self.name = name or text
+    
+#     def on_press(self):
+#         self.action_function(self)
+
+
+
+
 '''
 Intro page buttons
 '''
@@ -93,6 +105,7 @@ class ProfessionButton(TextButton):
 
     def on_release(self):
         self.action_function()
+        print('hello')
         super().on_release()
 
 class LearnTextButton(TextButton):
@@ -119,9 +132,9 @@ Charater buttons
 
 class BankerButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
-        print(center_x, center_y, 'this is the')
         super().__init__(center_x, center_y, 300, 40, 'Billie bob the Banker', 18, 'Arial')
         self.action_function = action_function
+        print(self.action_function)
 
     def on_release(self):
         self.action_function()
@@ -129,8 +142,9 @@ class BankerButton(TextButton):
 
 class CarpenterButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
-        super().__init__(center_x, center_y, 300, 40, 'Carpenter', 18, 'Arial')
+        super().__init__(center_x, center_y, 300, 40, 'Carl the carpenter', 18, 'Arial')
         self.action_function = action_function
+        print(self.action_function)
 
     def on_release(self):
         self.action_function()
@@ -138,8 +152,9 @@ class CarpenterButton(TextButton):
 
 class FarmerButton(TextButton):
     def __init__(self, center_x, center_y, action_function):
-        super().__init__(center_x, center_y, 300, 40, 'Farmer', 18, 'Arial')
+        super().__init__(center_x, center_y, 300, 40, 'Mac the farmer', 18, 'Arial')
         self.action_function = action_function
+        print(self.action_function)
 
     def on_release(self):
         self.action_function()

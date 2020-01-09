@@ -113,7 +113,7 @@ wagon_party = []
 
 class Banker(Character):
     def __init__(self):
-        self.name = 'John Smith the banker'
+        self.name = 'Billie Bob the banker'
         self.funds = 1600
         self.wagon_party = [Character('Jill'), Character('Bill'), Character('Fred'), Character('Amy')]
 

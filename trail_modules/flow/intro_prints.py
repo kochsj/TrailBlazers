@@ -31,8 +31,9 @@ def print_the_intro():
         os.system('clear')
         return character_creation() # in trail_modules/flow/player.py - creates the characters and starts the game
     
-    if response == '2': #TODO:
-        learn_more() # in trail_modules/flow/intro_prints.py - prints the rules of the game
+    if response == '2':
+        os.system('clear')
+        learn_more() 
         print_the_intro()
     
     if response == '3':
@@ -43,8 +44,13 @@ def print_the_intro():
 
 
 ###########################################################################################################
-def learn_more(): #TODO: add educational info about what was "The Oregon Trail"
-    pass
+def learn_more(): 
+    input('You\'re about to begin a great adventure, traveling the Oregon Trail.  Your party of 5, in a covered wagon pulled by a team of oxen, will travel from Independence, Missouri, to Oregon City, Oregon -- a journey of approximately 2,040 miles, across plains, rivers, and mountains. Along the way you will face obstacles, like crossing rivers, bad weather, lack of food, illnesses.  How you over come these challenges are based on the decisions you make, if you choose wisely you will make it all the way to Oregon\n'
+
+    '\n This trail was used by hundreds of thousands of American pioneers in the mid-1800s to emigrate west. It was a long and dangerous journey that went through Missouri, Kansas, Nebraska, Wyoming, Idaho and finally into Oregon. Without the Oregon Trail and the passing of the Oregon Donation Land Act in 1850, which encouraged settlement in the Oregon Territory, American pioneers would have been slower to settle the American West in the 19th century.')
+    input('Return to continue...')
+
+
 ###########################################################################################################
 
 
@@ -78,3 +84,7 @@ def choose_month_to_depart():
     if response == '5':
         return 'July'
 ###########################################################################################################
+
+def explain_starting_inventory_and_shopping():
+    os.system('clear')
+    input('You start your journey with a wagon, a wagon wheel, wagon axle, and a wagon tongue for attaching the oxen to the wagon.\nIt is advisable to pick up spare parts, food, ammunition, and other necessiary supplies for your journey.\nLets head to the store to begin.')

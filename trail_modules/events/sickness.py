@@ -13,5 +13,6 @@ def get_sick (player):
 def get_well (player):
   """Player recovers from one of their diseases (chosen at random) and increases in health accordingly"""
   disease = player.sick.pop(random.randrange(len(player.sick)))
-  player.health += diseases[disease]
+  player.health += 0.5 * diseases[disease] 
+  if player.health > 100: player.health = 100
   input (f"{player.name} has recovered from {disease}.  Huzzah")

@@ -1,5 +1,6 @@
+"""Dictionary to pull random facts about the trail when the traveler reaches marked mile-posts along the way"""
 
-def talk_to_people():
+def talk_to_people(player):
 
     talking_dictionary = {
     102: 'Hiya Traveler!! You\'ve reached the Kansas River crossing. This crossing is near, what will be known as Topeka, Kansas. Travelers cross the Kansas River to start their trek across Kansas and points out west. Be careful, the water can be deep in parts, and good luck on your journey',  
@@ -22,4 +23,3 @@ def talk_to_people():
 }      
     return talking_dictionary
 
-talk_to_people()
