@@ -27,7 +27,7 @@ class Game:
         self.miles_from_missouri = 0
         self.year = 1848
         self.weather = (0,0)
-        self.location_mileposts_left=[(2040,"the Barlow road"),(1863,"the Dalles"),(1808,"Fort Walla Walla"),(1648,"the Grande Ronde valley"),(1543,"Fort Boise"),(1359,"the Snake river crossing"),(1259,"Fort Hall"),(1151,"Soda Springs"),(989,"the Green river crossing"),(932,"Fort Bridger"),(830,"South Pass (Butte mountains)"),(640,"Fort Laramie"),(554,"Chimney Rock"),(304,"Fort Kearny"),(185,"the Blue river crossing"),(102, "the Kansas river crossing"),(0,"Independece Missouri")]
+        self.location_mileposts_left=[(2040,"the Barlow road"),(1863,"Fort Walla Walla"),(1808,"the Grande Ronde valley"),(1648,"Fort Boise"),(1543,"the Snake river crossing"),(1359,"Fort Hall"),(1259,"Soda Springs"),(1151,"the Green river crossing"),(989,"Fort Bridger"),(932,"South Pass (Butte mountains)"),(830, "Independence Rock"),(640,"Fort Laramie"),(554,"Chimney Rock"),(304,"Fort Kearny"),(185,"the Blue river crossing"),(102, "the Kansas river crossing"),(0,"Independece Missouri")]
 
 ###########################################################################################################
     def play(self):
@@ -86,7 +86,7 @@ class Game:
                     disease = player.sick[0]
                 else:
                     disease = "exhaustion"
-                output += f"Obituary alert!!! {player.name} has died of {disease}.\n"
+                output += f"\nObituary alert!!! {player.name} has died of {disease}.\n"
             i+=1
         if output : input (output)
 
@@ -123,7 +123,8 @@ class Game:
                     self.print_inventory()
 
                 if response == "3": #TODO: check map
-                    self.map_result = check_map(self.miles_from_missouri)
+                    map_result = check_map(self.miles_from_missouri)
+                    
                     # check the map function - shows a map 
 
                 if response == "4": #set pace
@@ -317,7 +318,7 @@ Money left: {self.bank_roll}
 
         health_string = return_health_data_for_menu(self.party)
         menu = f"{self.month} {self.day}, {self.year}"
-        option1 = "Continue down the trail."
+        option1 = "Travel down the trail."
         if self.miles_from_missouri == self.location_mileposts_left[-1][0]:
             menu += f"\nYou have reached {self.location_mileposts_left[-1][1]}\n"
             if "crossing" in self.location_mileposts_left[-1][1]:
