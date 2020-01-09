@@ -7,7 +7,7 @@ Module uses real historical weather data from NWS, Weather Underground and NOOA 
 import random
 import copy
 _landmarks = []
-_distances = [["independence",-1],["kansas river",102],["blue river", 185],["fort kearny",304],["chimney rock",554],["fort laramie",640],["independence rock",830],["south pass",932],["fort bridger",989],["green river",1151],["soda springs",1295],["fort hall",1395],["snake river",1534],["fort boise",1648],["grande ronde valley",1808],["fort walla walla",1863],["the dalles",1920],["barlow road",2000]]
+_distances = [["independence",-1],["kansas river",102],["blue river", 185],["fort kearny",304],["chimney rock",554],["fort laramie",640],["independence rock",830],["south pass",932],["fort bridger",989],["green river",1151],["soda springs",1295],["fort hall",1395],["snake river",1534],["fort boise",1648],["grande ronde valley",1808],["fort walla walla",1863],["the dalles",1920],["barlow road",2040]]
 
 
 data = {
