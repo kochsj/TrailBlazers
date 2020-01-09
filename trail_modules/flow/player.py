@@ -1,4 +1,5 @@
 import os
+from termcolor import colored, cprint
 
 class Character:
     """An instance of a character in the game."""
@@ -12,17 +13,17 @@ class Character:
     def return_health_status_report(self):
         status_string = f'  {self.name} is '
         if 95 <= self.health:
-            status_string += "in perfect health."
+            status_string += (colored('in perfect health.', 'green'))
         if 80 <= self.health < 95:
-            status_string += "feeling great."
+            status_string += (colored("feeling great.", 'cyan'))
         if 65 <= self.health < 80:
-            status_string += "feeling good."
+            status_string += (colored("feeling good.", 'yellow'))
         if 35 <= self.health < 65:
-             status_string += "feeling poor."
+             status_string += (colored("feeling poor.", "blue"))
         if self.health < 35:
-            status_string += "in critical condition."
+            status_string += (colored("in critical condition.", "red"))
         if self.sick:
-            status_string += " (SICK)"
+            status_string += (colored('(SICK)' , "red"))
         
         return status_string
 
