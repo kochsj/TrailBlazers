@@ -29,11 +29,11 @@ class Pages(arcade.View):
         # for button in self.button_list:
         #     button.draw()
 
-    # def on_mouse_press(self, x, y, button, key_modifiers):
-    #     check_mouse_press_for_buttons(x, y, self.button_list)
+    def on_mouse_press(self, x, y, button, key_modifiers):
+        check_mouse_press_for_buttons(x, y, self.button_list)
 
-    # def on_mouse_release(self, x, y, button, key_modifiers):
-    #     check_mouse_release_for_buttons(x, y, self.button_list)
+    def on_mouse_release(self, x, y, button, key_modifiers):
+        check_mouse_release_for_buttons(x, y, self.button_list)
 
     
     def quit_game(self):
@@ -75,25 +75,24 @@ class IntroWindow(Pages):
         arcade.start_render()
         arcade.draw_texture_rectangle(self.center_x, self.center_y,
                                       SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
-        # for button in self.button_list:
-        #     button.draw()
 
-        # profession_button = ActionButton(self.center_x, self.center_y, 'Professions', self.chose_profession)
-        # self.button_list.append(profession_button)
+        # super().on_draw()
+        for button in self.button_list:
+            button.on_draw()
 
-    # def on_mouse_press(self, x, y, button, key_modifiers):
-    #     check_mouse_press_for_buttons(x, y, self.button_list)
+    def on_mouse_press(self, x, y, button, key_modifiers):
+        check_mouse_press_for_buttons(x, y, self.button_list)
 
-    # def on_mouse_release(self, x, y, button, key_modifiers):
-    #     check_mouse_release_for_buttons(x, y, self.button_list)
+    def on_mouse_release(self, x, y, button, key_modifiers):
+        check_mouse_release_for_buttons(x, y, self.button_list)
 
 
 class ChooseParty(Pages):
 
     def on_show(self):
-        # self.button_list = []
-        # for button in self.button_list:
-        #     button.draw()
+        self.button_list = []
+        for button in self.button_list:
+            button.on_draw()
 
         banker_button = BankerButton(self.center_x, self.center_y, self.banker_party)
         self.button_list.append(banker_button)
@@ -140,7 +139,7 @@ class ShowParty(Pages):
     def on_show(self):
         self.button_list = []
         for button in self.button_list:
-            button.draw()
+            button.on_draw()
 
         banker_button = BankerButton(self.center_x, self.center_y, self.banker_party)
         self.button_list.append(banker_button)
