@@ -2,13 +2,14 @@ import os
 import random
 from weather import get_weather
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
-import time
 from trail_modules.events.shopping import buy_items_from_store
 from trail_modules.events.hunting import generate_animal
 from trail_modules.events.trading import trade_resource
 from trail_modules.events.sickness import get_sick, get_well
 from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
+from trail_modules.events.river_raft import cross
+from trail_modules.events.map import check_map
 
 
 class Game:
@@ -105,6 +106,7 @@ class Game:
         while self.party: # while someone is alive still...
             interfacing_with_menu = True
             while interfacing_with_menu:
+                crossing_a_river=False
                 menu = self.define_the_menu()
                 response = self.print_menu_and_require_new_input(menu)
                 while response != '1' and response != '2' and response != '3' and response != '4' and response != '5' and response != '6' and response != '7' and response != '8' and response != '9'and response != '10':
@@ -114,12 +116,14 @@ class Game:
                     interfacing_with_menu = False
                     response = input(f"Today is: \n{self.month} {self.day}, {self.year}\nAnd you have traveled {self.miles_from_missouri} miles so far on your journey")
 
+                    if "crossing" in menu : crossing_a_river = True
+                    break
 
                 if response == "2": #check supplies
                     self.print_inventory()
 
                 if response == "3": #TODO: check map
-                    pass
+                    self.map_result = check_map(self.miles_from_missouri)
                     # check the map function - shows a map 
 
                 if response == "4": #set pace
@@ -151,18 +155,20 @@ class Game:
                     else:
                         input('You have no Ammunition')
 
-                if response == "10": #exit the game
-                    exit() # QUITS THE GAME
-
-
                 if response == "9":
                     if self.miles_from_missouri == 0 or self.miles_from_missouri == 304 or self.miles_from_missouri == 640 or self.miles_from_missouri == 932 or self.miles_from_missouri == 989 or self.miles_from_missouri == 1295 or self.miles_from_missouri == 1648 or self.miles_from_missouri == 1863:
                         buy_items_from_store(self.bank_roll, self.inventory)
                     else:
                         input('Unfortunately there are no shops nearby.')
+
+                if response == "10": #exit the game
+                    exit() # QUITS THE GAME
+                
                 response = self.print_menu_and_require_new_input(menu)
 
+            if crossing_a_river: cross(self)
             self.travel_for_one_day() ## only way to break interfacing with menu loop and reach this point is if user chose to travel.
+            
 
         input('GAME OVER')
         exit()
@@ -311,8 +317,11 @@ Money left: {self.bank_roll}
 
         health_string = return_health_data_for_menu(self.party)
         menu = f"{self.month} {self.day}, {self.year}"
+        option1 = "Continue down the trail."
         if self.miles_from_missouri == self.location_mileposts_left[-1][0]:
             menu += f"\nYou have reached {self.location_mileposts_left[-1][1]}\n"
+            if "crossing" in self.location_mileposts_left[-1][1]:
+                option1 = "cross the river."
         menu += f"""
 Today's low temperature: {self.weather[0]}
 Today's high temperature: {self.weather[1]}
@@ -324,15 +333,17 @@ Rations: {self.rations}
 
 
 You may:
-    1.  Travel the trail.
-    2.  Check your supplies.
-    3.  Look at the map.
-    4.  Change pace.
-    5.  Change food rations.
-    6.  Stop to rest.
-    7.  Attempt to trade.
-    8.  Go hunting.
-    9.  Buy supplies.
+    1. """
+        menu += option1
+        menu +="""
+    2. Check your supplies.
+    3. Look at the map.
+    4. Change pace.
+    5. Change food rations.
+    6. Stop to rest.
+    7. Attempt to trade.
+    8. Go hunting.
+    9. Buy supplies.
     10. Quit Game
 """ 
         return menu
