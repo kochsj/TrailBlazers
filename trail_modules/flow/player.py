@@ -118,6 +118,7 @@ def prompt_player_to_enter_name(member_seq_number, member_list):
 
 ###########################################################################################################
 def print_member_list(member_list):
+    """prints members of the party"""
     counter = 1
     for member in member_list:
         print(f'{counter}. {member.name}')

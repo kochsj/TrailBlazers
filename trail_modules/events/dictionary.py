@@ -1,7 +1,6 @@
-"""Dictionary to pull random facts about the trail when the traveler reaches marked mile-posts along the way"""
 
 def talk_to_people(player):
-
+    """Dictionary to pull random facts about the trail when the traveler reaches marked mile-posts along the way."""
     talking_dictionary = {
     102: 'Hiya Traveler!! You\'ve reached the Kansas River crossing. This crossing is near, what will be known as Topeka, Kansas. Travelers cross the Kansas River to start their trek across Kansas and points out west. Be careful, the water can be deep in parts, and good luck on your journey',  
     185: 'Welcome to The Big Blue River Crossing! Did you know that this is the home of Alcove Spring and Waterfall, a popular area for pioneer wagons to ford the Big Blue River? This location is also the site of the first recorded death in the Donner Party - 70 year old Sarah H. Keyes, who died from consumption, I hope your travels have better results. ',
@@ -22,4 +21,8 @@ def talk_to_people(player):
 
 }      
     return talking_dictionary
+
+
+
+
 

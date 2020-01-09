@@ -1,7 +1,8 @@
 import random
 
 def trade_resource(inventory):
-
+    """Function to handle if the player chooses to trade along the trail. Generates a random item that will be offered, and a random item that
+    is wanted to be traded in return."""
     resources = [
         "Oxen",
         "Food",

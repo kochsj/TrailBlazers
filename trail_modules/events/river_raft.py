@@ -2,6 +2,7 @@ import random
 import os
 
 def cross(game):
+	"""handles if a player gets to a river, and has to make a choice of how they want to cross it"""
 	depth=(random.randint(1,6))
 	width=0
 	if game.miles_from_missouri == 102:
@@ -10,8 +11,8 @@ def cross(game):
 		width = 30
 	if game.miles_from_missouri == 1151:
 		width = 450
-	if game.miles_from_missouri == 1534:
-		width = 158400
+	if game.miles_from_missouri == 1543:
+		width = 608
 	oxen_loss = random.randint(1, 2)
 	food_loss = random.randint(1, 3)
 	clothing_loss = random.randint(1,3)

@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 def check_map(mileage):
+  """Generates a map, shows how far the player has traveled at that point in the game"""
   img = plt.imread('./img/map.png')
   fig, ax = plt.subplots()
 
