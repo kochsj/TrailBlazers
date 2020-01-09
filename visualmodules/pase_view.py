@@ -6,26 +6,26 @@ class PaceView(arcade.View):
     """ Pace View """
 
     def on_show(self):
-        def fast_pace_action():
+        def steady_pace_action():
             self.props["done_handler"](1)
 
-        def medium_pace_action():
+        def strenuous_pace_action():
             self.props["done_handler"](2)
 
-        def slow_pace_action():
+        def grueling_pace_action():
             self.props["done_handler"](3)
 
-        fast_button = ActionButton( fast_pace_action, 700, 500, 400, 50, "Filling", 30, "Arial", arcade.color.WHITE,)
+        steady_button = ActionButton( steady_pace_action, 700, 500, 400, 50, "Filling", 30, "Arial", arcade.color.WHITE,)
 
-        medium_button = ActionButton( medium_pace_action, 700, 300, 400, 50, "Meager", 30, "Arial", arcade.color.WHITE,)
+        strenuous_button = ActionButton( strenuous_pace_action, 700, 300, 400, 50, "Meager", 30, "Arial", arcade.color.WHITE,)
 
-        slow_button = ActionButton( slow_pace_action, 700, 100, 400, 50, "Bare Bones", 30, "Arial", arcade.color.WHITE,)
+        grueling_button = ActionButton( grueling_pace_action, 700, 100, 400, 50, "Bare Bones", 30, "Arial", arcade.color.WHITE,)
 
-        self.button_list.append(fast_button)
+        self.button_list.append(steady_button)
 
-        self.button_list.append(medium_button)
+        self.button_list.append(strenuous_button)
 
-        self.button_list.append(slow_button)
+        self.button_list.append(grueling_button)
 
 
     def on_draw(self):
