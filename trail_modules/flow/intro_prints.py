@@ -1,5 +1,10 @@
 import os
+from termcolor import colored, cprint
 from trail_modules.flow.player import character_creation
+from pyfiglet import Figlet
+f = Figlet(font='small')
+red_star = lambda x: cprint(x, 'red')
+blue_star = lambda x: cprint(x, 'blue')
 
 ###########################################################################################################
 
@@ -10,19 +15,19 @@ def print_the_intro():
     Starts game, learn more about trail, or quits
     """
     os.system('clear')
-    print(' '*4, '*'*62)
-    print(' '*4, '*'*62)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*14, '~ THE OREGON TRAIL ~', ' '*14, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*14, '1. Travel the trail. ', ' '*13, '*'*5)
-    print(' '*4, '*'*5, ' '*9, '2. Learn more about the trail.', ' '*9, '*'*5)
-    print(' '*4, '*'*5, ' '*21, '3. Quit', ' '*20, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*5, ' '*50, '*'*5)
-    print(' '*4, '*'*62)
-    print(' '*4, '*'*62)
+    cprint('*'*75, 'red')
+    cprint('*'*75, 'blue')
+    red_star('*********                                                         *********')
+    cprint(f.renderText('THE OREGON TRAIL'), 'green', attrs=['blink', 'bold'])
+    red_star('*********                                                         *********')
+    red_star('*********                                                         *********')
+    red_star('*********                1. Travel the trail.                     *********')
+    blue_star('*********           2. Learn more about the trail.                *********')
+    red_star('*********                       3. Quit                           *********')
+    blue_star('*********                                                         *********')
+    red_star('*********                                                         *********')
+    cprint('*'*75, 'blue')
+    cprint('*'*75, 'red')
     response = ''
     while response != '1' and response != '2' and response != '3':
         response = input()
@@ -63,13 +68,13 @@ def choose_month_to_depart():
     Prompts user to pick a month.
     Returns the chosen month.
     """
-    print('It is 1848.... TODO....fill this in....months to leave...')
+    print('The year is 1848. Select a month to begin your journey.')
     print('1. March')
     print('2. April')
     print('3. May')
     print('4. June')
     print('5. July')
-    # print('6. Ask for advice') # TODO: do we want this??
+    
     response = ''
     while response != '1' and response != '2' and response != '3' and response != '4' and response != '5':
         response = input('What is your choice?  ')
@@ -87,4 +92,4 @@ def choose_month_to_depart():
 
 def explain_starting_inventory_and_shopping():
     os.system('clear')
-    input('You start your journey with a wagon, a wagon wheel, wagon axle, and a wagon tongue for attaching the oxen to the wagon.\nIt is advisable to pick up spare parts, food, ammunition, and other necessiary supplies for your journey.\nLets head to the store to begin.')
+    input('You start your journey with a wagon, a wagon wheel, wagon axle, and a wagon tongue for attaching the oxen to the wagon.\n\nIt is advisable to pick up spare parts, food, ammunition, and other necessiary supplies for your journey.\n\nLet\'s head to the store to begin.')
