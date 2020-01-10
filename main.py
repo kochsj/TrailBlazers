@@ -18,7 +18,7 @@ class Game:
         self.party = None #list of party members
         self.day = 1
         self.month = None
-        self.year = 1884
+        self.year = 1848
         self.bank_roll = 0
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
         self.pace = "Steady"
@@ -26,7 +26,6 @@ class Game:
         self.rations = "filling" 
         self.possible_rations = ["filling", 'meager','bare-bones']
         self.miles_from_missouri = 0
-        self.year = 1848
         self.weather = (0,0)
         self.location_mileposts_left=[(2040,"the Barlow road"),(1863,"Fort Walla Walla"),(1808,"the Grande Ronde valley"),(1648,"Fort Boise"),(1543,"the Snake river crossing"),(1359,"Fort Hall"),(1259,"Soda Springs"),(1151,"the Green river crossing"),(989,"Fort Bridger"),(932,"South Pass (Butte mountains)"),(830, "Independence Rock"),(640,"Fort Laramie"),(554,"Chimney Rock"),(304,"Fort Kearny"),(185,"the Blue river crossing"),(102, "the Kansas river crossing"),(0,"Independece Missouri")]
 
@@ -172,7 +171,7 @@ class Game:
             if crossing_a_river: cross(self)
             self.travel_for_one_day() ## only way to break interfacing with menu loop and reach this point is if user chose to travel.
             
-
+        os.system('clear')
         input('GAME OVER')
         exit()
 

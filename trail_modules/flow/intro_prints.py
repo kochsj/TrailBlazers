@@ -73,7 +73,7 @@ def choose_month_to_depart():
     print('2. April')
     print('3. May')
     print('4. June')
-    print('5. July')
+    # print('5. July')
     
     response = ''
     while response != '1' and response != '2' and response != '3' and response != '4' and response != '5':
@@ -86,8 +86,8 @@ def choose_month_to_depart():
         return 'May'
     if response == '4':
         return 'June'
-    if response == '5':
-        return 'July'
+    # if response == '5':
+    #     return 'July'
 ###########################################################################################################
 
 def explain_starting_inventory_and_shopping():
