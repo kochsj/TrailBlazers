@@ -35,7 +35,7 @@ def character_creation():
     A leader and 4 members are created at the start of every game.
     Returns a list of the members for use by the game and the starting funds available for use.
     """
-    acceptable_no = ['no', 'n', 'nah', 'naw', 'no way', 'nope', 'x']
+    acceptable_no = ['no', 'n', 'nah', 'naw', 'no way', 'nope', 'x', '']
 
     while True:
         wagon_party = []
@@ -49,11 +49,12 @@ def character_creation():
         wagon_party.append(prompt_player_to_enter_name('5', wagon_party))
 
         print_member_list(wagon_party)
-        response = input('Is this your team? ')
+        response = input('Is this your team? y/n?')
         if response.lower() not in acceptable_no:
             os.system('clear')
             return (wagon_party, starting_funds)
-
+        else:
+            input ('Please select "y" or "n" next time')
         os.system('clear')
     
 
