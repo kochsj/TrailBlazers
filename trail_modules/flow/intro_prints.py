@@ -50,9 +50,10 @@ def print_the_intro():
 
 ###########################################################################################################
 def learn_more(): 
-    input('You\'re about to begin a great adventure, traveling the Oregon Trail.  Your party of 5, in a covered wagon pulled by a team of oxen, will travel from Independence, Missouri, to Oregon City, Oregon -- a journey of approximately 2,040 miles, across plains, rivers, and mountains. Along the way you will face obstacles, like crossing rivers, bad weather, lack of food, illnesses.  How you over come these challenges are based on the decisions you make, if you choose wisely you will make it all the way to Oregon\n'
+    input(' You\'re about to begin a great adventure, traveling the Oregon Trail.\n Your party of 5, in a covered wagon pulled by a team of oxen, will\n travel from Independence, Missouri, to Oregon City, Oregon -- a\n journey of approximately 2,040 miles, across plains, rivers, and \n mountains. Along the way you will face obstacles, like crossing rivers, \n bad weather, lack of food, illnesses.  How you over come these challenges \n are based on the decisions you make, if you choose wisely you will make \n it all the way to Oregon'
 
-    '\n This trail was used by hundreds of thousands of American pioneers in the mid-1800s to emigrate west. It was a long and dangerous journey that went through Missouri, Kansas, Nebraska, Wyoming, Idaho and finally into Oregon. Without the Oregon Trail and the passing of the Oregon Donation Land Act in 1850, which encouraged settlement in the Oregon Territory, American pioneers would have been slower to settle the American West in the 19th century.')
+
+    '\n \n This trail was used by hundreds of thousands of American pioneers\n in the mid-1800s to emigrate west. It was a long and dangerous\n journey that went through Missouri, Kansas, Nebraska, Wyoming, Idaho \n and finally into Oregon. Without the Oregon Trail and the passing of \n the Oregon Donation Land Act in 1850, which encouraged settlement in \n the Oregon Territory, American pioneers would have been slower to settle\n the American West in the 19th century.')
     input('Return to continue...')
 
 
@@ -73,7 +74,7 @@ def choose_month_to_depart():
     print('2. April')
     print('3. May')
     print('4. June')
-    print('5. July')
+    # print('5. July')
     
     response = ''
     while response != '1' and response != '2' and response != '3' and response != '4' and response != '5':
@@ -86,8 +87,8 @@ def choose_month_to_depart():
         return 'May'
     if response == '4':
         return 'June'
-    if response == '5':
-        return 'July'
+    # if response == '5':
+    #     return 'July'
 ###########################################################################################################
 
 def explain_starting_inventory_and_shopping():

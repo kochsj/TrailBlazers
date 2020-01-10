@@ -1,9 +1,7 @@
 from random import randint
 
 def generate_animal(game):
-    """
-    
-    """
+    """Function to generate a random animal to hunt, calls the shooting function with the animal as a peramiter"""
     hunting = input("Something is rustling in the bushes. Would you like to go check it out? (y/n) ")
     if hunting == "y":
         animal = randint(1,8)
@@ -28,6 +26,7 @@ def generate_animal(game):
 
 
 def shooting(animal, game):
+    """Function that asks user if they want to shoot the animal, and generates a random number to either give food, or have the animal attack. """
     decision = input(f"A {animal} jumps out! Would you like to shoot the {animal}? (y/n) ")
     if decision == "y":
         result = randint(1,6)
@@ -50,6 +49,7 @@ def shooting(animal, game):
 
 
 def attack(animal, game):
+    """Function to handle animal attacking the player, takes health away based off animal"""
     input(f"You have been attacked by the {animal}!")
 
     if animal == "squirrel":
@@ -79,6 +79,7 @@ def attack(animal, game):
 
 
 def food(animal, game):
+    """Function to handle player killing the animal, gives food to the player based off animal."""
     input(f"You have killed the {animal}.")
     if animal == "squirrel":
         input("You've received 1 pound of food!")
