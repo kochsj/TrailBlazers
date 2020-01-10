@@ -1,8 +1,15 @@
 # import matplotlib.pyplot as plt
 
+
+def check_map(mileage):
+  """Generates a map, shows how far the player has traveled at that point in the game"""
+  img = plt.imread('./img/map.png')
+  fig, ax = plt.subplots()
+
 # def check_map(mileage):
 #   img = plt.imread('./img/map.png')
 #   fig, ax = plt.subplots()
+
 
 #   x = [880,840,810,760,660,630,560,520,500,460,400,360,300,260,200,160,80]
 #   y = [600,610,620,630,650,660,680,690,700,720,740,750,770,780,800,820,840]

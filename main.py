@@ -170,6 +170,8 @@ class Game:
 
             if crossing_a_river: cross(self)
             self.travel_for_one_day() ## only way to break interfacing with menu loop and reach this point is if user chose to travel.
+
+                
             
         os.system('clear')
         input('GAME OVER')
@@ -258,6 +260,9 @@ Money left: {self.bank_roll}
         else: 
             random_events(self)
 
+
+
+
 ###########################################################################################################
 
 
@@ -283,15 +288,22 @@ Money left: {self.bank_roll}
 ###########################################################################################################
     def talk_to_strangers(self):
         """ Prompts an option to talk to the locals and learn more facts about the landmark, river crossing, or outpost you have reached"""
-        os.system('clear')
+
+        mile_post = (self.miles_from_missouri)
+        if mile_post == 2040:
+            os.system('clear')
+            print(talk_to_people('talking_dictionary')[mile_post])
+            input('Return to exit....')
+            exit()
+        os.system('Clear')
         print('\nYou come across a friendly local. Do you want to stop and talk to them?')
         response = input('y/n?  ')
-        mile_post = (self.miles_from_missouri)
         if mile_post in  talk_to_people('talking_dictionary') and response == 'y' :
             print(talk_to_people('talking_dictionary')[mile_post])
             input('\nReturn to continue....')
         else:
             input('Alrighty then, safe travels!')
+            
             
 
 
