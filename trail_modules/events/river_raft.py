@@ -20,7 +20,7 @@ def cross(game):
 	valid_choice = False
 	while not valid_choice:
 		os.system('clear')
-		input(f'The river is {depth} feet deep at its deepest point, and {width} feet across.')
+		print(f'The river is {depth} feet deep at its deepest point, and {width} feet across.')
 		choice = input('''You must choose how to cross:
 		\n1. Attempt to ford the river.
 		\n2. Caulk the wagon and float it across. 
@@ -83,7 +83,7 @@ def cross(game):
 				for player in game.party:
 					death_chance = random.randint(1,4)
 					if death_chance == 1:
-						print(f'{game.party[i].name} has drowned!')
+						input(f'{game.party[i].name} has drowned!')
 						game.party.pop(i)
 					i += 1		
 			else:
@@ -115,7 +115,7 @@ def cross(game):
 				for player in game.party:
 					death_chance = random.randint(1,4)
 					if death_chance == 1:
-						print(f'{game.party[i].name} has drowned!')
+						input(f'{game.party[i].name} has drowned!')
 						game.party.pop(i)
 					i += 1
 		elif choice == '2':
@@ -144,7 +144,7 @@ def cross(game):
 					for player in game.party:
 						death_chance = random.randint(1,4)
 						if death_chance == 1:
-							print(f'{game.party[i].name} has drowned!')
+							input(f'{game.party[i].name} has drowned!')
 							game.party.pop(i)
 						i += 1
 		elif choice == '3':

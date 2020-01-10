@@ -19,7 +19,6 @@ def talk_to_people(player):
     1808:' Grande Ronde in the Blue Mountains, The Grand Ronde (French for \'great ring\')\n is a river that runs parallel to the Blue Mountains. The Grande Ronde valley a \n beautiful place to stop and rest, and enjoy the fact that your journey \n is almost over.', 
     1863:' Fort Walla Walla was established in 1818 as a fur-trading post where the Columbia\n and Walla Walla Rivers meet. This is the last fort you\'ll come to in the game. \n You\'re almost at the end, don\'t screw it up now!',
     2040:' Whoo Hoo!  You\'ve survived to the end of the trail!!!  Oregon City has always \n been a natural place of commerce between Indians and whites, the town also uses \n the nearby river as a dependable source of power for mills for its economic \n development. This area is growing rapidly as an economic center of the territory. \n Go on an make your claim on some land, there\'s a lot of it out \n there to choose from.'
-
 }      
     return talking_dictionary
 

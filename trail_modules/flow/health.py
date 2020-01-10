@@ -1,5 +1,5 @@
 from trail_modules.events.random_events import illness
-
+from termcolor import colored
 
 class person():
   """class to deal with individual member in the party """

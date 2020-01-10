@@ -1,4 +1,5 @@
 import os
+from termcolor import colored, cprint
 
 class Character:
     """An instance of a character in the game."""
@@ -12,17 +13,17 @@ class Character:
     def return_health_status_report(self):
         status_string = f'  {self.name} is '
         if 95 <= self.health:
-            status_string += "in perfect health."
+            status_string += (colored('in perfect health.', 'green'))
         if 80 <= self.health < 95:
-            status_string += "feeling great."
+            status_string += (colored("feeling great.", 'cyan'))
         if 65 <= self.health < 80:
-            status_string += "feeling good."
+            status_string += (colored("feeling good.", 'yellow'))
         if 35 <= self.health < 65:
-             status_string += "feeling poor."
+             status_string += (colored("feeling poor.", "blue"))
         if self.health < 35:
-            status_string += "in critical condition."
+            status_string += (colored("in critical condition.", "red"))
         if self.sick:
-            status_string += " (SICK)"
+            status_string += (colored('(SICK)' , "red"))
         
         return status_string
 
@@ -34,7 +35,7 @@ def character_creation():
     A leader and 4 members are created at the start of every game.
     Returns a list of the members for use by the game and the starting funds available for use.
     """
-    acceptable_no = ['no', 'n', 'nah', 'naw', 'no way', 'nope', 'x']
+    acceptable_no = ['no', 'n', 'nah', 'naw', 'no way', 'nope', 'x', '']
 
     while True:
         wagon_party = []
@@ -48,11 +49,12 @@ def character_creation():
         wagon_party.append(prompt_player_to_enter_name('5', wagon_party))
 
         print_member_list(wagon_party)
-        response = input('Is this your team? ')
+        response = input('Is this your team? y/n?')
         if response.lower() not in acceptable_no:
             os.system('clear')
             return (wagon_party, starting_funds)
-
+        else:
+            input ('Please select "y" or "n" next time')
         os.system('clear')
     
 
@@ -125,8 +127,6 @@ def print_member_list(member_list):
         counter += 1
 ###########################################################################################################
 
-wagon_party = []
 
-class Banker(Character):
-    def __init__(self):
-        self.money = 1600
+
+
