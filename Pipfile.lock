@@ -44,16 +44,6 @@
             ],
             "version": "==0.10.0"
         },
-<<<<<<< HEAD
-        "future": {
-            "hashes": [
-                "sha256:0e861e97ed1955d327ed7afcd45bd0e3646751d018d2cbd461b7f9dbd9bbab34",
-                "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"
-            ],
-            "version": "==0.18.2"
-        },
-=======
->>>>>>> caca7f9f75533370937dcad866b31588b107d768
         "importlib-metadata": {
             "hashes": [
                 "sha256:073a852570f92da5f744a3472af1b61e28e9f78ccf0c9117658dc32b15de7b45",

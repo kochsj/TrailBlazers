@@ -24,11 +24,11 @@ def cross(game):
 		choice = input('''You must choose how to cross:
 		\n1. Attempt to ford the river.
 		\n2. Caulk the wagon and float it across. 
-		\n3. Get a ride across the river (costs 2 clothing)
+		\n3. Get a ride across the river (costs 5 clothing)
 		\nWhat is your choice?''')
 
 		if choice == '3':
-			if game.inventory['Clothing'] > 1:
+			if game.inventory['Clothing'] > 4:
 				valid_choice = True
 			else:
 				input('You do not have enough clothing!')
@@ -91,7 +91,7 @@ def cross(game):
 		else:
 			input('You have hired somebody to take you across the river')
 			input('You have made it across the river')
-			game.inventory['Clothing'] -= 2
+			game.inventory['Clothing'] -= 5
 
 	else:	
 		if choice == '1':
@@ -148,9 +148,9 @@ def cross(game):
 							game.party.pop(i)
 						i += 1
 		elif choice == '3':
-			if game.inventory['Clothing'] >= 2:
+			if game.inventory['Clothing'] >= 5:
 				input('You have hired somebody to take you across the river')
 				input('You have made it across the river')
-				game.inventory['Clothing'] -= 2
+				game.inventory['Clothing'] -= 5
 
 

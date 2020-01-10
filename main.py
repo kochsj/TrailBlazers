@@ -10,6 +10,11 @@ from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
 from trail_modules.events.river_raft import cross
 from trail_modules.events.map import check_map
+from pyfiglet import Figlet
+from termcolor import colored, cprint
+f = Figlet(font='small')
+red_star = lambda x: cprint(x, 'red')
+blue_star = lambda x: cprint(x, 'blue')
 
 
 class Game:
@@ -169,6 +174,8 @@ class Game:
 
             if crossing_a_river: cross(self)
             self.travel_for_one_day() ## only way to break interfacing with menu loop and reach this point is if user chose to travel.
+
+                
             
 
         input('GAME OVER')
@@ -257,6 +264,9 @@ Money left: {self.bank_roll}
         else: 
             random_events(self)
 
+
+
+
 ###########################################################################################################
 
 
@@ -282,15 +292,21 @@ Money left: {self.bank_roll}
 ###########################################################################################################
     def talk_to_strangers(self):
         """ Prompts an option to talk to the locals and learn more facts about the landmark, river crossing, or outpost you have reached"""
+        mile_post = (self.miles_from_missouri)
+        if mile_post == 2040:
+            os.system('clear')
+            print(talk_to_people('talking_dictionary')[mile_post])
+            input('Return to exit....')
+            exit()
 
         print('You come across a friendly stranger at this stop. Do you want to talk to them?')
         response = input('y/n?  ')
-        mile_post = (self.miles_from_missouri)
         if mile_post in  talk_to_people('talking_dictionary') and response == 'y' :
             print(talk_to_people('talking_dictionary')[mile_post])
             input('Return to continue....')
         else:
             input('Alrighty then, safe travels!')
+            
             
 
 
