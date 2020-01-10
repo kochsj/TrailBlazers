@@ -1,16 +1,20 @@
 import arcade
 from arcade.gui import *
+
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
-class TraverseTheTrail(arcade.Window): ######
-# class TraverseTheTrail(arcade.View):
+# class TraverseTheTrailxxxx(arcade.Window): ######
+class TraverseTheTrail(arcade.View):
     """ Main application class. """
 
-    def __init__(self, x_coord, pace, landmarks, game, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
+    def __init__(self, x_coord, pace, landmarks, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
         """ Initializer """
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, update_rate=1/40) #####
+        # super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, update_rate=1/40) #####
+        super().__init__() #####
         self.background = None
+
+        landmarks = landmarks[:]
 
         # Variables that will hold sprite lists
         self.player_list = None
@@ -28,7 +32,7 @@ class TraverseTheTrail(arcade.Window): ######
         self.px_per_day = None
         self.increment_miles_by_pace = 1
         # Set up the landmarks
-        self.landmarks = landmarks
+        self.landmarks = []
         self.next_landmark_position = None
         self.next_landmark_name = None
         #default background   
@@ -37,22 +41,22 @@ class TraverseTheTrail(arcade.Window): ######
         self.SCREEN_HEIGHT = SCREEN_HEIGHT
         self.SCREEN_TITLE = SCREEN_TITLE
 
-    def setup(self):
+        # check if you are past landmarks at setup
+        correct_landmarks = []
+        for lmrk in landmarks:
+            if lmrk[0] > self.image_position:
+                correct_landmarks.append(lmrk)
+        self.landmarks = correct_landmarks
 
+    def on_show(self):
+        print("on show prints..")
         """ Set up the game and initialize the variables. """
         self.background = arcade.load_texture("./trail_animation/the_trail.png")
 
         # Sprite lists
         self.player_list = arcade.SpriteList() #stores wagon
 
-        # check if you are past landmarks at setup
-        correct_landmarks = []
-        for lmrk in self.landmarks:
-            lmrk[0] = ((lmrk[0])*(6.4))+(-(15584/2)+self.SCREEN_WIDTH)
-        for lmrk in self.landmarks:
-            if lmrk[0] > self.image_position:
-                correct_landmarks.append(lmrk)
-        self.landmarks = correct_landmarks
+        
 
         #check what pace we will be moving at
         if self.pace == 0: #STEADY: every 51.2px is a day (8miles/day*6.4px/mile)
@@ -154,11 +158,12 @@ class TraverseTheTrail(arcade.Window): ######
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.SPACE or key == arcade.key.RETURN:
-            self.current_state = "RETURN_TO_MENU"
+            self.done_handler({"current_location": self.image_position, "action": "pause", "id": "trail_animation", "current_day": self.days_traveled, "miles_traveled":self.miles_traveled})
+            
 
     def on_update(self, delta_time):
         """ Movement and game logic """
-
+        
         if self.current_state == "GAME_RUNNING":
             #check if it has been a day / count days
             if (self.location_at_start_of_day - self.image_position) < self.px_per_day:
@@ -189,7 +194,7 @@ if __name__ == "__main__":
         """ Example output from animation """
         print(val)
         return val
-    landmark_list = [[2040,"Oregon City"],[1863,"Fort Walla Walla"],[1808,"The Blue Mountains"],[1648,"Fort Boise"],[1543,"the Snake River crossing"],[1395,"Fort Hall"],[1259,"Soda Springs"],[1151,"The Green River Crossing"],[989,"Fort Bridger"],[932,"South Pass [Butte Mtns]"],[830,"Independence Rock"],[640,"Fort Laramie"],[554,"Chimney Rock"],[304,"Fort Kearny"],[185,"the Blue River crossing"],[102, "the Kansas River crossing"]]
+    landmark_list = [[6664.0, 'Oregon City'], [5531.200000000001, 'Fort Walla Walla'], [5179.200000000001, 'The Blue Mountains'], [4155.200000000001, 'Fort Boise'], [3483.2000000000007, 'the Snake River crossing'], [2536.0, 'Fort Hall'], [1665.6000000000004, 'Soda Springs'], [974.4000000000005, 'The Green River Crossing'], [-62.399999999999636, 'Fort Bridger'], [-427.1999999999998, 'SouthPass [Butte Mtns]'], [-1080.0, 'Independence Rock'], [-2296.0, 'Fort Laramie'], [-2846.3999999999996, 'Chimney Rock'], [-4446.4, 'Fort Kearny'], [-5208.0, 'the Blue River crossing'], [-5739.2, 'the Kansas River crossing']]
     
     SCREEN_WIDTH = 1400
     SCREEN_HEIGHT = 800
@@ -199,5 +204,4 @@ if __name__ == "__main__":
     # game.props = props # add the dictionary to the game as attribute 'props'
     game.setup()
 
-    
     arcade.run() 

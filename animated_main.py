@@ -2,6 +2,8 @@ import arcade
 from arcade.gui import *
 from trail_animation.trail_animation import TraverseTheTrail
 from visualmodules.menu_view import MainMenuView
+from gui_game.game_play import IntroWindow
+from hunting_animation.hunting_animation import HuntingView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
 
@@ -11,98 +13,73 @@ class OregonTrail:
 
     def __init__(self, landmarks, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
         """ Initializer """
-        # Call the parent class initializer
-        # super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
+        #window created
         self.window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-
+        self.SCREEN_WIDTH = SCREEN_WIDTH
+        self.SCREEN_HEIGHT = SCREEN_HEIGHT
+        self.SCREEN_TITLE = SCREEN_TITLE
         self._state = "INTRO_WINDOW"
-
-        self.party = None #list of party members
-        self.day = 1
-        self.month = None
-        self.year = 1884
-        self.bank_roll = 0
-        self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
-        self.pace = "Steady"
-        self.possible_paces = ["Steady", "Strenuous", "Grueling"]
-        self.rations = "filling" 
-        self.possible_rations = ["filling", 'meager','bare-bones']
-        self.miles_from_missouri = 0
-        self.year = 1848
-        self.weather = (0,0)
-        self.location_mileposts_left=[(2040,"the Barlow road"),(1863,"Fort Walla Walla"),(1808,"the Grande Ronde valley"),(1648,"Fort Boise"),(1543,"the Snake river crossing"),(1359,"Fort Hall"),(1259,"Soda Springs"),(1151,"the Green river crossing"),(989,"Fort Bridger"),(932,"South Pass (Butte mountains)"),(830, "Independence Rock"),(640,"Fort Laramie"),(554,"Chimney Rock"),(304,"Fort Kearny"),(185,"the Blue river crossing"),(102, "the Kansas river crossing"),(0,"Independece Missouri")]
-        self.landmarks = landmarks
-        self.menu = None
-
+        self.current_location=0
+        self.days_traveled=0
+        self.miles_traveled=0
         self.changed_view = True
+        self.landmarks = landmarks
 
-        # Setup
-        self.trail = None
+        view = IntroWindow(SCREEN_WIDTH, SCREEN_HEIGHT,None)
+        view.done_handler = self.done_handler
+        self.window.show_view(view)
 
-        def play(self):
-        if self.changed_view == True: 
-            self.changed_view = False
-            if self._state == "INTRO_WINDOW":
-                # view = MainMenuView()
-                self.show_view(self.menu)
-                print(self.menu)
+    def done_handler(self, info=None):
+        print(info)
+        action = info['action']
+        source = info['id']
+        if source == "opening_menu":
+            if action == "begin":
+                view = MainMenuView()
+                view.done_handler = self.done_handler
+
+        if source == "main_menu":
+            if action == "travel":
+                view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
+                view.done_handler = self.done_handler
+                view.days_traveled = self.days_traveled
+                view.miles_traveled = self.miles_traveled
+
+            if action == "hunt":
+                view = HuntingView()
+                view.done_handler = self.done_handler
+
+        if source == "trail_animation":
+            if action == 'pause':
+                view = MainMenuView()
+                view.done_handler = self.done_handler
+                self.days_traveled = info["current_day"]
+                self.current_location = info["current_location"]
+                self.miles_traveled = info["miles_traveled"]
+        if source == "hunt":
+            view = MainMenuView()
+            view.done_handler = self.done_handler
 
 
-    # def setup(self):
-    #     """ Set up the game and initialize the variables. """
-    #     # self.trail = TraverseTheTrail(0,2, self.landmarks, self, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    #     # self.trail.setup()
-    #     self.menu = MainMenuView()
-    #     print("setup")
+        self.window.show_view(view)
+        print(self.current_location)
+    
+    
+            
+
+
         
-    # def on_draw(self):
-    #     """
-    #     Render the screen.
-    #     """
-    #     # This command has to happen before we start drawing
-    #     arcade.start_render()
-    #     # print(self.changed_view)
-
-    #     # if self.changed_view == True: 
-    #     #     self.changed_view = False
-    #     #     if self._state == "INTRO_WINDOW":
-    #     #         # view = MainMenuView()
-    #     #         self.show_view(self.menu)
-    #     #         print(self.menu)
-                
-
- 
-
-    # def on_mouse_press(self, x, y, button, modifiers):
-    #     """
-    #     """
-    #     pass
-
-    # def on_key_press(self, key, modifiers):
-    #     """
-    #     """
-    #     pass
-
-    # def on_update(self, delta_time):
-    #     """ Movement and game logic """
-    #     pass
-
 
 if __name__ == "__main__":
 
     
-    landmark_list = [[2040,"Oregon City"],[1863,"Fort Walla Walla"],[1808,"The Blue Mountains"],[1648,"Fort Boise"],[1543,"the Snake River crossing"],[1395,"Fort Hall"],[1259,"Soda Springs"],[1151,"The Green River Crossing"],[989,"Fort Bridger"],[932,"South Pass [Butte Mtns]"],[830,"Independence Rock"],[640,"Fort Laramie"],[554,"Chimney Rock"],[304,"Fort Kearny"],[185,"the Blue River crossing"],[102, "the Kansas River crossing"]]
+    landmark_list = [[6664.0, 'Oregon City'], [5531.200000000001, 'Fort Walla Walla'], [5179.200000000001, 'The Blue Mountains'], [4155.200000000001, 'Fort Boise'], [3483.2000000000007, 'the Snake River crossing'], [2536.0, 'Fort Hall'], [1665.6000000000004, 'Soda Springs'], [974.4000000000005, 'The Green River Crossing'], [-62.399999999999636, 'Fort Bridger'], [-427.1999999999998, 'SouthPass [Butte Mtns]'], [-1080.0, 'Independence Rock'], [-2296.0, 'Fort Laramie'], [-2846.3999999999996, 'Chimney Rock'], [-4446.4, 'Fort Kearny'], [-5208.0, 'the Blue River crossing'], [-5739.2, 'the Kansas River crossing']]
     
     SCREEN_WIDTH = 1400
     SCREEN_HEIGHT = 800
     SCREEN_TITLE = "OREGON TRAIL"
     game = OregonTrail(landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    # game.setup()
-    # window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    view = MainMenuView()
-    game.show_view(view)
-    # props = {"done_handler": miles_traveled, "random_event": random_events, "input_var": (test_input_variable, more_input), "menu_func": return_to_game} # dictionary of a pointer to function in memory
-    # game.props = props # add the dictionary to the game as attribute 'props'
-    
+
     arcade.run() 
+    
