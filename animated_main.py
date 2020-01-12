@@ -4,6 +4,8 @@ from trail_animation.trail_animation import TraverseTheTrail
 from visualmodules.menu_view import MainMenuView
 from gui_game.game_play import IntroWindow
 from hunting_animation.hunting_animation import HuntingView
+from refactor.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
+from refactor.general_store_view import SuppliesExplainationView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
 
@@ -36,9 +38,26 @@ class OregonTrail:
         source = info['id']
         if source == "opening_menu":
             if action == "begin":
-                view = MainMenuView()
+                view = CharacterCreationView()
                 view.done_handler = self.done_handler
 
+        if source == "char_creation":
+            if action == "banker":
+                view = BankerView()
+                view.done_handler = self.done_handler
+            if action == "carpenter":
+                view = CarpenterView()
+                view.done_handler = self.done_handler
+            if action == "farmer":
+                view = FarmerView()
+                view.done_handler = self.done_handler
+            if action == "finish_creation":
+                view = SuppliesExplainationView()
+                view.done_handler = self.done_handler
+
+        if source == "general_store":
+            if action == "go_to_store":
+                pass
         if source == "main_menu":
             if action == "travel":
                 view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
