@@ -16,5 +16,9 @@ class SuppliesExplainationView(arcade.View):
         
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Before setting out on the trail, you should buy some supplies.",300,600,arcade.color.BLACK,30)
+        arcade.draw_text("You start your journey with a wagon, a wagon wheel, wagon axle,",150,750,arcade.color.BLACK,20)
+        arcade.draw_text("and a wagon tongue for attaching the oxen to the wagon.",150,700,arcade.color.BLACK,20)
+        arcade.draw_text("It is advisable to pick up spare parts, food, ammunition, and",150,650,arcade.color.BLACK,20) 
+        arcade.draw_text("other necessiary supplies for your journey.",150,600,arcade.color.BLACK,20)
+        arcade.draw_text("Let's head to the store to begin.",150,550,arcade.color.BLACK,20)
         super().on_draw()

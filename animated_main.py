@@ -2,6 +2,7 @@ import arcade
 from arcade.gui import *
 from trail_animation.trail_animation import TraverseTheTrail
 from visualmodules.menu_view import MainMenuView
+from visualmodules.store_view import StoreView
 from gui_game.game_play import IntroWindow
 from hunting_animation.hunting_animation import HuntingView
 from refactor.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
@@ -21,19 +22,25 @@ class OregonTrail:
         self.SCREEN_WIDTH = SCREEN_WIDTH
         self.SCREEN_HEIGHT = SCREEN_HEIGHT
         self.SCREEN_TITLE = SCREEN_TITLE
-        self._state = "INTRO_WINDOW"
+
+        #game attributes to track distance/days from missouri
         self.current_location=0
         self.days_traveled=0
         self.miles_traveled=0
-        self.changed_view = True
         self.landmarks = landmarks
 
+        #game attributes that track player attributes/status
+        self.bank_roll = 0
+        self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
+
+
+
+        #Initializes window with into screen
         view = IntroWindow(SCREEN_WIDTH, SCREEN_HEIGHT,None)
         view.done_handler = self.done_handler
         self.window.show_view(view)
 
     def done_handler(self, info=None):
-        # print(info)
         action = info['action']
         source = info['id']
         if source == "opening_menu":
@@ -43,12 +50,15 @@ class OregonTrail:
 
         if source == "char_creation":
             if action == "banker":
+                self.bank_roll = info["starting_funds"]
                 view = BankerView()
                 view.done_handler = self.done_handler
             if action == "carpenter":
+                self.bank_roll = info["starting_funds"]
                 view = CarpenterView()
                 view.done_handler = self.done_handler
             if action == "farmer":
+                self.bank_roll = info["starting_funds"]
                 view = FarmerView()
                 view.done_handler = self.done_handler
             if action == "finish_creation":
@@ -57,7 +67,9 @@ class OregonTrail:
 
         if source == "general_store":
             if action == "go_to_store":
-                pass
+                view = StoreView(self.inventory, self.bank_roll)
+                view.done_handler = self.done_handler
+
         if source == "main_menu":
             if action == "travel":
                 view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)

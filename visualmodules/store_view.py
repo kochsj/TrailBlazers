@@ -1,6 +1,6 @@
 
 import arcade
-from button import ActionButton
+from visualmodules.button import ActionButton
 
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 800
@@ -12,9 +12,11 @@ class StoreView(arcade.View):
     Main application class.
     """
 
-    def __init__(self):
+    def __init__(self, inventory, funds):
         super().__init__()
         self.store_items = ["Oxen","Food","Clothing","Ammunition","Wagon Wheel","Wagon Axle","Wagon Tongue"]
+        self.inventory = inventory
+        self.funds = funds
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
@@ -27,6 +29,7 @@ class StoreView(arcade.View):
         for i in range (l):
             arcade.draw_text(self.store_items[l-(i+1)],600,180+80*i,arcade.color.WHITE,25,)
         arcade.draw_text("Welcome to the General Store",200, 750, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
+        arcade.draw_text(f"Current Funds: {self.funds}", 1000,650,arcade.color.WHITE,20)
         
         super().on_draw()
 

@@ -12,11 +12,11 @@ class CharacterCreationView(arcade.View):
     """
     def on_show(self): #to set up view
         def banker(btn):
-            self.done_handler({"id":"char_creation","action":"banker"})
+            self.done_handler({"id":"char_creation","action":"banker", "starting_funds":1600})
         def carpenter(btn):
-            self.done_handler({"id":"char_creation","action":"carpenter"})
+            self.done_handler({"id":"char_creation","action":"carpenter", "starting_funds":800})
         def farmer(btn):
-            self.done_handler({"id":"char_creation","action":"farmer"})
+            self.done_handler({"id":"char_creation","action":"farmer", "starting_funds":400})
         menu_actions = [banker,carpenter,farmer]
         menu_items = ["Banker", "Carpenter", "Farmer"]
 
