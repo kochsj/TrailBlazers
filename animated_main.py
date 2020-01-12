@@ -4,6 +4,7 @@ from trail_animation.trail_animation import TraverseTheTrail
 from visualmodules.menu_view import MainMenuView
 from visualmodules.store_view import StoreView
 from visualmodules.buying_an_item import BuyingAnItemView, FinalTransactionView
+from visualmodules.departure_view import DepartureView
 from gui_game.game_play import IntroWindow
 from hunting_animation.hunting_animation import HuntingView
 from refactor.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
@@ -31,6 +32,10 @@ class OregonTrail:
         self.landmarks = landmarks
 
         #game attributes that track player attributes/status
+        self.party = None #list of party members
+        self.day = 1
+        self.month = None
+        self.year = 1848
         self.bank_roll = 0
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
 
@@ -48,22 +53,32 @@ class OregonTrail:
             if action == "begin":
                 view = CharacterCreationView()
                 view.done_handler = self.done_handler
+            if action == "decide_month":
+                self.month = info['month']
+                view = SuppliesExplainationView()
+                view.done_handler = self.done_handler
 
         if source == "char_creation":
             if action == "banker":
                 self.bank_roll = info["starting_funds"]
+                self.party = []
                 view = BankerView()
                 view.done_handler = self.done_handler
             if action == "carpenter":
                 self.bank_roll = info["starting_funds"]
+                self.party = []
                 view = CarpenterView()
                 view.done_handler = self.done_handler
             if action == "farmer":
                 self.bank_roll = info["starting_funds"]
+                self.party = []
                 view = FarmerView()
                 view.done_handler = self.done_handler
+            # if action == "finish_creation":
+            #     view = SuppliesExplainationView()
+            #     view.done_handler = self.done_handler
             if action == "finish_creation":
-                view = SuppliesExplainationView()
+                view = DepartureView()
                 view.done_handler = self.done_handler
 
         if source == "general_store":
@@ -96,6 +111,11 @@ class OregonTrail:
                 self.bank_roll -= info['cost']
                 view = FinalTransactionView(info['item'], info['quantity'], info['cost'])
                 view.done_handler = self.done_handler
+            if action == "head_to_trail":
+                view = view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
+                view.done_handler = self.done_handler
+                view.days_traveled = self.days_traveled
+                view.miles_traveled = self.miles_traveled
 
         if source == "main_menu":
             if action == "travel":

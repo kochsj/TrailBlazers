@@ -42,10 +42,6 @@ class BuyingAnItemView(arcade.View):
             self.quantity = int(re.sub('[^0-9]','', self.quantity))
             print(f"buying {self.quantity} {self.item_to_buy} for {self.quantity * self.cost}")
             self.done_handler({"id":"general_store", "action":"finish_transaction", "item":self.item_to_buy, "quantity":self.quantity, "cost":(self.quantity * self.cost)})
-        # def leaving(btn):
-            # self.done_handler({"id":"general_store", "action":"finish_transaction"})
-        # button = ActionButton(leaving,700,100,400,50,"Exit Store",30,"Arial",arcade.color.WHITE)
-        # self.button_list.append(button)
         button = ActionButton(buying,700,250,500,50,f"Purchase Entered Quantity",30,"Arial",arcade.color.WHITE)
         self.button_list.append(button)
 

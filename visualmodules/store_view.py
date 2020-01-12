@@ -35,8 +35,7 @@ class StoreView(arcade.View):
 
     def on_show(self):
         def leaving(btn):
-            exit()
-        
+            self.done_handler({"id":"general_store","action":"head_to_trail"})       
         def oxen(btn):
             self.done_handler({"id":"general_store","action":"buy_oxen"})
         def food(btn):

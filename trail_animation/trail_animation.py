@@ -29,7 +29,7 @@ class TraverseTheTrail(arcade.View):
         self.location_at_start_of_day = x_coord or -(15584/2)+SCREEN_WIDTH
         self.image_position = x_coord or -(15584/2)+SCREEN_WIDTH
         #Set up pace
-        self.pace = pace or 1
+        self.pace = pace
         self.px_per_day = None
         self.increment_miles_by_pace = 1
         # Set up the landmarks
@@ -205,9 +205,9 @@ if __name__ == "__main__":
     SCREEN_WIDTH = 1400
     SCREEN_HEIGHT = 800
     SCREEN_TITLE = "OREGON TRAIL"
-    game = TraverseTheTrail(0,2, landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    game = TraverseTheTrail(0,0, landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     # props = {"done_handler": miles_traveled, "random_event": random_events, "input_var": (test_input_variable, more_input), "menu_func": return_to_game} # dictionary of a pointer to function in memory
     # game.props = props # add the dictionary to the game as attribute 'props'
-    game.setup()
+    # game.setup()
 
     arcade.run() 
