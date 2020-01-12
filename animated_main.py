@@ -71,28 +71,29 @@ class OregonTrail:
                 view = StoreView(self.inventory, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_oxen":
-                view = BuyingAnItemView('oxen', 0)
+                view = BuyingAnItemView('Oxen', 0)
                 view.done_handler = self.done_handler
             if action == "buy_food":
-                view = BuyingAnItemView('food', 1)
+                view = BuyingAnItemView('Food', 1)
                 view.done_handler = self.done_handler
             if action == "buy_clothing":
-                view = BuyingAnItemView('sets of clothing', 2)
+                view = BuyingAnItemView('Clothing', 2)
                 view.done_handler = self.done_handler
             if action == "buy_ammo":
-                view = BuyingAnItemView('boxes of ammuntion', 3)
+                view = BuyingAnItemView('Ammunition', 3)
                 view.done_handler = self.done_handler
             if action == "buy_wheel":
-                view = BuyingAnItemView('wagon wheel', 4)
+                view = BuyingAnItemView('Wagon Wheel', 4)
                 view.done_handler = self.done_handler
             if action == "buy_axle":
-                view = BuyingAnItemView('wagon axle', 5)
+                view = BuyingAnItemView('Wagon Axle', 5)
                 view.done_handler = self.done_handler
             if action == "buy_tongue":
-                view = BuyingAnItemView('wagon tongue', 6)
+                view = BuyingAnItemView('Wagon Tongue', 6)
                 view.done_handler = self.done_handler
             if action == "finish_transaction":
-                # view = FinalTransactionView()
+                self.inventory[info['item']] += info['quantity']
+                self.bank_roll -= info['cost']
                 view = FinalTransactionView(info['item'], info['quantity'], info['cost'])
                 view.done_handler = self.done_handler
 

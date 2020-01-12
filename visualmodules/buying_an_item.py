@@ -20,6 +20,7 @@ class BuyingAnItemView(arcade.View):
                             ("A wagon tongue is how you yoke your oxen to your axle.\nThey're subject to a lot of strain and prone to breaking, which is unfortunate, because your wagon can't move without one.\n  Buying a spare now for only $10 could save you a lot of trouble down the line"),10]
         self.item_to_buy = item
         self.index = idx
+        self.quantity = 0
         self.cost = self.store_items[self.index][1]
         self.ss = self.store_items[self.index][0]+"\n\nHow many would you like to buy?  "
         arcade.set_background_color(arcade.color.BLACK)
@@ -28,10 +29,10 @@ class BuyingAnItemView(arcade.View):
         """
         Render the screen.
         """
-        if not "buy?   " in self.ss: self.ss = self.store_items[self.index][0]+"\n\nHow many would you like to buy?   "  # repairs the string it the user deletes too many characters
+        if not "buy?   " in self.ss: self.ss = self.store_items[self.index][0]+"\n\nHow many would you like to buy?   0"  # repairs the string it the user deletes too many characters
         arcade.start_render()
         arcade.draw_text("Welcome to the General Store",200, 750, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
-        arcade.draw_text(self.ss,200, 350, arcade.color.WHITE, 20)       
+        arcade.draw_text(self.ss,200, 350, arcade.color.WHITE, 20) 
         super().on_draw()
     
 
@@ -40,12 +41,12 @@ class BuyingAnItemView(arcade.View):
             self.quantity = self.ss[-10:]
             self.quantity = int(re.sub('[^0-9]','', self.quantity))
             print(f"buying {self.quantity} {self.item_to_buy} for {self.quantity * self.cost}")
-        def leaving(btn):
             self.done_handler({"id":"general_store", "action":"finish_transaction", "item":self.item_to_buy, "quantity":self.quantity, "cost":(self.quantity * self.cost)})
+        # def leaving(btn):
             # self.done_handler({"id":"general_store", "action":"finish_transaction"})
-        button = ActionButton(leaving,700,100,400,50,"Exit Store",30,"Arial",arcade.color.WHITE)
-        self.button_list.append(button)
-        button = ActionButton(buying,700,250,90,50,"buy",30,"Arial",arcade.color.WHITE)
+        # button = ActionButton(leaving,700,100,400,50,"Exit Store",30,"Arial",arcade.color.WHITE)
+        # self.button_list.append(button)
+        button = ActionButton(buying,700,250,500,50,f"Purchase Entered Quantity",30,"Arial",arcade.color.WHITE)
         self.button_list.append(button)
 
     def on_key_press(self, key, modifiers):
