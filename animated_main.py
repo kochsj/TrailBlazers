@@ -3,6 +3,7 @@ from arcade.gui import *
 from trail_animation.trail_animation import TraverseTheTrail
 from visualmodules.menu_view import MainMenuView
 from visualmodules.store_view import StoreView
+from visualmodules.buying_an_item import BuyingAnItemView, FinalTransactionView
 from gui_game.game_play import IntroWindow
 from hunting_animation.hunting_animation import HuntingView
 from refactor.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
@@ -68,6 +69,31 @@ class OregonTrail:
         if source == "general_store":
             if action == "go_to_store":
                 view = StoreView(self.inventory, self.bank_roll)
+                view.done_handler = self.done_handler
+            if action == "buy_oxen":
+                view = BuyingAnItemView('oxen', 0)
+                view.done_handler = self.done_handler
+            if action == "buy_food":
+                view = BuyingAnItemView('food', 1)
+                view.done_handler = self.done_handler
+            if action == "buy_clothing":
+                view = BuyingAnItemView('sets of clothing', 2)
+                view.done_handler = self.done_handler
+            if action == "buy_ammo":
+                view = BuyingAnItemView('boxes of ammuntion', 3)
+                view.done_handler = self.done_handler
+            if action == "buy_wheel":
+                view = BuyingAnItemView('wagon wheel', 4)
+                view.done_handler = self.done_handler
+            if action == "buy_axle":
+                view = BuyingAnItemView('wagon axle', 5)
+                view.done_handler = self.done_handler
+            if action == "buy_tongue":
+                view = BuyingAnItemView('wagon tongue', 6)
+                view.done_handler = self.done_handler
+            if action == "finish_transaction":
+                # view = FinalTransactionView()
+                view = FinalTransactionView(info['item'], info['quantity'], info['cost'])
                 view.done_handler = self.done_handler
 
         if source == "main_menu":

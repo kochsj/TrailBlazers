@@ -27,29 +27,36 @@ class StoreView(arcade.View):
         
         l=len(self.store_items)
         for i in range (l):
-            arcade.draw_text(self.store_items[l-(i+1)],600,180+80*i,arcade.color.WHITE,25,)
+            arcade.draw_text(f"Current quantity: {self.inventory[self.store_items[l-i-1]]}",600,180+80*i,arcade.color.WHITE,25,)
         arcade.draw_text("Welcome to the General Store",200, 750, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
         arcade.draw_text(f"Current Funds: {self.funds}", 1000,650,arcade.color.WHITE,20)
         
         super().on_draw()
 
     def on_show(self):
-        def leaving():
+        def leaving(btn):
             exit()
         
-        def oxen(): print('attempting to buy oxen')
-        def food(): print('attempting to buy food')
-        def clothing(): print('attempting to buy clothing')
-        def ammunition(): print('attempting to buy ammo'),
-        def wheel(): print('attempting to buy wheels')
-        def axle(): print('attempting to buy axles')
-        def tongue(): print('attempting to buy tongues')
+        def oxen(btn):
+            self.done_handler({"id":"general_store","action":"buy_oxen"})
+        def food(btn):
+            self.done_handler({"id":"general_store","action":"buy_food"})
+        def clothing(btn):
+            self.done_handler({"id":"general_store","action":"buy_clothing"})
+        def ammunition(btn):
+            self.done_handler({"id":"general_store","action":"buy_ammo"})
+        def wheel(btn):
+            self.done_handler({"id":"general_store","action":"buy_wheel"})
+        def axle(btn):
+            self.done_handler({"id":"general_store","action":"buy_axle"})
+        def tongue(btn):
+            self.done_handler({"id":"general_store","action":"buy_tongue"})
 
         action_array = [oxen,food,clothing,ammunition,wheel,axle,tongue]
         
         l=len(self.store_items)
         for i in range (l):
-            button = ActionButton(action_array[l-i-1],450,(180+80*i),200,50,"buy",30,"Arial",arcade.color.WHITE)
+            button = ActionButton(action_array[l-i-1],450,(180+80*i),200,50,self.store_items[l-i-1],20,"Arial",arcade.color.WHITE)
             self.button_list.append(button)
 
 
