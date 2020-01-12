@@ -1,4 +1,5 @@
 import arcade
+import time
 from arcade.gui import *
 
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
@@ -49,7 +50,7 @@ class TraverseTheTrail(arcade.View):
         self.landmarks = correct_landmarks
 
     def on_show(self):
-        print("on show prints..")
+        # print("on show prints..")
         """ Set up the game and initialize the variables. """
         self.background = arcade.load_texture("./trail_animation/the_trail.png")
 
@@ -164,6 +165,11 @@ class TraverseTheTrail(arcade.View):
     def on_update(self, delta_time):
         """ Movement and game logic """
         
+        # if self.current_state == "LANDMARK":
+        #     for _ in range(1_000):
+        #         pass
+        #     self.current_state = "GAME_RUNNING"
+
         if self.current_state == "GAME_RUNNING":
             #check if it has been a day / count days
             if (self.location_at_start_of_day - self.image_position) < self.px_per_day:

@@ -31,7 +31,7 @@ class OregonTrail:
         self.window.show_view(view)
 
     def done_handler(self, info=None):
-        print(info)
+        # print(info)
         action = info['action']
         source = info['id']
         if source == "opening_menu":
@@ -63,7 +63,7 @@ class OregonTrail:
 
 
         self.window.show_view(view)
-        print(self.current_location)
+        # print(self.current_location)
     
     
             
