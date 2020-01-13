@@ -14,10 +14,10 @@ class BuyingAnItemView(arcade.View):
         self.store_items = [("You will need a team of oxen to pull your wagon. \nYou will want at least two, but I reccomend at least 6 in case you lose any along the way\nI charge $40 an ox.",40),
                             ("You will need plenty of food for your party during the trip.\nTrail-goers without enough to eat are in increased danger of disease in addition to starvation\n I charge $0.25 per pound.",0.25),
                             ("You'll want cold weather gear for the winter, espescially if you end up stuck in the mountains\nYou'll also want light clothing for the summers to protect against sunburn and heatstroke\nI sell outfits for $15 each",15),
-                            ("Hunting is an invaluable way to re-provision your wagon beteween towns.\nIn a pinch, you can even trade hunted game to travelers for other supplies.\n  I reccomend a healthy pile of ammunition, which I sell for $2 per box of 20 bullets.",0.25),
+                            ("Hunting is an invaluable way to re-provision your wagon beteween towns.\nIn a pinch, you can even trade hunted game to travelers for other supplies.\n  I reccomend a healthy pile of ammunition, which I sell for $2 per box of 20 bullets.",2),
                             ("The Oregon Trail is very rocky in places.  If your wheel hits a rock hard enough it can break clean off!\nObviously if your wagon doesn't have a wheel, it can't even carry you into town to buy a spare!\nWise travellers keeps spares with them for precisely such emergencies.",10),
                             ("The Axle is what connects a wheel to the cart.\nIf it breaks, you can't move!  You might want to bring a spare.\n I sell them for $10 per axle",10),
-                            ("A wagon tongue is how you yoke your oxen to your axle.\nThey're subject to a lot of strain and prone to breaking, which is unfortunate, because your wagon can't move without one.\n  Buying a spare now for only $10 could save you a lot of trouble down the line"),10]
+                            ("A wagon tongue is how you yoke your oxen to your axle.\nThey're subject to a lot of strain and prone to breaking, which is unfortunate, because your wagon can't move without one.\n  Buying a spare now for only $10 could save you a lot of trouble down the line",10)]
         self.item_to_buy = item
         self.index = idx
         self.quantity = 0
@@ -38,8 +38,8 @@ class BuyingAnItemView(arcade.View):
 
     def on_show(self):
         def buying(btn):
-            self.quantity = self.ss[-10:]
-            self.quantity = int(re.sub('[^0-9]','', self.quantity))
+            substring = self.ss[-10:]
+            self.quantity = int(re.sub('[^0-9]','', substring))
             print(f"buying {self.quantity} {self.item_to_buy} for {self.quantity * self.cost}")
             self.done_handler({"id":"general_store", "action":"finish_transaction", "item":self.item_to_buy, "quantity":self.quantity, "cost":(self.quantity * self.cost)})
         button = ActionButton(buying,700,250,500,50,f"Purchase Entered Quantity",30,"Arial",arcade.color.WHITE)
