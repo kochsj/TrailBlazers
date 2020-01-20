@@ -7,13 +7,7 @@ SCREEN_TITLE = "Oregon Trail"
 
 class MainMenuView(arcade.View):
 
-    def on_draw(self):
-        arcade.start_render()
-        arcade.draw_text("Main Menu",200, 600, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
-        
-        super().on_draw()
-
-    def on_show(self):
+    def on_show(self): #like setup
         def travel(btn):
             self.done_handler({"id":"main_menu","action":"travel"})
         def check():print('check')
@@ -37,6 +31,13 @@ class MainMenuView(arcade.View):
             self.button_list.append(button)
         button = ActionButton(menu_actions[0],675 + shift,(500),300,50,menu_items[0],30,"Arial",arcade.color.WHITE)
         self.button_list.append(button)
+
+    def on_draw(self):
+        arcade.start_render()
+        arcade.draw_text("Main Menu",200, 600, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
+        
+        super().on_draw() 
+
         
     
         

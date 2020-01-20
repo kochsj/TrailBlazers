@@ -2,8 +2,13 @@ import arcade
 from arcade.gui import *
 from trail_animation.trail_animation import TraverseTheTrail
 from visualmodules.menu_view import MainMenuView
+from visualmodules.store_view import StoreView
+from visualmodules.buying_an_item import BuyingAnItemView, FinalTransactionView
+from visualmodules.departure_view import DepartureView
 from gui_game.game_play import IntroWindow
 from hunting_animation.hunting_animation import HuntingView
+from refactor.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
+from refactor.general_store_view import SuppliesExplainationView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
 
@@ -19,25 +24,98 @@ class OregonTrail:
         self.SCREEN_WIDTH = SCREEN_WIDTH
         self.SCREEN_HEIGHT = SCREEN_HEIGHT
         self.SCREEN_TITLE = SCREEN_TITLE
-        self._state = "INTRO_WINDOW"
+
+        #game attributes to track distance/days from missouri
         self.current_location=0
         self.days_traveled=0
         self.miles_traveled=0
-        self.changed_view = True
         self.landmarks = landmarks
 
+        #game attributes that track player attributes/status
+        self.party = None #list of party members
+        self.day = 1
+        self.month = None
+        self.year = 1848
+        self.bank_roll = 0
+        self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
+
+
+
+        #Initializes window with into screen
         view = IntroWindow(SCREEN_WIDTH, SCREEN_HEIGHT,None)
         view.done_handler = self.done_handler
         self.window.show_view(view)
 
     def done_handler(self, info=None):
-        print(info)
         action = info['action']
         source = info['id']
         if source == "opening_menu":
             if action == "begin":
-                view = MainMenuView()
+                view = CharacterCreationView()
                 view.done_handler = self.done_handler
+            if action == "decide_month":
+                self.month = info['month']
+                view = SuppliesExplainationView()
+                view.done_handler = self.done_handler
+
+        if source == "char_creation":
+            if action == "banker":
+                self.bank_roll = info["starting_funds"]
+                self.party = []
+                view = BankerView()
+                view.done_handler = self.done_handler
+            if action == "carpenter":
+                self.bank_roll = info["starting_funds"]
+                self.party = []
+                view = CarpenterView()
+                view.done_handler = self.done_handler
+            if action == "farmer":
+                self.bank_roll = info["starting_funds"]
+                self.party = []
+                view = FarmerView()
+                view.done_handler = self.done_handler
+            # if action == "finish_creation":
+            #     view = SuppliesExplainationView()
+            #     view.done_handler = self.done_handler
+            if action == "finish_creation":
+                view = DepartureView()
+                view.done_handler = self.done_handler
+
+        if source == "general_store":
+            if action == "go_to_store":
+                view = StoreView(self.inventory, self.bank_roll)
+                view.done_handler = self.done_handler
+            if action == "buy_oxen":
+                view = BuyingAnItemView('Oxen', 0)
+                view.done_handler = self.done_handler
+            if action == "buy_food":
+                view = BuyingAnItemView('Food', 1)
+                view.done_handler = self.done_handler
+            if action == "buy_clothing":
+                view = BuyingAnItemView('Clothing', 2)
+                view.done_handler = self.done_handler
+            if action == "buy_ammo":
+                view = BuyingAnItemView('Ammunition', 3)
+                view.done_handler = self.done_handler
+            if action == "buy_wheel":
+                view = BuyingAnItemView('Wagon Wheel', 4)
+                view.done_handler = self.done_handler
+            if action == "buy_axle":
+                view = BuyingAnItemView('Wagon Axle', 5)
+                view.done_handler = self.done_handler
+            if action == "buy_tongue":
+                view = BuyingAnItemView('Wagon Tongue', 6)
+                view.done_handler = self.done_handler
+            if action == "finish_transaction":
+                self.inventory[info['item']] += info['quantity']
+                self.bank_roll -= info['cost']
+                view = FinalTransactionView(info['item'], info['quantity'], info['cost'])
+                view.done_handler = self.done_handler
+            if action == "head_to_trail":
+                view = view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
+                view.done_handler = self.done_handler
+                view.days_traveled = self.days_traveled
+                view.miles_traveled = self.miles_traveled
 
         if source == "main_menu":
             if action == "travel":
@@ -63,7 +141,7 @@ class OregonTrail:
 
 
         self.window.show_view(view)
-        print(self.current_location)
+        # print(self.current_location)
     
     
             

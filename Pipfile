@@ -7,11 +7,6 @@ verify_ssl = true
 
 [packages]
 arcade = "*"
-pylint = "*"
-pytest = "*"
-matplotlib = "*"
-pyfiglet = "*"
-termcolor = "*"
 
 [requires]
 python_version = "3.8"
