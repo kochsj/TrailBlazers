@@ -16,11 +16,11 @@ from refactor.general_store_view import SuppliesExplainationView
 class OregonTrail:
     """ Main application class. """
 
-    def __init__(self, landmarks, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE):
+    def __init__(self, landmarks, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fs):
         """ Initializer """
 
         #window created
-        self.window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=True)
+        self.window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=fs)
         self.SCREEN_WIDTH = SCREEN_WIDTH
         self.SCREEN_HEIGHT = SCREEN_HEIGHT
         self.SCREEN_TITLE = SCREEN_TITLE
@@ -151,13 +151,23 @@ class OregonTrail:
 
 if __name__ == "__main__":
 
-    
     landmark_list = [[6664.0, 'Oregon City'], [5531.200000000001, 'Fort Walla Walla'], [5179.200000000001, 'The Blue Mountains'], [4155.200000000001, 'Fort Boise'], [3483.2000000000007, 'the Snake River crossing'], [2536.0, 'Fort Hall'], [1665.6000000000004, 'Soda Springs'], [974.4000000000005, 'The Green River Crossing'], [-62.399999999999636, 'Fort Bridger'], [-427.1999999999998, 'SouthPass [Butte Mtns]'], [-1080.0, 'Independence Rock'], [-2296.0, 'Fort Laramie'], [-2846.3999999999996, 'Chimney Rock'], [-4446.4, 'Fort Kearny'], [-5208.0, 'the Blue River crossing'], [-5739.2, 'the Kansas River crossing']]
     
     SCREEN_WIDTH = 1400
     SCREEN_HEIGHT = 800
     SCREEN_TITLE = "OREGON TRAIL"
-    game = OregonTrail(landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
+    # TODO: added this temporarily
+    # Full-Screen looks weird on hi-res monitors && good on low-res
+    response = input('Do you want to run in FullScreen mode? (y/n)')
+    while response:
+        if response == 'y':
+            game = OregonTrail(landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, True)
+            break
+        if response == 'n':
+            game = OregonTrail(landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, False)
+            break
+        response = input('Do you want to run in FullScreen mode? (y/n)')
+         
     arcade.run() 
     
