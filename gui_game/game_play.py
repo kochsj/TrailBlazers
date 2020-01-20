@@ -12,8 +12,8 @@ SCREEN_TITLE = 'Trail_Blazers Oregon Trail'
 class Pages(arcade.View):
     def __init__(self, width, height, props):
         super().__init__()
-        self.center_x = width / 2
-        self.center_y = height / 2
+        self.center_x = SCREEN_WIDTH / 2
+        self.center_y = SCREEN_HEIGHT / 2
         self.state = {'wagon_party' : None ,'funds' : None}
         self.props = {}
 
@@ -37,9 +37,9 @@ class IntroWindow(Pages):
 
     def on_show(self):
 
-        travel_trail_button = ActionButton(self.center_x, self.center_y, 300, 40, 'Travel the trail', self.button_handler, name='travel_trail_button')
-        learn_more = ActionButton(self.center_x, self.center_y - 55, 300, 40, 'learn more', self.button_handler, name='learn_more')
-        quit_button = ActionButton(self.center_x, self.center_y - 110, 100, 40, 'Quit', self.button_handler, name='quit')
+        travel_trail_button = ActionButton(self.button_handler, self.center_x, self.center_y, 300, 40, 'Travel the trail', name='travel_trail_button', font_color=arcade.color.WHITE)
+        learn_more = ActionButton(self.button_handler, self.center_x, self.center_y - 55, 300, 40, 'learn more', name='learn_more', font_color=arcade.color.WHITE)
+        quit_button = ActionButton(self.button_handler, self.center_x, self.center_y - 110, 100, 40, 'Quit', name='quit', font_color=arcade.color.WHITE)
 
         self.button_list.append(travel_trail_button)
         self.button_list.append(learn_more)
@@ -49,7 +49,7 @@ class IntroWindow(Pages):
         if button.name == 'travel_trail_button':
             travel_trail = ChoosePartyView(self.center_x, self.center_y, 'Profession')
             self.window.show_view(travel_trail)
-            # self.props['done_handler']()
+            self.done_handler({"id":"opening_menu","action":"begin"})
 
         elif button.name == 'learn_more':
             learn_more = LearnMore(self.center_x, self.center_y, 'learn more')
@@ -80,9 +80,9 @@ class ChoosePartyView(Pages):
 
     def on_show(self):
 
-        banker_button = ActionButton(self.center_x - 400, self.center_y, 300, 40, 'Billie Bob the banker', self.button_handler, name='banker')
-        carpenter_button = ActionButton(self.center_x, self.center_y, 300, 40, 'Carl the carpenter', self.button_handler, name='carpenter')
-        farmer_button = ActionButton(self.center_x + 400, self.center_y, 300, 40, 'Mac the farmer', self.button_handler, name='farmer')
+        banker_button = ActionButton( self.button_handler,self.center_x - 400, self.center_y, 300, 40, 'Billie Bob the banker', self.button_handler, name='banker')
+        carpenter_button = ActionButton( self.button_handler,self.center_x, self.center_y, 300, 40, 'Carl the carpenter', self.button_handler, name='carpenter')
+        farmer_button = ActionButton( self.button_handler,self.center_x + 400, self.center_y, 300, 40, 'Mac the farmer', self.button_handler, name='farmer')
 
         self.button_list.append(banker_button)
         self.button_list.append(carpenter_button)
@@ -93,13 +93,13 @@ class ChoosePartyView(Pages):
 
     def on_draw(self):
         arcade.start_render()
-        super().on_draw()
         
         arcade.draw_text('Choose wagon party', self.center_x, self.center_y + 150, arcade.color.BLACK, font_size=38, anchor_x='center')
 
         arcade.draw_text('Jill \nBill \nFred \nAmy', self.center_x - 400, self.center_y - 120, arcade.color.BLACK, font_size=20)
         arcade.draw_text('Travis \nJim \nPhil \nLillie', self.center_x - 35, self.center_y - 120, arcade.color.BLACK, font_size=20)
         arcade.draw_text('Terrell \nMerry \nAshlyn \nPhil', self.center_x + 400, self.center_y - 120, arcade.color.BLACK, font_size=20)
+        super().on_draw()
 
     def button_handler(self, button):
         if button.name == 'next':

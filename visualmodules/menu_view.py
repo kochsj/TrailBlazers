@@ -1,5 +1,5 @@
 import arcade
-from button import ActionButton
+from visualmodules.button import ActionButton
 
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 800
@@ -7,26 +7,17 @@ SCREEN_TITLE = "Oregon Trail"
 
 class MainMenuView(arcade.View):
 
-    def on_draw(self):
-        arcade.start_render()
-        # menu_items = ["Travel the Trail","Check Supplies", "Look at map", "Change Pace","Change Rations","Stop to Rest", "Attempt to trade", "Hunt", "Buy Supplies"]
-
-        # l = len(menu_items)
-        # for i in range(l):
-        #     arcade.draw_text(menu_items[l-(i+1)],600,100+50*i,arcade.color.WHITE,25,)
-        arcade.draw_text("Main Menu",200, 600, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
-        
-        super().on_draw()
-
-    def on_show(self):
-        def travel():print('Traveled the Trail')
+    def on_show(self): #like setup
+        def travel(btn):
+            self.done_handler({"id":"main_menu","action":"travel"})
         def check():print('check')
         def look():print('Look')
         def pace():print('Pace')
         def rations():print('rations')
         def rest():print('rest')
         def trade():print('trade')
-        def hunt():print('hunt')
+        def hunt(btn):
+            self.done_handler({"id": "main_menu", "action": "hunt"})
         def buy():print('buy')
         menu_actions = [travel,check,look,pace,rations,rest,trade,hunt,buy]
         menu_items = ["Travel the Trail","Check Supplies", "Look at map", "Change Pace","Change Rations","Stop to Rest", "Attempt to trade", "Hunt", "Buy Supplies"]
@@ -40,6 +31,13 @@ class MainMenuView(arcade.View):
             self.button_list.append(button)
         button = ActionButton(menu_actions[0],675 + shift,(500),300,50,menu_items[0],30,"Arial",arcade.color.WHITE)
         self.button_list.append(button)
+
+    def on_draw(self):
+        arcade.start_render()
+        arcade.draw_text("Main Menu",200, 600, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
+        
+        super().on_draw() 
+
         
     
         
