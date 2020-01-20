@@ -4,7 +4,7 @@ from trail_modules.flow.player import character_creation
 from pyfiglet import Figlet
 f = Figlet(font='small')
 red_star = lambda x: cprint(x, 'red')
-blue_star = lambda x: cprint(x, 'blue')
+blue_star = lambda x: cprint(x, 'white')
 
 ###########################################################################################################
 
