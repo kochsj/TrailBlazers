@@ -1,6 +1,6 @@
 import os
 import random
-from termcolor import colored
+from termcolor import colored, cprint
 from weather import get_weather
 from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
 from trail_modules.events.shopping import buy_items_from_store
@@ -11,6 +11,8 @@ from trail_modules.events.random_events import random_events
 from trail_modules.events.dictionary import talk_to_people
 from trail_modules.events.river_raft import cross
 from trail_modules.events.map import check_map
+from pyfiglet import Figlet
+f = Figlet(font='small')
 
 
 class Game:
@@ -86,7 +88,7 @@ class Game:
                     disease = player.sick[0]
                 else:
                     disease = "exhaustion"
-                output += f"\nObituary alert!!! {player.name} has died of {disease}.\n"
+                output += f"\nObituary Alert!!! {player.name} has died of {disease}.\n"
             i+=1
         if output : input (colored(output, 'red'))
 
@@ -174,7 +176,8 @@ class Game:
                 
             
         os.system('clear')
-        input('GAME OVER')
+        # input('GAME OVER')
+        cprint(f.renderText('GAME OVER'), 'green', attrs=['blink', 'bold'])
         exit()
 
         
@@ -293,7 +296,7 @@ Money left: {self.bank_roll}
         if mile_post == 2040:
             os.system('clear')
             print(talk_to_people('talking_dictionary')[mile_post])
-            input('Return to exit....')
+            cprint(f.renderText('GAME OVER'), 'green', attrs=['blink', 'bold'])
             exit()
         os.system('Clear')
         print('\nYou come across a friendly local. Do you want to stop and talk to them?')
