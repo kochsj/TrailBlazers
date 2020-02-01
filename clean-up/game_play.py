@@ -1,7 +1,7 @@
 import arcade
 # from main import Game
 from visualmodules.button import ActionButton
-from gui_game.player_gui import Character
+# from gui_game.player_gui import Character
 # import gui_game.player_gui as char 
 
 SCREEN_WIDTH = 1400
