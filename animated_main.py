@@ -1,14 +1,13 @@
 import arcade
 from arcade.gui import *
-from trail_animation.trail_animation import TraverseTheTrail
-from visualmodules.menu_view import MainMenuView
-from visualmodules.store_view import StoreView
-from visualmodules.buying_an_item import BuyingAnItemView, FinalTransactionView
-from visualmodules.departure_view import DepartureView
-from gui_game.game_play import IntroWindow
-from hunting_animation.hunting_animation import HuntingView
-from refactor.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
-from refactor.general_store_view import SuppliesExplainationView
+from gui_game.trail_animation.trail_animation import TraverseTheTrail
+from gui_game.menu_view import MainMenuView
+from gui_game.store_view import StoreView
+from gui_game.departure_view import DepartureView
+from gui_game.intro_window import IntroWindow
+from gui_game.hunting_animation.hunting_animation import HuntingView
+from gui_game.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
+from gui_game.general_store_view import SuppliesExplainationView, BuyingAnItemView, FinalTransactionView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
 
@@ -40,7 +39,6 @@ class OregonTrail:
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
 
 
-
         #Initializes window with into screen
         view = IntroWindow(SCREEN_WIDTH, SCREEN_HEIGHT,None)
         view.done_handler = self.done_handler
@@ -57,6 +55,8 @@ class OregonTrail:
                 self.month = info['month']
                 view = SuppliesExplainationView()
                 view.done_handler = self.done_handler
+            # TODO: if action == "learn_more":
+            #     view ==
 
         if source == "char_creation":
             if action == "banker":
@@ -141,13 +141,6 @@ class OregonTrail:
 
 
         self.window.show_view(view)
-        # print(self.current_location)
-    
-    
-            
-
-
-        
 
 if __name__ == "__main__":
 

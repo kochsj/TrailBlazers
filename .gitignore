@@ -5,8 +5,8 @@ ENV/
 .vscode
 .idea
 .DS_Store
-Pipfile
-Pipfile.lock
+.clean-up
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

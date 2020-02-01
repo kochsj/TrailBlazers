@@ -1,6 +1,6 @@
 
 import arcade
-from visualmodules.button import ActionButton
+from gui_game.button import ActionButton
 
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 800

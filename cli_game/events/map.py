@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 #   fig, ax = plt.subplots()
 
 def check_map(mileage):
-  img = plt.imread('./img/map.png')
+  img = plt.imread('cli_game/media/map.png')
   fig, ax = plt.subplots()
 
 

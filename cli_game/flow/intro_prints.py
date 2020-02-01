@@ -1,6 +1,6 @@
 import os
 from termcolor import colored, cprint
-from trail_modules.flow.player import character_creation
+from cli_game.flow.player import character_creation
 from pyfiglet import Figlet
 f = Figlet(font='small')
 red_star = lambda x: cprint(x, 'red')
@@ -53,8 +53,7 @@ def learn_more():
     input(' You\'re about to begin a great adventure, traveling the Oregon Trail.\n Your party of 5, in a covered wagon pulled by a team of oxen, will\n travel from Independence, Missouri, to Oregon City, Oregon -- a\n journey of approximately 2,040 miles, across plains, rivers, and \n mountains. Along the way you will face obstacles, like crossing rivers, \n bad weather, lack of food, illnesses.  How you over come these challenges \n are based on the decisions you make, if you choose wisely you will make \n it all the way to Oregon'
 
 
-    '\n \n This trail was used by hundreds of thousands of American pioneers\n in the mid-1800s to emigrate west. It was a long and dangerous\n journey that went through Missouri, Kansas, Nebraska, Wyoming, Idaho \n and finally into Oregon. Without the Oregon Trail and the passing of \n the Oregon Donation Land Act in 1850, which encouraged settlement in \n the Oregon Territory, American pioneers would have been slower to settle\n the American West in the 19th century.')
-    input('Return to continue...')
+    '\n \n This trail was used by hundreds of thousands of American pioneers\n in the mid-1800s to emigrate west. It was a long and dangerous\n journey that went through Missouri, Kansas, Nebraska, Wyoming, Idaho \n and finally into Oregon. Without the Oregon Trail and the passing of \n the Oregon Donation Land Act in 1850, which encouraged settlement in \n the Oregon Territory, American pioneers would have been slower to settle\n the American West in the 19th century.\n\n Return to continue...')
 
 
 ###########################################################################################################
