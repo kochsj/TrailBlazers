@@ -10,6 +10,10 @@ pylint = "*"
 arcade = "*"
 pylint = "*"
 pytest = "*"
+termcolor = "*"
+rope = "*"
+pyfiglet = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.7"
