@@ -5,7 +5,7 @@ from visualmodules.menu_view import MainMenuView
 from visualmodules.store_view import StoreView
 from visualmodules.departure_view import DepartureView
 from gui_game.intro_window import IntroWindow
-from hunting_animation.hunting_animation import HuntingView
+from gui_game.hunting_animation.hunting_animation import HuntingView
 from gui_game.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
 from gui_game.general_store_view import SuppliesExplainationView, BuyingAnItemView, FinalTransactionView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game

@@ -64,7 +64,7 @@ class HuntingView(arcade.View):
 
         """ Set up the game and initialize the variables. """
 
-        self.background = arcade.load_texture("hunting_animation/forest_for_hunting.png")
+        self.background = arcade.load_texture("gui_game/hunting_animation/forest_for_hunting.png")
 
         # Sprite lists
         self.player_list = arcade.SpriteList()
@@ -76,7 +76,7 @@ class HuntingView(arcade.View):
         self.score = 0
 
         # Image from kenney.nl
-        self.player_sprite = arcade.Sprite("hunting_animation/frontiersman_sprite15.png", 3)
+        self.player_sprite = arcade.Sprite("gui_game/hunting_animation/frontiersman_sprite15.png", 3)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 90
         self.player_list.append(self.player_sprite)
@@ -85,7 +85,7 @@ class HuntingView(arcade.View):
         for i in range(random.randint(0,3)):
             # Create the bear instance
             # bear image from kenney.nl
-            bear = arcade.Sprite("hunting_animation/bear_sprite_08.png", SPRITE_SCALING_COIN)
+            bear = arcade.Sprite("gui_game/hunting_animation/bear_sprite_08.png", SPRITE_SCALING_COIN)
             bear.properties['Bear'] = True
             bear.properties['Sqrl'], bear.properties['Deer'] = False, False
             # Position the bear
@@ -100,7 +100,7 @@ class HuntingView(arcade.View):
         for i in range(random.randint(1,10)):
             # Create the sqrl instance
             # sqrl image from kenney.nl
-            sqrl = arcade.Sprite("hunting_animation/sqrl_sprite_0.png", SPRITE_SCALING_COIN*0.5)
+            sqrl = arcade.Sprite("gui_game/hunting_animation/sqrl_sprite_0.png", SPRITE_SCALING_COIN*0.5)
             sqrl.properties['Sqrl'] = True
             sqrl.properties['Bear'], sqrl.properties['Deer'] = False, False
             # Position the sqrl
@@ -115,10 +115,10 @@ class HuntingView(arcade.View):
         for i in range(random.randint(0,6)):
             # Create the deer instance
             # deer image from kenney.nl
-            female_deer = arcade.Sprite("hunting_animation/sprite_06.png", SPRITE_SCALING_COIN*0.8)
+            female_deer = arcade.Sprite("gui_game/hunting_animation/sprite_06.png", SPRITE_SCALING_COIN*0.8)
             female_deer.properties['Deer'] = True
             female_deer.properties['Sqrl'], female_deer.properties['Bear'] = False, False
-            male_deer = arcade.Sprite("hunting_animation/deer_sprite_00.png", SPRITE_SCALING_COIN*1.4)
+            male_deer = arcade.Sprite("gui_game/hunting_animation/deer_sprite_00.png", SPRITE_SCALING_COIN*1.4)
             male_deer.properties['Deer'] = True
             male_deer.properties['Sqrl'], male_deer.properties['Bear'] = False, False
             # Position the deer
@@ -173,7 +173,7 @@ class HuntingView(arcade.View):
         """
         if self.current_state == "GAME_RUNNING":
             # Create a bullet from https://www.kenney.nl/assets/tanks
-            bullet = arcade.Sprite("hunting_animation/tank_bulletFly6.png", SPRITE_SCALING_LASER)
+            bullet = arcade.Sprite("gui_game/hunting_animation/tank_bulletFly6.png", SPRITE_SCALING_LASER)
             self.bullets_used += 1
             # Position the bullet at the player's current location
             start_x = self.player_sprite.center_x
