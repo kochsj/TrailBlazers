@@ -1,6 +1,9 @@
 import os
 import random
 from termcolor import colored, cprint
+from pyfiglet import Figlet
+f = Figlet(font='small')
+
 from weather import get_weather
 from cli_game.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
 from cli_game.events.shopping import buy_items_from_store
