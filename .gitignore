@@ -6,7 +6,7 @@ ENV/
 .idea
 .DS_Store
 Pipfile.lock
-clean-up/
+.clean-up
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
