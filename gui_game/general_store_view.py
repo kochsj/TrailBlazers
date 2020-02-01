@@ -1,5 +1,5 @@
 import arcade
-from visualmodules.button import ActionButton
+from gui_game.button import ActionButton
 import re
 
 SCREEN_WIDTH = 1400

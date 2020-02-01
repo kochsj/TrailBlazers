@@ -1,9 +1,9 @@
 import arcade
 from arcade.gui import *
-from trail_animation.trail_animation import TraverseTheTrail
-from visualmodules.menu_view import MainMenuView
-from visualmodules.store_view import StoreView
-from visualmodules.departure_view import DepartureView
+from gui_game.trail_animation.trail_animation import TraverseTheTrail
+from gui_game.menu_view import MainMenuView
+from gui_game.store_view import StoreView
+from gui_game.departure_view import DepartureView
 from gui_game.intro_window import IntroWindow
 from gui_game.hunting_animation.hunting_animation import HuntingView
 from gui_game.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView

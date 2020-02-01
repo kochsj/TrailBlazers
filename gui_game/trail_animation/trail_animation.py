@@ -52,7 +52,7 @@ class TraverseTheTrail(arcade.View):
     def on_show(self):
         # print("on show prints..")
         """ Set up the game and initialize the variables. """
-        self.background = arcade.load_texture("./trail_animation/the_trail.png")
+        self.background = arcade.load_texture("gui_game/trail_animation/the_trail.png")
 
         # Sprite lists
         self.player_list = arcade.SpriteList() #stores wagon
@@ -72,7 +72,7 @@ class TraverseTheTrail(arcade.View):
 
         # Start the view and wagon sprite
         self.current_state = "GAME_RUNNING"
-        self.player_sprite = arcade.Sprite("./trail_animation/ox_wagon.png",0.5)
+        self.player_sprite = arcade.Sprite("gui_game/trail_animation/ox_wagon.png",0.5)
         self.player_sprite.center_x = 1200
         self.player_sprite.center_y = 250
         self.player_list.append(self.player_sprite)

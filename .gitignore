@@ -5,7 +5,6 @@ ENV/
 .vscode
 .idea
 .DS_Store
-Pipfile
 Pipfile.lock
 
 # Byte-compiled / optimized / DLL files

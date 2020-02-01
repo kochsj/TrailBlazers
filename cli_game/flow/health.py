@@ -1,4 +1,4 @@
-from trail_modules.events.random_events import illness
+from cli_game.events.random_events import illness
 from termcolor import colored
 
 class person():

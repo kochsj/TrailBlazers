@@ -2,15 +2,15 @@ import os
 import random
 from termcolor import colored
 from weather import get_weather
-from trail_modules.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
-from trail_modules.events.shopping import buy_items_from_store
-from trail_modules.events.hunting import generate_animal
-from trail_modules.events.trading import trade_resource
-from trail_modules.events.sickness import get_sick, get_well
-from trail_modules.events.random_events import random_events
-from trail_modules.events.dictionary import talk_to_people
-from trail_modules.events.river_raft import cross
-from trail_modules.events.map import check_map
+from cli_game.flow.intro_prints import print_the_intro, choose_month_to_depart, explain_starting_inventory_and_shopping
+from cli_game.events.shopping import buy_items_from_store
+from cli_game.events.hunting import generate_animal
+from cli_game.events.trading import trade_resource
+from cli_game.events.sickness import get_sick, get_well
+from cli_game.events.random_events import random_events
+from cli_game.events.dictionary import talk_to_people
+from cli_game.events.river_raft import cross
+from cli_game.events.map import check_map
 
 
 class Game:
@@ -124,7 +124,7 @@ class Game:
                     self.print_inventory()
 
                 if response == "3": 
-                    map_result = check_map(self.miles_from_missouri)
+                    check_map(self.miles_from_missouri)
                     
                     # check the map function - shows a map 
 

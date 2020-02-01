@@ -1,5 +1,5 @@
 import arcade
-from visualmodules.button import ActionButton
+from gui_game.button import ActionButton
 
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 800
@@ -29,7 +29,7 @@ class Pages(arcade.View):
 
 class IntroWindow(Pages):
 
-    background = arcade.load_texture('./img/intro_background.png')
+    background = arcade.load_texture('gui_game/media/intro_background.png')
 
     def on_show(self):
 
