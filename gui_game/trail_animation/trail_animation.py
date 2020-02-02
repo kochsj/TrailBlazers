@@ -59,10 +59,10 @@ class TraverseTheTrail(arcade.View):
             self.px_per_day = -51.2
             self.increment_miles_by_pace = 8
         if self.pace == 1: #STRENUOUS: every 76.8px is a day (12miles/day*6.4px/mile)
-            self.px_per_day = -76.8
+            self.px_per_day = -76 ## rounding down
             self.increment_miles_by_pace = 12
-        if self.pace == 2: #GREULING: every 102.4px is a day (16miles/day*6.4px/mile)
-            self.px_per_day = -102.4
+        if self.pace == 2: #GREULING: every 102.4px is a day (16miles/day*6.4px/mile) 
+            self.px_per_day = -100 ## rounding down
             self.increment_miles_by_pace = 16
 
         # Start the view and wagon sprite
