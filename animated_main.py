@@ -10,6 +10,7 @@ from gui_game.hunting_animation.hunting_animation import HuntingView
 from gui_game.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
 from gui_game.general_store_view import SuppliesExplainationView, BuyingAnItemView, FinalTransactionView
 from gui_game.pace_view import PaceView
+from gui_game.rations_view import RationsView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
 
@@ -40,6 +41,7 @@ class OregonTrail:
         self.bank_roll = 0
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
         self.pace = 0
+        self.rations = "filling"
 
         #Initializes window with into screen view
         view = IntroView()
@@ -136,6 +138,10 @@ class OregonTrail:
                 view = PaceView()
                 view.done_handler = self.done_handler
 
+            if action == "rations":
+                view = RationsView()
+                view.done_handler = self.done_handler
+
         if source == "trail_animation":
             if action == 'pause':
                 view = MainMenuView()
@@ -158,7 +164,16 @@ class OregonTrail:
             view = MainMenuView()
             view.done_handler = self.done_handler
 
-
+        if source == "rations_view":
+            if action == "filling":
+                self.rations = info["rations"]
+            if action == "meager":
+                self.rations = info["rations"]
+            if action == "bare":
+                self.rations = info["rations"]
+            print("rations :", self.rations)
+            view = MainMenuView()
+            view.done_handler = self.done_handler
 
         self.window.show_view(view)
 

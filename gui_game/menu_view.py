@@ -10,7 +10,8 @@ class MainMenuView(arcade.View):
         def look(btn):print('Look')
         def pace(btn):
             self.done_handler({"id":"main_menu","action":"pace"})
-        def rations(btn):print('rations')
+        def rations(btn):
+            self.done_handler({"id":"main_menu","action":"rations"})
         def rest(btn):print('rest')
         def trade(btn):print('trade')
         def hunt(btn):
