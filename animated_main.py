@@ -1,10 +1,11 @@
 import arcade
-from arcade.gui import *
+# from arcade.gui import *
 from gui_game.trail_animation.trail_animation import TraverseTheTrail
 from gui_game.menu_view import MainMenuView
 from gui_game.store_view import StoreView
 from gui_game.departure_view import DepartureView
-from gui_game.intro_window import IntroWindow
+from gui_game.intro_window import IntroView
+from gui_game.learn_more import LearnMore
 from gui_game.hunting_animation.hunting_animation import HuntingView
 from gui_game.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
 from gui_game.general_store_view import SuppliesExplainationView, BuyingAnItemView, FinalTransactionView
@@ -39,9 +40,10 @@ class OregonTrail:
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
 
 
-        #Initializes window with into screen
-        view = IntroWindow(SCREEN_WIDTH, SCREEN_HEIGHT,None)
+        #Initializes window with into screen view
+        view = IntroView()
         view.done_handler = self.done_handler
+        arcade.set_background_color(arcade.color.BLACK)
         self.window.show_view(view)
 
     def done_handler(self, info=None):
@@ -55,8 +57,13 @@ class OregonTrail:
                 self.month = info['month']
                 view = SuppliesExplainationView()
                 view.done_handler = self.done_handler
-            # TODO: if action == "learn_more":
-            #     view ==
+            if action == "learn_more":
+                view = LearnMore()
+                view.done_handler = self.done_handler
+            if action == "finish_learning":
+                view = IntroView()
+                view.done_handler = self.done_handler
+
 
         if source == "char_creation":
             if action == "banker":
@@ -74,9 +81,6 @@ class OregonTrail:
                 self.party = []
                 view = FarmerView()
                 view.done_handler = self.done_handler
-            # if action == "finish_creation":
-            #     view = SuppliesExplainationView()
-            #     view.done_handler = self.done_handler
             if action == "finish_creation":
                 view = DepartureView()
                 view.done_handler = self.done_handler

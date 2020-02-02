@@ -1,9 +1,9 @@
 import arcade
 from gui_game.button import ActionButton
 
-SCREEN_WIDTH = 1400
-SCREEN_HEIGHT = 800
-SCREEN_TITLE = "Oregon Trail"
+# SCREEN_WIDTH = 1400
+# SCREEN_HEIGHT = 800
+# SCREEN_TITLE = "Oregon Trail"
 
 class CharacterCreationView(arcade.View):
     """
@@ -30,10 +30,10 @@ class CharacterCreationView(arcade.View):
     def on_draw(self): #drawn continuously
         
         arcade.start_render()
-        arcade.draw_text("Every wagon train needs a leader...",200, 725, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
-        arcade.draw_text("Here is some BANKER info...",350, 580, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
-        arcade.draw_text("Here is some CARPENTER info...",350, 380, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
-        arcade.draw_text("Here is some FARMER info...",350, 180, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
+        arcade.draw_text("Every wagon train needs a leader...",200, 725, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
+        arcade.draw_text("Here is some BANKER info...",350, 580, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
+        arcade.draw_text("Here is some CARPENTER info...",350, 380, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
+        arcade.draw_text("Here is some FARMER info...",350, 180, arcade.color.WHITE, 40, width=1000, align="center",bold=True)
         super().on_draw()
 
 class BankerView(arcade.View):
@@ -49,7 +49,7 @@ class BankerView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Matthew Wilder",300,600,arcade.color.BLACK,30)
+        arcade.draw_text("Matthew Wilder",300,600,arcade.color.WHITE,30)
         super().on_draw()
 
 class CarpenterView(arcade.View):
@@ -65,7 +65,7 @@ class CarpenterView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Jeddidiah McHugh",300,600,arcade.color.BLACK,30)
+        arcade.draw_text("Jeddidiah McHugh",300,600,arcade.color.WHITE,30)
         super().on_draw()
 
 class FarmerView(arcade.View):
@@ -81,5 +81,5 @@ class FarmerView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Levi Lapp",300,600,arcade.color.BLACK,30)
+        arcade.draw_text("Levi Lapp",300,600,arcade.color.WHITE,30)
         super().on_draw()
