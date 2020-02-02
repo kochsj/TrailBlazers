@@ -6,15 +6,16 @@ class MainMenuView(arcade.View):
     def on_show(self): #like setup
         def travel(btn):
             self.done_handler({"id":"main_menu","action":"travel"})
-        def check():print('check')
-        def look():print('Look')
-        def pace():print('Pace')
-        def rations():print('rations')
-        def rest():print('rest')
-        def trade():print('trade')
+        def check(btn):print('check')
+        def look(btn):print('Look')
+        def pace(btn):
+            self.done_handler({"id":"main_menu","action":"pace"})
+        def rations(btn):print('rations')
+        def rest(btn):print('rest')
+        def trade(btn):print('trade')
         def hunt(btn):
             self.done_handler({"id": "main_menu", "action": "hunt"})
-        def buy():print('buy')
+        def buy(btn):print('buy')
         menu_actions = [travel,check,look,pace,rations,rest,trade,hunt,buy]
         menu_items = ["Travel the Trail","Check Supplies", "Look at map", "Change Pace","Change Rations","Stop to Rest", "Attempt to trade", "Hunt", "Buy Supplies"]
         l=len(menu_actions)

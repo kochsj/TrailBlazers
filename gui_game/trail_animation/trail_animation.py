@@ -1,10 +1,8 @@
 import arcade
 import time
 from arcade.gui import *
-
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
-# class TraverseTheTrailxxxx(arcade.Window): ######
 class TraverseTheTrail(arcade.View):
     """ Main application class. """
 
@@ -186,22 +184,3 @@ class TraverseTheTrail(arcade.View):
             # check if you hit a landmark
             if self.image_position > self.next_landmark_position: #when you hit a landmark, stop running, change state to landmark
                 self.current_state = "LANDMARK"
-
-
-# if __name__ == "__main__":
-
-#     def miles_traveled(val):
-#         """ Example output from animation """
-#         print(val)
-#         return val
-#     landmark_list = [[6664.0, 'Oregon City'], [5531.200000000001, 'Fort Walla Walla'], [5179.200000000001, 'The Blue Mountains'], [4155.200000000001, 'Fort Boise'], [3483.2000000000007, 'the Snake River crossing'], [2536.0, 'Fort Hall'], [1665.6000000000004, 'Soda Springs'], [974.4000000000005, 'The Green River Crossing'], [-62.399999999999636, 'Fort Bridger'], [-427.1999999999998, 'SouthPass [Butte Mtns]'], [-1080.0, 'Independence Rock'], [-2296.0, 'Fort Laramie'], [-2846.3999999999996, 'Chimney Rock'], [-4446.4, 'Fort Kearny'], [-5208.0, 'the Blue River crossing'], [-5739.2, 'the Kansas River crossing']]
-    
-#     SCREEN_WIDTH = 1400
-#     SCREEN_HEIGHT = 800
-#     SCREEN_TITLE = "OREGON TRAIL"
-#     game = TraverseTheTrail(0,0, landmark_list, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-#     # props = {"done_handler": miles_traveled, "random_event": random_events, "input_var": (test_input_variable, more_input), "menu_func": return_to_game} # dictionary of a pointer to function in memory
-#     # game.props = props # add the dictionary to the game as attribute 'props'
-#     # game.setup()
-
-#     arcade.run() 

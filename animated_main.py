@@ -9,6 +9,7 @@ from gui_game.learn_more import LearnMore
 from gui_game.hunting_animation.hunting_animation import HuntingView
 from gui_game.character_creation_view import CharacterCreationView, BankerView, CarpenterView, FarmerView
 from gui_game.general_store_view import SuppliesExplainationView, BuyingAnItemView, FinalTransactionView
+from gui_game.pace_view import PaceView
 # from random_events import random_events, test_input_variable, more_input, MenuButton, return_to_game
 
 
@@ -38,7 +39,7 @@ class OregonTrail:
         self.year = 1848
         self.bank_roll = 0
         self.inventory = {'Oxen': 0, 'Food': 0, 'Clothing': 0, 'Ammunition': 0, 'Wagon Wheel': 1, 'Wagon Axle': 1, 'Wagon Tongue': 1}
-
+        self.pace = 0
 
         #Initializes window with into screen view
         view = IntroView()
@@ -63,7 +64,6 @@ class OregonTrail:
             if action == "finish_learning":
                 view = IntroView()
                 view.done_handler = self.done_handler
-
 
         if source == "char_creation":
             if action == "banker":
@@ -116,20 +116,24 @@ class OregonTrail:
                 view = FinalTransactionView(info['item'], info['quantity'], info['cost'])
                 view.done_handler = self.done_handler
             if action == "head_to_trail":
-                view = view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
+                view = view = TraverseTheTrail(self.current_location,self.pace,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
                 view.done_handler = self.done_handler
                 view.days_traveled = self.days_traveled
                 view.miles_traveled = self.miles_traveled
 
         if source == "main_menu":
             if action == "travel":
-                view = TraverseTheTrail(self.current_location,0,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
+                view = TraverseTheTrail(self.current_location,self.pace,self.landmarks,self.SCREEN_WIDTH, self.SCREEN_HEIGHT, self.SCREEN_TITLE)
                 view.done_handler = self.done_handler
                 view.days_traveled = self.days_traveled
                 view.miles_traveled = self.miles_traveled
 
             if action == "hunt":
                 view = HuntingView()
+                view.done_handler = self.done_handler
+
+            if action == "pace":
+                view = PaceView()
                 view.done_handler = self.done_handler
 
         if source == "trail_animation":
@@ -139,9 +143,21 @@ class OregonTrail:
                 self.days_traveled = info["current_day"]
                 self.current_location = info["current_location"]
                 self.miles_traveled = info["miles_traveled"]
+
         if source == "hunt":
             view = MainMenuView()
             view.done_handler = self.done_handler
+
+        if source == "pace_view":
+            if action == "steady":
+                self.pace = info["pace"]
+            if action == "strenuous":
+                self.pace = info["pace"]
+            if action == "grueling":
+                self.pace = info["pace"]
+            view = MainMenuView()
+            view.done_handler = self.done_handler
+
 
 
         self.window.show_view(view)
