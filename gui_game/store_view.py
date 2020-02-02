@@ -2,11 +2,6 @@
 import arcade
 from gui_game.button import ActionButton
 
-SCREEN_WIDTH = 1400
-SCREEN_HEIGHT = 800
-SCREEN_TITLE = "Oregon Trail"
-
-
 class StoreView(arcade.View):
     """
     Main application class.
@@ -17,7 +12,6 @@ class StoreView(arcade.View):
         self.store_items = ["Oxen","Food","Clothing","Ammunition","Wagon Wheel","Wagon Axle","Wagon Tongue"]
         self.inventory = inventory
         self.funds = funds
-        arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
         """
@@ -62,19 +56,3 @@ class StoreView(arcade.View):
         button = ActionButton(leaving,700,100,400,50,"Exit Store",30,"Arial",arcade.color.WHITE)
         self.button_list.append(button)
         
-
-
-def main():
-    StoreView(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    arcade.run()
-
-
-if __name__ == "__main__":
-    SCREEN_WIDTH = 1400
-    SCREEN_HEIGHT = 800
-    SCREEN_TITLE = "Pace"
-    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    view = StoreView()
-
-    window.show_view(view)
-    arcade.run()

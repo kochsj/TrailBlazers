@@ -1,24 +1,21 @@
 import arcade
 from gui_game.button import ActionButton
 
-SCREEN_WIDTH = 1400
-SCREEN_HEIGHT = 800
-SCREEN_TITLE = "Oregon Trail"
-
 class MainMenuView(arcade.View):
 
     def on_show(self): #like setup
         def travel(btn):
             self.done_handler({"id":"main_menu","action":"travel"})
-        def check():print('check')
-        def look():print('Look')
-        def pace():print('Pace')
-        def rations():print('rations')
-        def rest():print('rest')
-        def trade():print('trade')
+        def check(btn):print('check')
+        def look(btn):print('Look')
+        def pace(btn):
+            self.done_handler({"id":"main_menu","action":"pace"})
+        def rations(btn):print('rations')
+        def rest(btn):print('rest')
+        def trade(btn):print('trade')
         def hunt(btn):
             self.done_handler({"id": "main_menu", "action": "hunt"})
-        def buy():print('buy')
+        def buy(btn):print('buy')
         menu_actions = [travel,check,look,pace,rations,rest,trade,hunt,buy]
         menu_items = ["Travel the Trail","Check Supplies", "Look at map", "Change Pace","Change Rations","Stop to Rest", "Attempt to trade", "Hunt", "Buy Supplies"]
         l=len(menu_actions)
@@ -37,29 +34,4 @@ class MainMenuView(arcade.View):
         arcade.draw_text("Main Menu",200, 600, arcade.color.BLACK, 40, width=1000, align="center",bold=True)
         
         super().on_draw() 
-
-        
-    
-        
-
-
-#         button = ActionButton(leaving,700,100,400,50,"Exit Store",30,"Arial",arcade.color.WHITE)
-#         self.button_list.append(button)
-        
-
-
-def main():
-    MainMenuView(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    arcade.run()
-
-
-if __name__ == "__main__":
-    SCREEN_WIDTH = 1400
-    SCREEN_HEIGHT = 800
-    SCREEN_TITLE = "Main Menu"
-    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    view = MainMenuView()
-
-    window.show_view(view)
-    arcade.run()
 
