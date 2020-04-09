@@ -31,7 +31,7 @@ class BuyingAnItemView(arcade.View):
     Determines item to buy and the number of items user buys.
     """
 
-    def __init__(self, item, idx):
+    def __init__(self, item, idx, funds):
         super().__init__()
         self.store_items = [("You will need a team of oxen to pull your wagon. \nYou will want at least two, but I reccomend at least 6 in case you lose any along the way\nI charge $40 an ox.",40),
                             ("You will need plenty of food for your party during the trip.\nTrail-goers without enough to eat are in increased danger of disease in addition to starvation\n I charge $0.25 per pound.",0.25),
@@ -42,6 +42,7 @@ class BuyingAnItemView(arcade.View):
                             ("A wagon tongue is how you yoke your oxen to your axle.\nThey're subject to a lot of strain and prone to breaking, which is unfortunate, because your wagon can't move without one.\n  Buying a spare now for only $10 could save you a lot of trouble down the line",10)]
         self.item_to_buy = item
         self.index = idx
+        self.funds = funds
         self.quantity = 0
         self.cost = self.store_items[self.index][1]
         self.ss = self.store_items[self.index][0]+"\n\nHow many would you like to buy?  "
@@ -62,8 +63,10 @@ class BuyingAnItemView(arcade.View):
         def buying(btn):
             substring = self.ss[-10:]
             self.quantity = int(re.sub('[^0-9]','', substring))
-            print(f"buying {self.quantity} {self.item_to_buy} for {self.quantity * self.cost}")
-            self.done_handler({"id":"general_store", "action":"finish_transaction", "item":self.item_to_buy, "quantity":self.quantity, "cost":(self.quantity * self.cost)})
+            _cost = (self.quantity * self.cost)
+            if _cost <= self.funds:
+                print(f"buying {self.quantity} {self.item_to_buy} for {self.quantity * self.cost}")
+                self.done_handler({"id":"general_store", "action":"finish_transaction", "item":self.item_to_buy, "quantity":self.quantity, "cost":_cost})
         button = ActionButton(buying,700,250,500,50,f"Purchase Entered Quantity",30,"Arial",arcade.color.WHITE)
         self.button_list.append(button)
 
