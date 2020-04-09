@@ -92,25 +92,25 @@ class OregonTrail:
                 view = StoreView(self.inventory, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_oxen":
-                view = BuyingAnItemView('Oxen', 0)
+                view = BuyingAnItemView('Oxen', 0, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_food":
-                view = BuyingAnItemView('Food', 1)
+                view = BuyingAnItemView('Food', 1, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_clothing":
-                view = BuyingAnItemView('Clothing', 2)
+                view = BuyingAnItemView('Clothing', 2, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_ammo":
-                view = BuyingAnItemView('Ammunition', 3)
+                view = BuyingAnItemView('Ammunition', 3, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_wheel":
-                view = BuyingAnItemView('Wagon Wheel', 4)
+                view = BuyingAnItemView('Wagon Wheel', 4, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_axle":
-                view = BuyingAnItemView('Wagon Axle', 5)
+                view = BuyingAnItemView('Wagon Axle', 5, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "buy_tongue":
-                view = BuyingAnItemView('Wagon Tongue', 6)
+                view = BuyingAnItemView('Wagon Tongue', 6, self.bank_roll)
                 view.done_handler = self.done_handler
             if action == "finish_transaction":
                 self.inventory[info['item']] += info['quantity']
